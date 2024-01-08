@@ -1,0 +1,85 @@
+[gd_scene load_steps=8 format=3 uid="uid://d675nm0i3xq8"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_1lvpb"]
+[ext_resource type="Script" path="res://scripts/main_scene.gd" id="1_a1yef"]
+[ext_resource type="Script" path="res://scripts/game_space.gd" id="1_iqqtq"]
+[ext_resource type="Texture2D" uid="uid://bmyfg5b5hx744" path="res://sprites/placeholder/white_box_w_frame.png" id="1_oaqxp"]
+[ext_resource type="Script" path="res://scripts/ship_pieces/player_cockpit.gd" id="2_qdyf0"]
+[ext_resource type="Script" path="res://scripts/ship_pieces/enemy_cockpit.gd" id="3_7rrk8"]
+[ext_resource type="Script" path="res://scripts/ship_pieces/enemy_rocket_shooter.gd" id="5_6185l"]
+
+[node name="main_scene" type="Node2D"]
+script = ExtResource("1_a1yef")
+
+[node name="game_space" type="Node2D" parent="."]
+script = ExtResource("1_iqqtq")
+
+[node name="enemy" type="Node2D" parent="game_space"]
+position = Vector2(160, 45)
+
+[node name="enemy_cockpit" type="Node2D" parent="game_space/enemy"]
+script = ExtResource("3_7rrk8")
+
+[node name="sprite" type="Sprite2D" parent="game_space/enemy/enemy_cockpit"]
+modulate = Color(0.752941, 0.223529, 0.219608, 1)
+texture = ExtResource("1_oaqxp")
+
+[node name="enemy_rocket_shooter" type="Node2D" parent="game_space/enemy"]
+position = Vector2(30, 0)
+script = ExtResource("5_6185l")
+rocket_path = "res://prefabs/enemy_rocket.tscn"
+
+[node name="sprite" type="Sprite2D" parent="game_space/enemy/enemy_rocket_shooter"]
+modulate = Color(0.752941, 0.223529, 0.219608, 1)
+texture = ExtResource("1_oaqxp")
+
+[node name="shoot_countdown" type="Node2D" parent="game_space/enemy/enemy_rocket_shooter"]
+position = Vector2(0, 28)
+
+[node name="label" type="Label" parent="game_space/enemy/enemy_rocket_shooter/shoot_countdown"]
+modulate = Color(0.752941, 0.223529, 0.219608, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="player" type="Node2D" parent="game_space"]
+position = Vector2(160, 195)
+script = ExtResource("1_1lvpb")
+
+[node name="cockpit" type="Node2D" parent="game_space/player"]
+script = ExtResource("2_qdyf0")
+rocket_path = "res://prefabs/player_rocket.tscn"
+
+[node name="sprite" type="Sprite2D" parent="game_space/player/cockpit"]
+texture = ExtResource("1_oaqxp")
+
+[node name="shoot_countdown" type="Node2D" parent="game_space/player/cockpit"]
+position = Vector2(0, -27)
+
+[node name="label" type="Label" parent="game_space/player/cockpit/shoot_countdown"]
+modulate = Color(0, 0.733333, 0.976471, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
