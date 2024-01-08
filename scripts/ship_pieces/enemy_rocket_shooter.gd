@@ -5,7 +5,7 @@ var _main_scene: Node2D
 
 var _shoot_countdown: Label
 
-var auto_trigger_order = 0;
+var auto_trigger_order = 2;
 
 @export var rocket_path: String
 
@@ -23,10 +23,11 @@ func trigger():
 
 	if countdown_integer == 0:
 		spawn_rocket();
-
 		countdown_integer += 4;
 	
 	_shoot_countdown.text = str(countdown_integer);
+
+	_game_space.finish_trigger(self);
 
 func spawn_rocket():
 	var rocket = _main_scene.create_node(rocket_path, _game_space);

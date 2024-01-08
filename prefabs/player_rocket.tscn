@@ -6,6 +6,7 @@
 [node name="player_rocket" type="Node2D"]
 position = Vector2(97, 79)
 script = ExtResource("1_8lqvd")
+animation_len_secs = 0.3
 
 [node name="sprite" type="Sprite2D" parent="."]
 modulate = Color(0, 0.733333, 0.976471, 1)

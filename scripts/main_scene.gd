@@ -1,5 +1,7 @@
 extends Node2D
 
+@export var soft_curve: Curve;
+@export var linear_curve: Curve;
 
 var _result
 
@@ -33,3 +35,6 @@ func create_node(prefab_path, parent):
 	var new_node = scene.instantiate()
 	parent.add_child(new_node)
 	return new_node
+
+func curr_secs():
+	return float(Time.get_ticks_msec()) / 1000.0;
