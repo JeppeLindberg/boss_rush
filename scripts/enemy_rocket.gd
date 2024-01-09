@@ -5,7 +5,8 @@ var _global_vars := preload("res://scripts/library/global_vars.gd").new()
 var _main_scene: Node2D
 var _game_space: Node2D
 
-var auto_trigger_order = 3;
+var auto_trigger_order = 1;
+
 var _old_pos: Vector2
 var _target_pos: Vector2
 var _move_time_begin: float
@@ -19,7 +20,7 @@ func _ready():
 	_game_space = get_node('/root/main_scene/game_space');
 
 func trigger():
-	_move(Vector2.DOWN * 3);
+	_move(Vector2.DOWN * 2);
 	
 func _process(_delta):
 	if not _waiting_for_finish_animation:
