@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://oo4gfy20fup5"]
+
+[ext_resource type="Script" path="res://scripts/lerp_position.gd" id="1_xm2k0"]
+
+[node name="upgrade_option" type="Node2D"]
+script = ExtResource("1_xm2k0")

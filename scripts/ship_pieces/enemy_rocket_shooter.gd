@@ -10,12 +10,15 @@ var _sprite: Sprite2D
 var _shoot_countdown: Label
 
 var auto_trigger_order = 0;
+var swappable: bool
 
 
 
 func _ready():
 	add_to_group('enemy_ship_part');
 	add_to_group('has_auto_trigger');
+	add_to_group('swappable_ship_part');
+	swappable = true;
 	_sprite = get_node('./sprite');
 	_main_scene = get_node('/root/main_scene')
 	_game_space = get_node('/root/main_scene/game_space')
@@ -39,6 +42,7 @@ func spawn_rocket():
 
 func take_damage():
 	_sprite.texture = texture_destroyed;
+	swappable = false;
 	remove_from_group('enemy_ship_part')
 	remove_from_group('has_auto_trigger');
 	_shoot_countdown.queue_free();

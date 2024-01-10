@@ -15,6 +15,7 @@ var _waiting_for_finish_animation: bool
 
 func _ready():
 	add_to_group('has_auto_trigger');
+	add_to_group('cullable');
 	_main_scene = get_node('/root/main_scene');
 	_game_space = get_node('/root/main_scene/game_space');
 

@@ -29,7 +29,7 @@ func _process(_delta):
 
 # Called on any input that has not already been handled by the UI or other sources
 func _unhandled_input(event):
-	if (_game_space.current_trigger != -1) or (_waiting_for_finish_animation):
+	if (_game_space.current_phase != 'battle') or (_game_space.current_trigger != -1) or (_waiting_for_finish_animation):
 		return;
 
 	if event.is_action_pressed("move_left"):
