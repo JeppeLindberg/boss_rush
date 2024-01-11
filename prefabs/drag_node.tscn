@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://64qgfvm2jy2j"]
+
+[ext_resource type="Script" path="res://scripts/ui/drag_node.gd" id="1_3ra06"]
+
+[sub_resource type="Curve" id="Curve_i0cfs"]
+_data = [Vector2(0, 0), 0.0, 24.5754, 0, 0, Vector2(0.0800971, 1), 0.0, 0.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(0.917476, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -29.2736, 0.0, 0, 0]
+point_count = 5
+
+[node name="drag_node" type="Line2D"]
+points = PackedVector2Array(0, 0, 150, 150, 300, 300)
+width = 15.0
+width_curve = SubResource("Curve_i0cfs")
+script = ExtResource("1_3ra06")

@@ -15,6 +15,7 @@ var auto_trigger_order = 0;
 
 func _ready():
 	add_to_group('has_auto_trigger');
+	add_to_group('damageable_player_ship_part');
 	add_to_group('player_ship_part');
 	_sprite = get_node('./sprite');
 	_main_scene = get_node('/root/main_scene')

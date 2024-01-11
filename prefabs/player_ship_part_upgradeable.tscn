@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://bsrrgmkuy4ysa"]
+
+[ext_resource type="Script" path="res://scripts/lerp_position.gd" id="1_47cnl"]
+[ext_resource type="Script" path="res://scripts/player_ship_part_upgradeable.gd" id="1_s3shw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_810ba"]
+size = Vector2(30, 30)
+
+[node name="player_ship_part_upgradeable" type="Area2D"]
+script = ExtResource("1_s3shw")
+
+[node name="lerp_position" type="Node2D" parent="."]
+script = ExtResource("1_47cnl")
+
+[node name="collider" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_810ba")

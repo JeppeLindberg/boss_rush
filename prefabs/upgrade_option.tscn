@@ -1,6 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://oo4gfy20fup5"]
+[gd_scene load_steps=4 format=3 uid="uid://oo4gfy20fup5"]
 
+[ext_resource type="Script" path="res://scripts/upgrade_option.gd" id="1_uow8e"]
 [ext_resource type="Script" path="res://scripts/lerp_position.gd" id="1_xm2k0"]
 
-[node name="upgrade_option" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k3cu2"]
+size = Vector2(30, 30)
+
+[node name="upgrade_option" type="Area2D"]
+script = ExtResource("1_uow8e")
+drag_arrow_path = "res://prefabs/drag_node.tscn"
+
+[node name="lerp_position" type="Node2D" parent="."]
 script = ExtResource("1_xm2k0")
+
+[node name="collider" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_k3cu2")

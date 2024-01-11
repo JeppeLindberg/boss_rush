@@ -13,7 +13,7 @@ func make_ready():
     _ui_enemy_health = get_node('/root/main_scene/ui/enemy_health');
     _main_scene = get_node('/root/main_scene');
     _game_space = get_node('/root/main_scene/game_space');
-    var ship_parts = _main_scene.get_children_in_groups(self, ['enemy_ship_part'], false);
+    var ship_parts = _main_scene.get_children_in_groups(self, ['damageable_enemy_ship_part'], false);
     health = len(ship_parts) - 2;
     _ui_enemy_health.set_max_health(health);
 

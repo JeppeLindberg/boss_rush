@@ -31,7 +31,7 @@ soft_curve = SubResource("Curve_rdql2")
 linear_curve = SubResource("Curve_rtt2q")
 
 [node name="center" type="Node2D" parent="."]
-position = Vector2(160, 120)
+position = Vector2(160, 121)
 
 [node name="ui" type="Node2D" parent="."]
 
@@ -84,8 +84,12 @@ script = ExtResource("1_iqqtq")
 script = ExtResource("6_bh6pc")
 animation_len_secs = 0.5
 upgrade_prefab_path = "res://prefabs/upgrade_option.tscn"
+player_part_prefab_path = "res://prefabs/player_ship_part_upgradeable.tscn"
 
 [node name="enemy_ship_parts" type="Node2D" parent="game_space/upgrades"]
+script = ExtResource("7_qiwjb")
+
+[node name="player_ship_parts" type="Node2D" parent="game_space/upgrades"]
 script = ExtResource("7_qiwjb")
 
 [node name="enemy" type="Node2D" parent="game_space"]
@@ -212,3 +216,5 @@ texture_destroyed = ExtResource("4_pogby")
 
 [node name="sprite" type="Sprite2D" parent="game_space/player/player_hull4"]
 texture = ExtResource("1_oaqxp")
+
+[node name="special_effects" type="Node2D" parent="."]

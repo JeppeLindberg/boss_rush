@@ -5,12 +5,17 @@ var _game_space: Node2D
 var _center: Node2D
 var _enemy: Node2D
 var _enemy_ship_parts: Node2D
+var _player: Node2D
+var _player_ship_parts: Node2D
 
-var _enemy_ship_parts_callback = []
-var _parts_callback = []
+var _seperate_ship_parts_callback = []
+var _make_upgrades_clickable_callback = []
+
+var target_upgrade_option: Node2D
 
 @export var animation_len_secs: float = 1.0;
 @export var upgrade_prefab_path: String
+@export var player_part_prefab_path: String
 
 
 func _ready():
@@ -19,61 +24,113 @@ func _ready():
 	_game_space = get_node('/root/main_scene/game_space');
 	_enemy = get_node('/root/main_scene/game_space/enemy');
 	_enemy_ship_parts = get_node('./enemy_ship_parts')
+	_player = get_node('/root/main_scene/game_space/player');
+	_player_ship_parts = get_node('./player_ship_parts')
 
 func activate_upgrade_phase():
-	var swappable_ship_parts = []
+	var enemy_ship_parts = []
+	var player_ship_parts = []
 
-	for child in _main_scene.get_children_in_groups(_game_space, ['swappable_ship_part'], true):
-		swappable_ship_parts.append([child.global_position.x, child])
+	for child in _main_scene.get_children_in_groups(_game_space, ['enemy_ship_part'], true):
+		enemy_ship_parts.append([child.global_position.x, child])
+	for child in _main_scene.get_children_in_groups(_game_space, ['player_ship_part'], true):
+		player_ship_parts.append([child.global_position.x, child])
 
-	swappable_ship_parts.sort()
-	var ordered_ship_parts = []
+	enemy_ship_parts.sort()
+	var ordered_enemy_ship_parts = []
+	player_ship_parts.sort()
+	var ordered_player_ship_parts = []
 
-	for part in swappable_ship_parts:
-		ordered_ship_parts.append(part[1]);
+	for part in enemy_ship_parts:
+		ordered_enemy_ship_parts.append(part[1]);
+	for part in player_ship_parts:
+		ordered_player_ship_parts.append(part[1]);
 
 	_enemy_ship_parts.global_position = _enemy.global_position
-	var avg_local_pos = Vector2.ZERO;
+	var avg_enemy_local_pos = Vector2.ZERO;
 	var upgrade_options = []
+	_player_ship_parts.global_position = _player.global_position
+	var avg_player_local_pos = Vector2.ZERO;
+	var player_ship_parts_upgradeables = []
 
-	for part in ordered_ship_parts:
+	for part in ordered_enemy_ship_parts:
 		var upgrade_option = _main_scene.create_node(upgrade_prefab_path, _enemy_ship_parts);
 		upgrade_option.global_position = part.global_position;
 		var upgrade_sprite = part.get_node('./sprite');
 		upgrade_sprite.reparent(upgrade_option);
-		avg_local_pos += upgrade_option.global_position - _enemy.global_position;
+		avg_enemy_local_pos += upgrade_option.global_position - _enemy.global_position;
 
 		upgrade_options.append(upgrade_option);
 	
-	avg_local_pos = avg_local_pos / len(ordered_ship_parts)
+	for part in ordered_player_ship_parts:
+		var player_ship_parts_upgradeable = _main_scene.create_node(player_part_prefab_path, _player_ship_parts);
+		player_ship_parts_upgradeable.global_position = part.global_position;
+		var upgrade_sprite = part.get_node('./sprite');
+		upgrade_sprite.reparent(player_ship_parts_upgradeable);
+		avg_player_local_pos += player_ship_parts_upgradeable.global_position - _player.global_position;
+
+		player_ship_parts_upgradeables.append(player_ship_parts_upgradeable);
+	
+	avg_enemy_local_pos = avg_enemy_local_pos / len(ordered_enemy_ship_parts)
+	avg_player_local_pos = avg_player_local_pos / len(ordered_player_ship_parts)
 
 	for option in upgrade_options:
-		option.position = option.position - avg_local_pos;
-	_enemy_ship_parts.global_position = _enemy_ship_parts.global_position + avg_local_pos;
+		option.position = option.position - avg_enemy_local_pos;
+	_enemy_ship_parts.global_position = _enemy_ship_parts.global_position + avg_enemy_local_pos;
+	for player_ship_parts_upgradeable in player_ship_parts_upgradeables:
+		player_ship_parts_upgradeable.position = player_ship_parts_upgradeable.position - avg_player_local_pos;
+	_player_ship_parts.global_position = _player_ship_parts.global_position + avg_player_local_pos;
+
+	_seperate_ship_parts_callback = []
 
 	_enemy_ship_parts.animation_len_secs = animation_len_secs;
-	_enemy_ship_parts_callback = []
-	_enemy_ship_parts_callback.append(_enemy_ship_parts.get_path());
+	_seperate_ship_parts_callback.append(_enemy_ship_parts.get_path());
 	_enemy_ship_parts.set_lerp_to_pos(Vector2(_center.global_position.x, _enemy_ship_parts.global_position.y), _main_scene.soft_curve, self);
+
+	_player_ship_parts.animation_len_secs = animation_len_secs;
+	_seperate_ship_parts_callback.append(_player_ship_parts.get_path());
+	_player_ship_parts.set_lerp_to_pos(Vector2(_center.global_position.x, _player_ship_parts.global_position.y), _main_scene.soft_curve, self);
+	
+	for child in _main_scene.get_children_in_groups(_game_space, ['enemy_ship_part'], true):
+		child.queue_free()
+	for child in _main_scene.get_children_in_groups(_game_space, ['player_ship_part'], true):
+		child.queue_free()
 
 func finish_lerp_to_pos(node):
 	var _potential_seperate_ship_parts = false;
+	var _potential_make_upgrades_clickable = false;
 
-	if len(_enemy_ship_parts_callback) > 0:
+	if len(_seperate_ship_parts_callback) > 0:
 		_potential_seperate_ship_parts = true;
+	if len(_make_upgrades_clickable_callback) > 0:
+		_potential_make_upgrades_clickable = true;
 
-	_enemy_ship_parts_callback.erase(node.get_path());
-	_parts_callback.erase(node.get_path());
+	_seperate_ship_parts_callback.erase(node.get_path());
+	_make_upgrades_clickable_callback.erase(node.get_path());
 
-	if _potential_seperate_ship_parts and (len(_enemy_ship_parts_callback) == 0):
+	if _potential_seperate_ship_parts and (len(_seperate_ship_parts_callback) == 0):
 		_seperate_ship_parts()
+	if _potential_make_upgrades_clickable and (len(_make_upgrades_clickable_callback) == 0):
+		_make_upgrades_clickable()
 
 func _seperate_ship_parts():
+	_make_upgrades_clickable_callback = [];
+
 	for child in _enemy_ship_parts.get_children():
 		child.animation_len_secs = animation_len_secs;
-		_parts_callback = [];
-		_parts_callback.append(child.get_path());
+		_make_upgrades_clickable_callback.append(child.get_path());
 		var pos = _enemy_ship_parts.global_position + child.position * 1.2
-		print(pos);
-		child.set_lerp_to_pos(pos, _main_scene.soft_curve, self)
+		child.set_lerp_to_pos(pos, _main_scene.soft_curve, self, child)
 
+	for child in _player_ship_parts.get_children():
+		child.animation_len_secs = animation_len_secs;
+		_make_upgrades_clickable_callback.append(child.get_path());
+		var pos = _player_ship_parts.global_position + child.position * 1.2
+		child.set_lerp_to_pos(pos, _main_scene.soft_curve, self, child)
+
+func _make_upgrades_clickable():
+	for child in _enemy_ship_parts.get_children():
+		child.make_clickable()
+
+	for child in _player_ship_parts.get_children():
+		child.make_clickable()
