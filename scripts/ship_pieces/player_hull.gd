@@ -1,5 +1,6 @@
 extends Node2D
 
+@export var prefab_path: String
 @export var texture_destroyed: Texture2D
 
 var _sprite: Sprite2D

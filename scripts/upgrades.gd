@@ -7,6 +7,8 @@ var _enemy: Node2D
 var _enemy_ship_parts: Node2D
 var _player: Node2D
 var _player_ship_parts: Node2D
+var _continue_button: Node2D
+var _sprite_fadeaway: Node2D
 
 var _seperate_ship_parts_callback = []
 var _make_upgrades_clickable_callback = []
@@ -20,12 +22,14 @@ var target_upgrade_option: Node2D
 
 func _ready():
 	_main_scene = get_node('/root/main_scene');
+	_sprite_fadeaway = get_node('/root/main_scene/sprite_fadeaway');
 	_center = get_node('/root/main_scene/center');
 	_game_space = get_node('/root/main_scene/game_space');
 	_enemy = get_node('/root/main_scene/game_space/enemy');
 	_enemy_ship_parts = get_node('./enemy_ship_parts')
 	_player = get_node('/root/main_scene/game_space/player');
 	_player_ship_parts = get_node('./player_ship_parts')
+	_continue_button = get_node('/root/main_scene/ui/continue_button')
 
 func activate_upgrade_phase():
 	var enemy_ship_parts = []
@@ -56,19 +60,17 @@ func activate_upgrade_phase():
 	for part in ordered_enemy_ship_parts:
 		var upgrade_option = _main_scene.create_node(upgrade_prefab_path, _enemy_ship_parts);
 		upgrade_option.global_position = part.global_position;
-		var upgrade_sprite = part.get_node('./sprite');
-		upgrade_sprite.reparent(upgrade_option);
-		avg_enemy_local_pos += upgrade_option.global_position - _enemy.global_position;
+		upgrade_option.initialize_from_part(part);
 
+		avg_enemy_local_pos += upgrade_option.global_position - _enemy.global_position;
 		upgrade_options.append(upgrade_option);
 	
 	for part in ordered_player_ship_parts:
 		var player_ship_parts_upgradeable = _main_scene.create_node(player_part_prefab_path, _player_ship_parts);
 		player_ship_parts_upgradeable.global_position = part.global_position;
-		var upgrade_sprite = part.get_node('./sprite');
-		upgrade_sprite.reparent(player_ship_parts_upgradeable);
-		avg_player_local_pos += player_ship_parts_upgradeable.global_position - _player.global_position;
+		player_ship_parts_upgradeable.initialize_from_part(part);
 
+		avg_player_local_pos += player_ship_parts_upgradeable.global_position - _player.global_position;
 		player_ship_parts_upgradeables.append(player_ship_parts_upgradeable);
 	
 	avg_enemy_local_pos = avg_enemy_local_pos / len(ordered_enemy_ship_parts)
@@ -89,7 +91,7 @@ func activate_upgrade_phase():
 
 	_player_ship_parts.animation_len_secs = animation_len_secs;
 	_seperate_ship_parts_callback.append(_player_ship_parts.get_path());
-	_player_ship_parts.set_lerp_to_pos(Vector2(_center.global_position.x, _player_ship_parts.global_position.y), _main_scene.soft_curve, self);
+	_player_ship_parts.set_lerp_to_pos(Vector2(_center.global_position.x, _player_ship_parts.global_position.y - 40), _main_scene.soft_curve, self);
 	
 	for child in _main_scene.get_children_in_groups(_game_space, ['enemy_ship_part'], true):
 		child.queue_free()
@@ -134,3 +136,14 @@ func _make_upgrades_clickable():
 
 	for child in _player_ship_parts.get_children():
 		child.make_clickable()
+	
+	_continue_button.enable()
+
+func continue_button_pressed():
+	_continue_button.disable()
+
+	for child in _enemy_ship_parts.get_children():
+		_sprite_fadeaway.destroy(child)
+
+	
+

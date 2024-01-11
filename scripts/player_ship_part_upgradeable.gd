@@ -3,6 +3,8 @@ extends Area2D
 var animation_len_secs: float = 1.0;
 var _clickable = false;
 
+var future_ship_part_path: String
+
 var _collider: CollisionShape2D
 
 var _main_scene: Node2D
@@ -17,6 +19,12 @@ func _ready():
 	_collider = get_node('./collider');
 	_lerp_position.node_to_move = self;
 
+func initialize_from_part(part):
+	var upgrade_sprite = part.get_node('./sprite');
+	upgrade_sprite.reparent(self);
+	future_ship_part_path = part.prefab_path;
+	
+
 func make_clickable():
 	_clickable = true;
 
@@ -28,7 +36,12 @@ func _upgrade_this():
 	if _upgrades.target_upgrade_option == null:
 		return;
 		
-	print(_upgrades.target_upgrade_option)
+	self.get_node('./sprite').queue_free()
+	var new_sprite = _upgrades.target_upgrade_option.get_node('./sprite')
+	new_sprite.reparent(self);
+	new_sprite.position = Vector2.ZERO
+	future_ship_part_path = _upgrades.target_upgrade_option.player_upgrade_part_path;
+	_upgrades.target_upgrade_option.queue_free();
 
 func _unhandled_input(event):
 	if not _clickable:

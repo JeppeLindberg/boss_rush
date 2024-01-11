@@ -3,6 +3,7 @@ extends Node2D
 var _game_space: Node2D
 var _main_scene: Node2D
 
+@export var player_upgrade_part_path: String
 @export var texture_destroyed: Texture2D
 @export var rocket_path: String
 

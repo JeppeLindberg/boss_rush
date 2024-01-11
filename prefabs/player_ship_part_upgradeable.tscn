@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scripts/player_ship_part_upgradeable.gd" id="1_s3shw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_810ba"]
-size = Vector2(30, 30)
+size = Vector2(22, 22)
 
 [node name="player_ship_part_upgradeable" type="Area2D"]
 script = ExtResource("1_s3shw")

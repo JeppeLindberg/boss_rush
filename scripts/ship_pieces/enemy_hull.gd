@@ -1,8 +1,7 @@
 extends Node2D
 
+@export var player_upgrade_part_path: String
 @export var texture_destroyed: Texture2D
-
-@export var swappable_ship_part_path: String;
 
 var _enemy: Node2D
 var _sprite: Sprite2D

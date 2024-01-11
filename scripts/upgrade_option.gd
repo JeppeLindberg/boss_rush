@@ -4,6 +4,9 @@ var animation_len_secs: float = 1.0;
 var _clickable = false;
 var _drag_from = Vector2.ZERO;
 var _dragging = false
+var _swappable = false
+
+var player_upgrade_part_path: String
 
 @export var drag_arrow_path: String
 
@@ -23,6 +26,14 @@ func _ready():
 	_lerp_position = get_node('./lerp_position');
 	_collider = get_node('./collider');
 	_lerp_position.node_to_move = self;
+
+func initialize_from_part(part):
+	_swappable = part.swappable;
+	var upgrade_sprite = part.get_node('./sprite');
+	upgrade_sprite.reparent(self);
+
+	if _swappable:
+		player_upgrade_part_path = part.player_upgrade_part_path;
 
 func make_clickable():
 	_clickable = true;

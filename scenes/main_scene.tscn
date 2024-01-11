@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://d675nm0i3xq8"]
+[gd_scene load_steps=24 format=3 uid="uid://d675nm0i3xq8"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_1lvpb"]
 [ext_resource type="Script" path="res://scripts/main_scene.gd" id="1_a1yef"]
@@ -6,16 +6,20 @@
 [ext_resource type="Texture2D" uid="uid://bmyfg5b5hx744" path="res://sprites/placeholder/white_box_w_frame.png" id="1_oaqxp"]
 [ext_resource type="Texture2D" uid="uid://b0uuo031s7sgs" path="res://sprites/ui/enemy_health.png" id="2_7mvrc"]
 [ext_resource type="Script" path="res://scripts/ui/enemy_health.gd" id="2_h0t0q"]
-[ext_resource type="Script" path="res://scripts/ship_pieces/player_cockpit.gd" id="2_qdyf0"]
 [ext_resource type="Script" path="res://scripts/ship_pieces/enemy_cockpit.gd" id="3_7rrk8"]
 [ext_resource type="Script" path="res://scripts/ship_pieces/enemy_hull.gd" id="3_ctuy7"]
 [ext_resource type="Texture2D" uid="uid://jqyyq85ke6wg" path="res://sprites/ui/enemy_health_missing.png" id="3_jbgnn"]
 [ext_resource type="Texture2D" uid="uid://cvbnismtdc273" path="res://sprites/placeholder/grey_cracked_box_w_frame.png" id="4_pogby"]
+[ext_resource type="Texture2D" uid="uid://tdjrfachp4ek" path="res://sprites/ui/continue_panel.png" id="5_4re6c"]
 [ext_resource type="Script" path="res://scripts/ship_pieces/enemy_rocket_shooter.gd" id="5_6185l"]
+[ext_resource type="Script" path="res://scripts/ui/continue_button.gd" id="5_x0yj8"]
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="6_am7g1"]
 [ext_resource type="Script" path="res://scripts/upgrades.gd" id="6_bh6pc"]
 [ext_resource type="Script" path="res://scripts/lerp_position.gd" id="7_qiwjb"]
 [ext_resource type="Script" path="res://scripts/ship_pieces/player_hull.gd" id="8_c4yx2"]
+[ext_resource type="PackedScene" uid="uid://cxwyqjb4hatp1" path="res://prefabs/parts/player_hull.tscn" id="15_xrg6p"]
+[ext_resource type="PackedScene" uid="uid://dvnitnvm74buv" path="res://prefabs/parts/player_cockpit.tscn" id="16_kqcau"]
+[ext_resource type="Script" path="res://scripts/sprite_fadeaway.gd" id="20_fhocw"]
 
 [sub_resource type="Curve" id="Curve_rdql2"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -25,13 +29,16 @@ point_count = 2
 _data = [Vector2(0, 0), 0.0, 1.03915, 0, 0, Vector2(1, 1), 0.987078, 0.0, 0, 0]
 point_count = 2
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_myouu"]
+size = Vector2(80, 26)
+
 [node name="main_scene" type="Node2D"]
 script = ExtResource("1_a1yef")
 soft_curve = SubResource("Curve_rdql2")
 linear_curve = SubResource("Curve_rtt2q")
 
 [node name="center" type="Node2D" parent="."]
-position = Vector2(160, 121)
+position = Vector2(120, 90)
 
 [node name="ui" type="Node2D" parent="."]
 
@@ -77,6 +84,26 @@ texture = ExtResource("3_jbgnn")
 position = Vector2(64, 14)
 texture = ExtResource("3_jbgnn")
 
+[node name="continue_button" type="Area2D" parent="ui"]
+position = Vector2(191, 132)
+script = ExtResource("5_x0yj8")
+
+[node name="sprite" type="Sprite2D" parent="ui/continue_button"]
+texture = ExtResource("5_4re6c")
+
+[node name="label" type="Label" parent="ui/continue_button"]
+modulate = Color(0.921569, 0.929412, 0.913725, 1)
+offset_left = -35.0
+offset_top = -5.0
+offset_right = 29.0
+offset_bottom = 5.0
+text = "CONTINUE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="collider" type="CollisionShape2D" parent="ui/continue_button"]
+shape = SubResource("RectangleShape2D_myouu")
+
 [node name="game_space" type="Node2D" parent="."]
 script = ExtResource("1_iqqtq")
 
@@ -93,12 +120,13 @@ script = ExtResource("7_qiwjb")
 script = ExtResource("7_qiwjb")
 
 [node name="enemy" type="Node2D" parent="game_space"]
-position = Vector2(160, 45)
+position = Vector2(120, 40)
 script = ExtResource("6_am7g1")
 
 [node name="enemy_hull" type="Node2D" parent="game_space/enemy"]
-position = Vector2(30, 0)
+position = Vector2(20, 0)
 script = ExtResource("3_ctuy7")
+player_upgrade_part_path = "res://prefabs/parts/player_hull.tscn"
 texture_destroyed = ExtResource("4_pogby")
 
 [node name="sprite" type="Sprite2D" parent="game_space/enemy/enemy_hull"]
@@ -114,7 +142,7 @@ modulate = Color(0.752941, 0.223529, 0.219608, 1)
 texture = ExtResource("1_oaqxp")
 
 [node name="enemy_rocket_shooter" type="Node2D" parent="game_space/enemy"]
-position = Vector2(60, 0)
+position = Vector2(40, 0)
 script = ExtResource("5_6185l")
 texture_destroyed = ExtResource("4_pogby")
 rocket_path = "res://prefabs/enemy_rocket.tscn"
@@ -144,7 +172,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="enemy_hull2" type="Node2D" parent="game_space/enemy"]
-position = Vector2(-30, 0)
+position = Vector2(-20, 0)
 script = ExtResource("3_ctuy7")
 texture_destroyed = ExtResource("4_pogby")
 
@@ -153,48 +181,17 @@ modulate = Color(0.752941, 0.223529, 0.219608, 1)
 texture = ExtResource("1_oaqxp")
 
 [node name="player" type="Node2D" parent="game_space"]
-position = Vector2(160, 195)
+position = Vector2(120, 140)
 script = ExtResource("1_1lvpb")
 animation_len_secs = 0.15
 
-[node name="player_hull" type="Node2D" parent="game_space/player"]
-position = Vector2(30, 0)
-script = ExtResource("8_c4yx2")
-texture_destroyed = ExtResource("4_pogby")
+[node name="player_hull" parent="game_space/player" instance=ExtResource("15_xrg6p")]
+position = Vector2(20, 0)
 
-[node name="sprite" type="Sprite2D" parent="game_space/player/player_hull"]
-texture = ExtResource("1_oaqxp")
-
-[node name="player_cockpit" type="Node2D" parent="game_space/player"]
-script = ExtResource("2_qdyf0")
-texture_destroyed = ExtResource("4_pogby")
-rocket_path = "res://prefabs/player_rocket.tscn"
-
-[node name="sprite" type="Sprite2D" parent="game_space/player/player_cockpit"]
-texture = ExtResource("1_oaqxp")
-
-[node name="shoot_countdown" type="Node2D" parent="game_space/player/player_cockpit"]
-position = Vector2(0, -27)
-
-[node name="label" type="Label" parent="game_space/player/player_cockpit/shoot_countdown"]
-modulate = Color(0, 0.733333, 0.976471, 1)
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "1"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="player_cockpit" parent="game_space/player" instance=ExtResource("16_kqcau")]
 
 [node name="player_hull2" type="Node2D" parent="game_space/player"]
-position = Vector2(60, 0)
+position = Vector2(40, 0)
 script = ExtResource("8_c4yx2")
 texture_destroyed = ExtResource("4_pogby")
 
@@ -202,7 +199,7 @@ texture_destroyed = ExtResource("4_pogby")
 texture = ExtResource("1_oaqxp")
 
 [node name="player_hull3" type="Node2D" parent="game_space/player"]
-position = Vector2(-30, 0)
+position = Vector2(-20, 0)
 script = ExtResource("8_c4yx2")
 texture_destroyed = ExtResource("4_pogby")
 
@@ -210,7 +207,7 @@ texture_destroyed = ExtResource("4_pogby")
 texture = ExtResource("1_oaqxp")
 
 [node name="player_hull4" type="Node2D" parent="game_space/player"]
-position = Vector2(-60, 0)
+position = Vector2(-40, 0)
 script = ExtResource("8_c4yx2")
 texture_destroyed = ExtResource("4_pogby")
 
@@ -218,3 +215,7 @@ texture_destroyed = ExtResource("4_pogby")
 texture = ExtResource("1_oaqxp")
 
 [node name="special_effects" type="Node2D" parent="."]
+
+[node name="sprite_fadeaway" type="Node2D" parent="."]
+script = ExtResource("20_fhocw")
+fading_sprite_path = "res://prefabs/fading_sprite.tscn"

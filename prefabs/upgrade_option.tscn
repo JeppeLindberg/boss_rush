@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scripts/lerp_position.gd" id="1_xm2k0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k3cu2"]
-size = Vector2(30, 30)
+size = Vector2(22, 22)
 
 [node name="upgrade_option" type="Area2D"]
 script = ExtResource("1_uow8e")

@@ -1,0 +1,6 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://bj2uoy6xpt6u1"]
+
+[ext_resource type="FontFile" uid="uid://dvylu411whvfq" path="res://fonts/cc.yal.7w7.block.ttf" id="1_5dams"]
+
+[resource]
+default_font = ExtResource("1_5dams")
