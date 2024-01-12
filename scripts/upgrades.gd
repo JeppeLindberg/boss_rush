@@ -12,6 +12,8 @@ var _sprite_fadeaway: Node2D
 
 var _seperate_ship_parts_callback = []
 var _make_upgrades_clickable_callback = []
+var _start_warp_callback = []
+var _warp_callback = []
 
 var target_upgrade_option: Node2D
 
@@ -34,6 +36,7 @@ func _ready():
 func activate_upgrade_phase():
 	var enemy_ship_parts = []
 	var player_ship_parts = []
+	_player_ship_parts.modulate = Color.WHITE;
 
 	for child in _main_scene.get_children_in_groups(_game_space, ['enemy_ship_part'], true):
 		enemy_ship_parts.append([child.global_position.x, child])
@@ -101,19 +104,31 @@ func activate_upgrade_phase():
 func finish_lerp_to_pos(node):
 	var _potential_seperate_ship_parts = false;
 	var _potential_make_upgrades_clickable = false;
+	var _potential_start_warp = false
+	var _potential_warp = false
 
 	if len(_seperate_ship_parts_callback) > 0:
 		_potential_seperate_ship_parts = true;
 	if len(_make_upgrades_clickable_callback) > 0:
 		_potential_make_upgrades_clickable = true;
+	if len(_start_warp_callback) > 0:
+		_potential_start_warp = true;
+	if len(_warp_callback) > 0:
+		_potential_warp = true;
 
 	_seperate_ship_parts_callback.erase(node.get_path());
 	_make_upgrades_clickable_callback.erase(node.get_path());
+	_start_warp_callback.erase(node.get_path());
+	_warp_callback.erase(node.get_path());
 
 	if _potential_seperate_ship_parts and (len(_seperate_ship_parts_callback) == 0):
 		_seperate_ship_parts()
 	if _potential_make_upgrades_clickable and (len(_make_upgrades_clickable_callback) == 0):
 		_make_upgrades_clickable()
+	if _potential_start_warp and (len(_start_warp_callback) == 0):
+		_start_warp()
+	if _potential_warp and (len(_warp_callback) == 0):
+		_finish_warp()
 
 func _seperate_ship_parts():
 	_make_upgrades_clickable_callback = [];
@@ -145,5 +160,25 @@ func continue_button_pressed():
 	for child in _enemy_ship_parts.get_children():
 		_sprite_fadeaway.destroy(child)
 
+	for child in _player_ship_parts.get_children():
+		child.make_unclickable()
+		child.animation_len_secs = animation_len_secs;
+		_start_warp_callback.append(child.get_path());
+		var pos = round(_player_ship_parts.global_position + child.position * (1/1.2))
+		child.set_lerp_to_pos(pos, _main_scene.soft_curve, self, child)
+
+func _start_warp():
+	_player_ship_parts.animation_len_secs = animation_len_secs;
+	_warp_callback.append(_player_ship_parts.get_path());
+	var pos = _player_ship_parts.global_position + (Vector2.UP * 100.0)
+	_player_ship_parts.set_lerp_to_pos(pos, _main_scene.rising_curve, self, _player_ship_parts, 'fade_out')
+
+func _finish_warp():
+	for child in _player_ship_parts.get_children():
+		var part = child.create_part()
+		part.reparent(_player);
+		part.global_position.y = _player.global_position.y;
+		child.queue_free();
 	
+	_game_space.end_upgrade_phase()
 

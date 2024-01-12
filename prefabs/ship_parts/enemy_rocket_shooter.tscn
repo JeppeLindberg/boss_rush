@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://bbemu7vwb1fbe"]
+
+[ext_resource type="Script" path="res://scripts/ship_parts/enemy_rocket_shooter.gd" id="1_ma5th"]
+[ext_resource type="Texture2D" uid="uid://cvbnismtdc273" path="res://sprites/placeholder/grey_cracked_box_w_frame.png" id="2_leucv"]
+[ext_resource type="Texture2D" uid="uid://bmyfg5b5hx744" path="res://sprites/placeholder/white_box_w_frame.png" id="3_y4d1i"]
+
+[node name="enemy_rocket_shooter" type="Node2D"]
+script = ExtResource("1_ma5th")
+player_upgrade_part_path = "res://prefabs/ship_parts/player_rocket_shooter.tscn"
+texture_destroyed = ExtResource("2_leucv")
+rocket_path = "res://prefabs/ship_additional_assets/enemy_rocket_slow.tscn"
+
+[node name="sprite" type="Sprite2D" parent="."]
+modulate = Color(0.752941, 0.223529, 0.219608, 1)
+texture = ExtResource("3_y4d1i")
+
+[node name="shoot_countdown" type="Node2D" parent="."]
+position = Vector2(0, 28)
+
+[node name="label" type="Label" parent="shoot_countdown"]
+modulate = Color(0.752941, 0.223529, 0.219608, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "4"
+horizontal_alignment = 1
+vertical_alignment = 1

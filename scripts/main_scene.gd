@@ -2,6 +2,7 @@ extends Node2D
 
 @export var soft_curve: Curve;
 @export var linear_curve: Curve;
+@export var rising_curve: Curve;
 
 var _result
 
@@ -24,7 +25,7 @@ func get_children_in_groups(node, groups, recursive = false):
 # Get all children of the node that belongs to one or more of the the given groups
 func _get_children_in_groups_recursive(node, groups):
 	for child in node.get_children():
-		for group in groups:				
+		for group in groups:
 			if child.is_in_group(group):
 				_result.append(child)
 				break

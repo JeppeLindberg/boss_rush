@@ -6,6 +6,7 @@ var _move_time_begin: float
 var animation_len_secs: float = 1.0;
 var _waiting_for_finish_animation: bool
 var _curve: Curve
+var _also_lerp_alpha: String
 
 var _node_to_return: Node2D
 var _caller: Node2D
@@ -27,8 +28,11 @@ func _process(_delta):
     if (animation_progress == 1) and _waiting_for_finish_animation:
         _waiting_for_finish_animation = false;
         _caller.finish_lerp_to_pos(_node_to_return);
+    
+    if _also_lerp_alpha == 'fade_out':
+        modulate = Color(1,1,1,1.0-animation_progress);
 
-func set_lerp_to_pos(new_pos, curve, caller, node_to_return = null):
+func set_lerp_to_pos(new_pos, curve, caller, node_to_return = null, also_lerp_alpha = ''):
     _move_time_begin = _main_scene.curr_secs()
     _old_pos = node_to_move.global_position;	
     _target_pos = new_pos;
@@ -37,4 +41,5 @@ func set_lerp_to_pos(new_pos, curve, caller, node_to_return = null):
     _curve = curve
     if node_to_return != null:
         _node_to_return = node_to_return
+    _also_lerp_alpha = also_lerp_alpha
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dt4t5gfp6hjfc"]
 
-[ext_resource type="Script" path="res://scripts/enemy_rocket.gd" id="1_cvgwe"]
+[ext_resource type="Script" path="res://scripts/ship_additional_assets/enemy_rocket.gd" id="1_cvgwe"]
 [ext_resource type="Texture2D" uid="uid://cc6uinugkjtun" path="res://sprites/placeholder/rocket_temp.png" id="2_5b202"]
 
 [node name="enemy_rocket" type="Node2D"]

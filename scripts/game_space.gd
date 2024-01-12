@@ -52,4 +52,6 @@ func go_to_upgrade_phase():
 	current_phase = 'upgrade'
 	_cull()
 	_upgrades.activate_upgrade_phase()
-	
+
+func end_upgrade_phase():
+	current_phase = 'pre_battle'

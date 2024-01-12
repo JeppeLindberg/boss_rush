@@ -23,10 +23,16 @@ func initialize_from_part(part):
 	var upgrade_sprite = part.get_node('./sprite');
 	upgrade_sprite.reparent(self);
 	future_ship_part_path = part.prefab_path;
-	
+
+func create_part():
+	var part = _main_scene.create_node(future_ship_part_path, self)
+	return(part)
 
 func make_clickable():
 	_clickable = true;
+
+func make_unclickable():
+	_clickable = false;
 
 func set_lerp_to_pos(new_pos, curve, caller, node_to_return = null):
 	_lerp_position.animation_len_secs = animation_len_secs;

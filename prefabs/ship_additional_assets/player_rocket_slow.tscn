@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://b7dafuu0agrpx"]
+
+[ext_resource type="Texture2D" uid="uid://cc6uinugkjtun" path="res://sprites/placeholder/rocket_temp.png" id="1_1e4ys"]
+[ext_resource type="Script" path="res://scripts/ship_additional_assets/player_rocket_slow.gd" id="1_g8kkq"]
+
+[node name="player_rocket" type="Node2D"]
+position = Vector2(97, 79)
+script = ExtResource("1_g8kkq")
+animation_len_secs = 0.3
+
+[node name="sprite" type="Sprite2D" parent="."]
+modulate = Color(0, 0.733333, 0.976471, 1)
+texture = ExtResource("1_1e4ys")
