@@ -7,6 +7,7 @@ var _dragging = false
 var _swappable = false
 
 var player_upgrade_part_path: String
+var part_state: String
 
 @export var drag_arrow_path: String
 
@@ -34,6 +35,8 @@ func initialize_from_part(part):
 
 	if _swappable:
 		player_upgrade_part_path = part.player_upgrade_part_path;
+	
+	part_state = part.state
 
 func make_clickable():
 	_clickable = true;

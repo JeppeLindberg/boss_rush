@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://b8te5iqrai5gm"]
+
+[ext_resource type="Script" path="res://scripts/ship_parts/enemy_cockpit.gd" id="1_7pxah"]
+[ext_resource type="Texture2D" uid="uid://b5dgxdbemgrgx" path="res://sprites/ship_parts/space_station_broken.png" id="2_djoxo"]
+[ext_resource type="Texture2D" uid="uid://b0fh2twjsim6t" path="res://sprites/ship_parts/space_station_cockpit.png" id="3_6t5rf"]
+
+[node name="enemy_cockpit" type="Node2D"]
+script = ExtResource("1_7pxah")
+textures = {
+"destroyed": ExtResource("2_djoxo"),
+"intact": ExtResource("3_6t5rf")
+}
+
+[node name="sprite" type="Sprite2D" parent="."]
+texture = ExtResource("3_6t5rf")

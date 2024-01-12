@@ -180,5 +180,5 @@ func _finish_warp():
 		part.global_position.y = _player.global_position.y;
 		child.queue_free();
 	
-	_game_space.end_upgrade_phase()
+	_game_space.go_to_next_battle()
 

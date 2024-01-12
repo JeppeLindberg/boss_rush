@@ -1,7 +1,9 @@
 extends Node2D
 
 @export var prefab_path: String
-@export var texture_destroyed: Texture2D
+
+@export var textures: Dictionary
+var state = 'intact';
 
 var _sprite: Sprite2D
 
@@ -12,6 +14,11 @@ func _ready():
 	_sprite = get_node('./sprite');
 
 func take_damage():
-	_sprite.texture = texture_destroyed;
+	state = 'destroyed';
+	update_texture();
 	remove_from_group('damageable_player_ship_part');
+
+func update_texture():
+	_sprite.texture = textures[state];
+
 	

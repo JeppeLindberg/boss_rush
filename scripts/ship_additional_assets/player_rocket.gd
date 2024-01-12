@@ -36,7 +36,7 @@ func _process(_delta):
 		_game_space.finish_trigger(self);
 		return;
 
-	var enemy_ship_parts = _main_scene.get_children_in_groups(_main_scene, ['damageable_enemy_ship_part'], true);
+	var enemy_ship_parts = _main_scene.get_children_in_groups(_game_space, ['damageable_enemy_ship_part'], true);
 
 	for enemy_ship_part in enemy_ship_parts:
 		if enemy_ship_part.global_position.x == global_position.x:
@@ -45,6 +45,7 @@ func _process(_delta):
 				enemy_ship_part.take_damage();
 				_game_space.finish_trigger(self);
 				self.queue_free();
+				break;
 				
 	
 func _move(vec):

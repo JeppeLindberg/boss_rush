@@ -1,7 +1,9 @@
 extends Node2D
 
 @export var player_upgrade_part_path: String
-@export var texture_destroyed: Texture2D
+@export var textures: Dictionary
+
+var state = 'intact';
 
 var _enemy: Node2D
 var _sprite: Sprite2D
@@ -9,7 +11,7 @@ var swappable: bool
 
 
 
-func _ready():
+func make_ready():
 	_sprite = get_node('./sprite');
 	_enemy = get_parent();
 	swappable = true
@@ -17,7 +19,12 @@ func _ready():
 	add_to_group('enemy_ship_part');
 
 func take_damage():
-	_sprite.texture = texture_destroyed;
+	state = 'destroyed';
+	update_texture();
 	swappable = false
 	remove_from_group('damageable_enemy_ship_part');
 	_enemy.take_damage();
+
+func update_texture():
+	_sprite.texture = textures[state];
+	

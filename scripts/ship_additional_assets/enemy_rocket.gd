@@ -37,7 +37,7 @@ func _process(_delta):
 		_game_space.finish_trigger(self);
 		return;
 
-	var player_ship_parts = _main_scene.get_children_in_groups(_main_scene, ['damageable_player_ship_part'], true);
+	var player_ship_parts = _main_scene.get_children_in_groups(_game_space, ['damageable_player_ship_part'], true);
 
 	for player_ship_part in player_ship_parts:
 		if player_ship_part.global_position.x == global_position.x:

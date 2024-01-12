@@ -6,6 +6,9 @@ extends Node2D
 
 var _result
 
+func _ready():
+	get_node('./game_space').go_to_next_battle();
+
 # Get all children of the node that belongs to one or more of the the given groups
 func get_children_in_groups(node, groups, recursive = false):
 	_result = []

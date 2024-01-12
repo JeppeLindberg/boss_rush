@@ -1,17 +1,20 @@
 [gd_scene load_steps=4 format=3 uid="uid://h76fx2i4oagj"]
 
 [ext_resource type="Script" path="res://scripts/ship_parts/player_rocket_shooter.gd" id="1_t2533"]
-[ext_resource type="Texture2D" uid="uid://bmyfg5b5hx744" path="res://sprites/placeholder/white_box_w_frame.png" id="2_gjdyo"]
-[ext_resource type="Texture2D" uid="uid://cvbnismtdc273" path="res://sprites/placeholder/grey_cracked_box_w_frame.png" id="2_r3bmq"]
+[ext_resource type="Texture2D" uid="uid://b5dgxdbemgrgx" path="res://sprites/ship_parts/space_station_broken.png" id="3_fk35r"]
+[ext_resource type="Texture2D" uid="uid://cqao2ouqap8ni" path="res://sprites/ship_parts/space_station_cannon_player_variant.png" id="3_wbo2o"]
 
 [node name="player_rocket_shooter" type="Node2D"]
 script = ExtResource("1_t2533")
-prefab_path = "res://prefabs/ship_parts/player_rocket_shooter.tscn"
-texture_destroyed = ExtResource("2_r3bmq")
+prefab_path = "res://prefabs/ship_parts_player/space_station_player_rocket_shooter.tscn"
 rocket_path = "res://prefabs/ship_additional_assets/player_rocket_slow.tscn"
+textures = {
+"destroyed": ExtResource("3_fk35r"),
+"intact": ExtResource("3_wbo2o")
+}
 
 [node name="sprite" type="Sprite2D" parent="."]
-texture = ExtResource("2_gjdyo")
+texture = ExtResource("3_wbo2o")
 
 [node name="shoot_countdown" type="Node2D" parent="."]
 position = Vector2(0, -27)

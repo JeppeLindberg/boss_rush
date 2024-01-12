@@ -4,8 +4,10 @@ var _game_space: Node2D
 var _main_scene: Node2D
 
 @export var prefab_path: String
-@export var texture_destroyed: Texture2D
 @export var rocket_path: String
+
+@export var textures: Dictionary
+var state = 'intact';
 
 var _sprite: Sprite2D
 var _shoot_countdown: Label
@@ -40,5 +42,9 @@ func spawn_rocket():
 	rocket.global_position = global_position;
 
 func take_damage():
-	_sprite.texture = texture_destroyed;
+	state = 'destroyed';
+	update_texture();
 	
+func update_texture():
+	print('state ' + state)
+	_sprite.texture = textures[state];

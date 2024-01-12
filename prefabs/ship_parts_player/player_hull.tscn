@@ -6,8 +6,11 @@
 
 [node name="player_hull" type="Node2D"]
 script = ExtResource("1_2l0x4")
-prefab_path = "res://prefabs/ship_parts/player_hull.tscn"
-texture_destroyed = ExtResource("2_fwkwb")
+prefab_path = "res://prefabs/ship_parts_player/player_hull.tscn"
+textures = {
+"destroyed": ExtResource("2_fwkwb"),
+"intact": ExtResource("3_poto7")
+}
 
 [node name="sprite" type="Sprite2D" parent="."]
 texture = ExtResource("3_poto7")

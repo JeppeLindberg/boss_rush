@@ -4,8 +4,10 @@ var _game_space: Node2D
 var _main_scene: Node2D
 
 @export var player_upgrade_part_path: String
-@export var texture_destroyed: Texture2D
 @export var rocket_path: String
+
+@export var textures: Dictionary
+var state = 'intact';
 
 var _sprite: Sprite2D
 var _shoot_countdown: Label
@@ -16,7 +18,7 @@ var swappable: bool
 
 
 
-func _ready():
+func make_ready():
 	add_to_group('damageable_enemy_ship_part');
 	add_to_group('has_auto_trigger');
 	add_to_group('enemy_ship_part');
@@ -44,9 +46,13 @@ func spawn_rocket():
 	rocket.global_position = global_position;
 
 func take_damage():
-	_sprite.texture = texture_destroyed;
+	state = 'destroyed';
+	update_texture();
 	swappable = false;
 	remove_from_group('has_auto_trigger');
 	_shoot_countdown.queue_free();
 	remove_from_group('damageable_enemy_ship_part');
 	_enemy.take_damage();
+
+func update_texture():
+	_sprite.texture = textures[state];

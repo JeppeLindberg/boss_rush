@@ -7,20 +7,21 @@ var _game_space: Node2D
 var health: int
 
 
-
-
 func make_ready():
-    _ui_enemy_health = get_node('/root/main_scene/ui/enemy_health');
-    _main_scene = get_node('/root/main_scene');
-    _game_space = get_node('/root/main_scene/game_space');
-    var ship_parts = _main_scene.get_children_in_groups(self, ['damageable_enemy_ship_part'], false);
-    health = len(ship_parts) - 2;
-    _ui_enemy_health.set_max_health(health);
+	_ui_enemy_health = get_node('/root/main_scene/ui/enemy_health');
+	_main_scene = get_node('/root/main_scene');
+	_game_space = get_node('/root/main_scene/game_space');
+	health = len(get_children()) - 2;
+	_ui_enemy_health.set_max_health(health);
+
+	for child in get_children():
+		child.make_ready();
 
 
 func take_damage():
-    health -= 1
-    _ui_enemy_health.set_health(health);
+	_ui_enemy_health = get_node('/root/main_scene/ui/enemy_health');
+	health -= 1
+	_ui_enemy_health.set_health(health);
 
-    if health == 0:
-        _game_space.go_to_upgrade_phase();
+	if health == 0:
+		_game_space.go_to_upgrade_phase();

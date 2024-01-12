@@ -1,24 +1,22 @@
-[gd_scene load_steps=25 format=3 uid="uid://d675nm0i3xq8"]
+[gd_scene load_steps=23 format=3 uid="uid://d675nm0i3xq8"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_1lvpb"]
 [ext_resource type="Script" path="res://scripts/main_scene.gd" id="1_a1yef"]
 [ext_resource type="Script" path="res://scripts/game_space.gd" id="1_iqqtq"]
-[ext_resource type="Texture2D" uid="uid://bmyfg5b5hx744" path="res://sprites/placeholder/white_box_w_frame.png" id="1_oaqxp"]
 [ext_resource type="Texture2D" uid="uid://b0uuo031s7sgs" path="res://sprites/ui/enemy_health.png" id="2_7mvrc"]
 [ext_resource type="Script" path="res://scripts/ui/enemy_health.gd" id="2_h0t0q"]
 [ext_resource type="Texture2D" uid="uid://jqyyq85ke6wg" path="res://sprites/ui/enemy_health_missing.png" id="3_jbgnn"]
-[ext_resource type="Texture2D" uid="uid://cvbnismtdc273" path="res://sprites/placeholder/grey_cracked_box_w_frame.png" id="4_pogby"]
 [ext_resource type="Texture2D" uid="uid://tdjrfachp4ek" path="res://sprites/ui/continue_panel.png" id="5_4re6c"]
 [ext_resource type="Script" path="res://scripts/ui/continue_button.gd" id="5_x0yj8"]
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="6_am7g1"]
 [ext_resource type="Script" path="res://scripts/upgrades.gd" id="6_bh6pc"]
 [ext_resource type="Script" path="res://scripts/lerp_position.gd" id="7_qiwjb"]
-[ext_resource type="PackedScene" uid="uid://cgmjf1a2jj33n" path="res://prefabs/ship_parts/enemy_hull.tscn" id="11_8bm1h"]
-[ext_resource type="Script" path="res://scripts/ship_parts/enemy_cockpit.gd" id="12_4qfrw"]
-[ext_resource type="PackedScene" uid="uid://bbemu7vwb1fbe" path="res://prefabs/ship_parts/enemy_rocket_shooter.tscn" id="15_n6oeg"]
-[ext_resource type="PackedScene" uid="uid://cxwyqjb4hatp1" path="res://prefabs/ship_parts/player_hull.tscn" id="15_xrg6p"]
-[ext_resource type="PackedScene" uid="uid://dvnitnvm74buv" path="res://prefabs/ship_parts/player_cockpit.tscn" id="16_kqcau"]
-[ext_resource type="PackedScene" uid="uid://h76fx2i4oagj" path="res://prefabs/ship_parts/player_rocket_shooter.tscn" id="19_17e1v"]
+[ext_resource type="PackedScene" uid="uid://cgmjf1a2jj33n" path="res://prefabs/ship_parts_enemy/space_station_enemy_hull.tscn" id="11_8bm1h"]
+[ext_resource type="PackedScene" uid="uid://b8te5iqrai5gm" path="res://prefabs/ship_parts_enemy/space_station_enemy_cockpit.tscn" id="12_b10r3"]
+[ext_resource type="PackedScene" uid="uid://bbemu7vwb1fbe" path="res://prefabs/ship_parts_enemy/space_station_enemy_rocket_shooter.tscn" id="15_n6oeg"]
+[ext_resource type="PackedScene" uid="uid://cxwyqjb4hatp1" path="res://prefabs/ship_parts_player/player_hull.tscn" id="15_xrg6p"]
+[ext_resource type="PackedScene" uid="uid://dvnitnvm74buv" path="res://prefabs/ship_parts_player/player_cockpit.tscn" id="16_kqcau"]
+[ext_resource type="Texture2D" uid="uid://b5vmktvy57xqs" path="res://sprites/placeholder/white_box.png" id="19_r5vs7"]
 [ext_resource type="Script" path="res://scripts/sprite_fadeaway.gd" id="20_fhocw"]
 
 [sub_resource type="Curve" id="Curve_rdql2"]
@@ -41,6 +39,12 @@ script = ExtResource("1_a1yef")
 soft_curve = SubResource("Curve_rdql2")
 linear_curve = SubResource("Curve_rtt2q")
 rising_curve = SubResource("Curve_lxdt6")
+
+[node name="background" type="Sprite2D" parent="."]
+modulate = Color(0.0352941, 0.0392157, 0.0784314, 1)
+position = Vector2(123.5, 89)
+scale = Vector2(5.94, 4.56)
+texture = ExtResource("19_r5vs7")
 
 [node name="center" type="Node2D" parent="."]
 position = Vector2(120, 90)
@@ -128,22 +132,6 @@ script = ExtResource("7_qiwjb")
 position = Vector2(120, 40)
 script = ExtResource("6_am7g1")
 
-[node name="enemy_hull" parent="game_space/enemy" instance=ExtResource("11_8bm1h")]
-
-[node name="enemy_cockpit" type="Node2D" parent="game_space/enemy"]
-script = ExtResource("12_4qfrw")
-texture_destroyed = ExtResource("4_pogby")
-
-[node name="sprite" type="Sprite2D" parent="game_space/enemy/enemy_cockpit"]
-modulate = Color(0.752941, 0.223529, 0.219608, 1)
-texture = ExtResource("1_oaqxp")
-
-[node name="enemy_hull2" parent="game_space/enemy" instance=ExtResource("11_8bm1h")]
-position = Vector2(-20, 0)
-
-[node name="enemy_rocket_shooter" parent="game_space/enemy" instance=ExtResource("15_n6oeg")]
-position = Vector2(40, 0)
-
 [node name="player" type="Node2D" parent="game_space"]
 position = Vector2(120, 140)
 script = ExtResource("1_1lvpb")
@@ -158,13 +146,45 @@ position = Vector2(-20, 0)
 [node name="player_hull4" parent="game_space/player" instance=ExtResource("15_xrg6p")]
 position = Vector2(40, 0)
 
-[node name="player_cockpit" parent="game_space/player" instance=ExtResource("16_kqcau")]
-
-[node name="player_rocket_shooter" parent="game_space/player" instance=ExtResource("19_17e1v")]
+[node name="player_hull5" parent="game_space/player" instance=ExtResource("15_xrg6p")]
 position = Vector2(-40, 0)
+
+[node name="player_cockpit" parent="game_space/player" instance=ExtResource("16_kqcau")]
 
 [node name="special_effects" type="Node2D" parent="."]
 
 [node name="sprite_fadeaway" type="Node2D" parent="."]
 script = ExtResource("20_fhocw")
 fading_sprite_path = "res://prefabs/fading_sprite.tscn"
+
+[node name="garage" type="Node2D" parent="."]
+
+[node name="lvl_1" type="Node2D" parent="garage"]
+process_mode = 4
+visible = false
+position = Vector2(120, 40)
+
+[node name="enemy_hull" parent="garage/lvl_1" instance=ExtResource("11_8bm1h")]
+
+[node name="enemy_cockpit" parent="garage/lvl_1" instance=ExtResource("12_b10r3")]
+
+[node name="enemy_hull2" parent="garage/lvl_1" instance=ExtResource("11_8bm1h")]
+position = Vector2(-20, 0)
+
+[node name="enemy_rocket_shooter" parent="garage/lvl_1" instance=ExtResource("15_n6oeg")]
+position = Vector2(40, 0)
+
+[node name="lvl_2" type="Node2D" parent="garage"]
+process_mode = 4
+visible = false
+position = Vector2(120, 40)
+
+[node name="enemy_hull" parent="garage/lvl_2" instance=ExtResource("11_8bm1h")]
+
+[node name="enemy_cockpit" parent="garage/lvl_2" instance=ExtResource("12_b10r3")]
+
+[node name="enemy_hull2" parent="garage/lvl_2" instance=ExtResource("11_8bm1h")]
+position = Vector2(-20, 0)
+
+[node name="enemy_rocket_shooter" parent="garage/lvl_2" instance=ExtResource("15_n6oeg")]
+position = Vector2(40, 0)

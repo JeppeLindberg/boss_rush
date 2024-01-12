@@ -3,25 +3,26 @@ extends Node2D
 var _main_scene: Node2D
 var _enemy: Node2D
 var _upgrades: Node2D
+var _garage: Node2D
 
+var current_level = 0;
 var current_trigger = -1;
-var current_phase = 'battle';
+var current_phase = '';
 var _has_triggered = []
 var _waiting_for_callback = []
 
 
 func _ready():
 	_main_scene = get_node('/root/main_scene');
+	_garage = get_node('/root/main_scene/garage');
 	_upgrades = get_node('./upgrades');
 	_enemy = get_node('./enemy');
-	_enemy.make_ready();
 
 func _process(_delta):
-	if current_trigger == -1:
+	if (current_trigger == -1) or (current_phase != 'battle'):
 		return;
 	
 	if len(_waiting_for_callback) == 0:
-
 		for child in _main_scene.get_children_in_groups(self, ['has_auto_trigger'], true):
 			if (child.auto_trigger_order == current_trigger) and not (child.get_path() in _has_triggered):
 				_has_triggered.append(child.get_path());
@@ -31,7 +32,7 @@ func _process(_delta):
 		if len(_waiting_for_callback) == 0:
 			current_trigger += 1;
 	
-	if current_trigger == 5:
+	if current_trigger == 5:	
 		current_trigger = -1;
 
 func finish_trigger(node):
@@ -48,10 +49,25 @@ func _cull():
 		child.queue_free()
 
 func go_to_upgrade_phase():
-	current_trigger = -1
+	current_trigger = -2
 	current_phase = 'upgrade'
 	_cull()
 	_upgrades.activate_upgrade_phase()
 
-func end_upgrade_phase():
-	current_phase = 'pre_battle'
+func go_to_next_battle():
+	current_phase = 'pre_battle';
+	current_level += 1
+	_load_enemy(current_level);
+	current_phase = 'battle';
+	current_trigger = -1
+	
+func _load_enemy(level):
+	for child in _enemy.get_children():
+		child.queue_free();
+
+	var level_node = _garage.get_node('./lvl_' + str(level))
+
+	for child in level_node.get_children():
+		child.reparent(_enemy, false);
+	
+	_enemy.make_ready();
