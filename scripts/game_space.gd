@@ -4,6 +4,7 @@ var _main_scene: Node2D
 var _enemy: Node2D
 var _upgrades: Node2D
 var _garage: Node2D
+var _dialog: Node2D
 
 var current_level = 0;
 var current_trigger = -1;
@@ -15,6 +16,7 @@ var _waiting_for_callback = []
 func _ready():
 	_main_scene = get_node('/root/main_scene');
 	_garage = get_node('/root/main_scene/garage');
+	_dialog = get_node('/root/main_scene/dialog');
 	_upgrades = get_node('./upgrades');
 	_enemy = get_node('./enemy');
 
@@ -55,11 +57,10 @@ func go_to_upgrade_phase():
 	_upgrades.activate_upgrade_phase()
 
 func go_to_next_battle():
-	current_phase = 'pre_battle';
+	current_phase = 'dialog';
 	current_level += 1
 	_load_enemy(current_level);
-	current_phase = 'battle';
-	current_trigger = -1
+	_dialog.start_dialog(current_level)
 	
 func _load_enemy(level):
 	for child in _enemy.get_children():

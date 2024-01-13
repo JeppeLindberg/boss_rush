@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://d675nm0i3xq8"]
+[gd_scene load_steps=25 format=3 uid="uid://d675nm0i3xq8"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_1lvpb"]
 [ext_resource type="Script" path="res://scripts/main_scene.gd" id="1_a1yef"]
@@ -14,8 +14,10 @@
 [ext_resource type="PackedScene" uid="uid://cgmjf1a2jj33n" path="res://prefabs/ship_parts_enemy/space_station_enemy_hull.tscn" id="11_8bm1h"]
 [ext_resource type="PackedScene" uid="uid://b8te5iqrai5gm" path="res://prefabs/ship_parts_enemy/space_station_enemy_cockpit.tscn" id="12_b10r3"]
 [ext_resource type="PackedScene" uid="uid://bbemu7vwb1fbe" path="res://prefabs/ship_parts_enemy/space_station_enemy_rocket_shooter.tscn" id="15_n6oeg"]
+[ext_resource type="Script" path="res://scripts/dialog.gd" id="15_vrbwe"]
 [ext_resource type="PackedScene" uid="uid://cxwyqjb4hatp1" path="res://prefabs/ship_parts_player/player_hull.tscn" id="15_xrg6p"]
 [ext_resource type="PackedScene" uid="uid://dvnitnvm74buv" path="res://prefabs/ship_parts_player/player_cockpit.tscn" id="16_kqcau"]
+[ext_resource type="Script" path="res://scripts/dialogs/dialog_1.gd" id="16_mcxju"]
 [ext_resource type="Texture2D" uid="uid://b5vmktvy57xqs" path="res://sprites/placeholder/white_box.png" id="19_r5vs7"]
 [ext_resource type="Script" path="res://scripts/sprite_fadeaway.gd" id="20_fhocw"]
 
@@ -48,6 +50,18 @@ texture = ExtResource("19_r5vs7")
 
 [node name="center" type="Node2D" parent="."]
 position = Vector2(120, 90)
+
+[node name="center_top" type="Node2D" parent="."]
+position = Vector2(120, 0)
+
+[node name="center_bottom" type="Node2D" parent="."]
+position = Vector2(120, 180)
+
+[node name="enemy_pos" type="Node2D" parent="."]
+position = Vector2(120, 40)
+
+[node name="player_pos" type="Node2D" parent="."]
+position = Vector2(120, 140)
 
 [node name="ui" type="Node2D" parent="."]
 
@@ -156,6 +170,13 @@ position = Vector2(-40, 0)
 [node name="sprite_fadeaway" type="Node2D" parent="."]
 script = ExtResource("20_fhocw")
 fading_sprite_path = "res://prefabs/fading_sprite.tscn"
+
+[node name="dialog" type="Node2D" parent="."]
+script = ExtResource("15_vrbwe")
+animation_len_secs = 1.5
+
+[node name="dialog_1" type="Node2D" parent="dialog"]
+script = ExtResource("16_mcxju")
 
 [node name="garage" type="Node2D" parent="."]
 

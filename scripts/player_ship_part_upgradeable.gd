@@ -29,7 +29,6 @@ func initialize_from_part(part):
 func create_part():
 	var part = _main_scene.create_node(future_ship_part_path, self)
 	part.state = part_state
-	print('state ' + part.state)
 	part.update_texture()
 	return(part)
 

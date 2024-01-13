@@ -20,6 +20,7 @@ func _ready():
 	add_to_group('has_auto_trigger');
 	add_to_group('damageable_player_ship_part');
 	add_to_group('player_ship_part');
+	add_to_group('cockpit');
 	_sprite = get_node('./sprite');
 	_main_scene = get_node('/root/main_scene')
 	_game_space = get_node('/root/main_scene/game_space')

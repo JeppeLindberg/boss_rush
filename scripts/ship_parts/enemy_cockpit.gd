@@ -13,6 +13,7 @@ func make_ready():
 	_enemy = get_parent();
 	add_to_group('damageable_enemy_ship_part');
 	add_to_group('enemy_ship_part');
+	add_to_group('cockpit');
 
 func take_damage():
 	state = 'destroyed';

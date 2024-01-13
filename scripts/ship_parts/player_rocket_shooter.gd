@@ -46,5 +46,4 @@ func take_damage():
 	update_texture();
 	
 func update_texture():
-	print('state ' + state)
 	_sprite.texture = textures[state];
