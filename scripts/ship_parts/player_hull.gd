@@ -4,6 +4,8 @@ extends Node2D
 
 @export var textures: Dictionary
 var state = 'intact';
+var swappable: bool = true
+var swappable_reason = 'Always';
 
 var _sprite: Sprite2D
 

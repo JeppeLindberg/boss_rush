@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://cxwyqjb4hatp1"]
+[gd_scene load_steps=4 format=3 uid="uid://cksn4kc3wapj4"]
 
 [ext_resource type="Script" path="res://scripts/ship_parts/player_hull.gd" id="1_2l0x4"]
 [ext_resource type="Texture2D" uid="uid://cqvta0ec2jn4e" path="res://sprites/ship_parts/player_broken.png" id="2_enon0"]

@@ -15,6 +15,7 @@ var _enemy: Node2D
 
 var auto_trigger_order = 0;
 var swappable: bool
+var swappable_reason = 'Always';
 
 
 
@@ -48,7 +49,6 @@ func spawn_rocket():
 func take_damage():
 	state = 'destroyed';
 	update_texture();
-	swappable = false;
 	remove_from_group('has_auto_trigger');
 	_shoot_countdown.queue_free();
 	remove_from_group('damageable_enemy_ship_part');

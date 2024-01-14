@@ -6,6 +6,7 @@ var state = 'intact';
 var _sprite: Sprite2D
 var _enemy: Node2D
 var swappable = false
+var swappable_reason = 'Cannot take cockpit.';
 
 
 func make_ready():

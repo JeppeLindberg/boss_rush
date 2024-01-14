@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://kf65bdjc3ctd"]
+
+[ext_resource type="Shader" path="res://shaders/outline_unselectable.gdshader" id="1_f5iqg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_na2lb"]
+shader = ExtResource("1_f5iqg")
+shader_parameter/line_color = Vector4(0.82, 0.235, 0.212, 1)
+shader_parameter/line_thickness = 1.0
+
+[node name="outline_sprite" type="Sprite2D"]
+material = SubResource("ShaderMaterial_na2lb")

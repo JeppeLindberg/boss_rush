@@ -7,7 +7,9 @@ _data = [Vector2(0, 0), 0.0, 24.5754, 0, 0, Vector2(0.0800971, 1), 0.0, 0.0, 0, 
 point_count = 5
 
 [node name="drag_node" type="Line2D"]
+z_index = -1
 points = PackedVector2Array(0, 0, 150, 150, 300, 300)
 width = 15.0
 width_curve = SubResource("Curve_i0cfs")
+default_color = Color(0.45098, 0.745098, 0.827451, 1)
 script = ExtResource("1_3ra06")

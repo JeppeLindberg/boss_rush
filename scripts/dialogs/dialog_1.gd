@@ -122,7 +122,7 @@ var programme = \
 	{
 		'type': 'player_speech',
 		'theme': 'speech',
-		'content': 'If you cry, make sure to turn on the intercom. I want to hear it.'
+		'content': 'If you start to cry, make sure to turn on the intercom. I want to hear it.'
 	},
 	{
 		'type': 'start_battle'

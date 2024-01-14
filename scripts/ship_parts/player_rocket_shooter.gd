@@ -8,6 +8,8 @@ var _main_scene: Node2D
 
 @export var textures: Dictionary
 var state = 'intact';
+var swappable: bool = true
+var swappable_reason = 'Always';
 
 var _sprite: Sprite2D
 var _shoot_countdown: Label

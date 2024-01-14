@@ -1,13 +1,30 @@
-[gd_scene load_steps=3 format=3 uid="uid://dprpw8xlf1mpv"]
+[gd_scene load_steps=11 format=3 uid="uid://dprpw8xlf1mpv"]
 
 [ext_resource type="Script" path="res://scripts/ship_additional_assets/player_rocket.gd" id="1_0lpdd"]
-[ext_resource type="Texture2D" uid="uid://cc6uinugkjtun" path="res://sprites/placeholder/rocket_temp.png" id="2_bnqwl"]
+[ext_resource type="Texture2D" uid="uid://bb1n0l7of3qnc" path="res://sprites/ship_additional_assets/player_rocket_1.png" id="2_uf5jx"]
+[ext_resource type="Script" path="res://scripts/animated_sprite.gd" id="3_kxvyi"]
+[ext_resource type="Texture2D" uid="uid://deb8e1cwqwtly" path="res://sprites/ship_additional_assets/player_rocket_2.png" id="4_gxsnt"]
+[ext_resource type="Texture2D" uid="uid://c1qhb37mcuts4" path="res://sprites/ship_additional_assets/player_rocket_flame_5.png" id="4_jyebq"]
+[ext_resource type="Texture2D" uid="uid://c6jmms3x1shd3" path="res://sprites/ship_additional_assets/player_rocket_flame_2.png" id="4_lw5g4"]
+[ext_resource type="Texture2D" uid="uid://b66842r8e5d0q" path="res://sprites/ship_additional_assets/player_rocket_flame_3.png" id="5_06yso"]
+[ext_resource type="Texture2D" uid="uid://cjfmil88g8ior" path="res://sprites/ship_additional_assets/player_rocket_flame_1.png" id="5_estlb"]
+[ext_resource type="Texture2D" uid="uid://cbr71erp242dc" path="res://sprites/ship_additional_assets/player_rocket_flame_4.png" id="6_jal3v"]
+[ext_resource type="Texture2D" uid="uid://b8ord5e7a2y3c" path="res://sprites/ship_additional_assets/player_rocket_flame_6.png" id="8_mjxdj"]
 
 [node name="player_rocket" type="Node2D"]
 position = Vector2(97, 79)
 script = ExtResource("1_0lpdd")
 animation_len_secs = 0.3
 
+[node name="flame_sprite" type="Sprite2D" parent="."]
+position = Vector2(0, 14)
+texture = ExtResource("5_estlb")
+script = ExtResource("3_kxvyi")
+frames_per_second = 8.0
+frames = Array[Texture]([ExtResource("5_estlb"), ExtResource("4_jyebq"), ExtResource("5_06yso"), ExtResource("6_jal3v"), ExtResource("4_lw5g4"), ExtResource("8_mjxdj")])
+
 [node name="sprite" type="Sprite2D" parent="."]
-modulate = Color(0, 0.733333, 0.976471, 1)
-texture = ExtResource("2_bnqwl")
+texture = ExtResource("2_uf5jx")
+script = ExtResource("3_kxvyi")
+frames_per_second = 4.0
+frames = Array[Texture]([ExtResource("2_uf5jx"), ExtResource("4_gxsnt")])

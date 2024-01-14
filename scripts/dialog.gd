@@ -176,6 +176,12 @@ func progress_dialog():
 
 	print(current_programme['type'])
 
+	if true:
+		# skip dialog
+		if current_programme['type'] == 'player_speech' or current_programme['type'] == 'enemy_speech':
+			progress_dialog()
+			return
+
 	if current_programme['type'] == 'player_set_pos_bottom':		
 		_player.global_position = _center_bottom.global_position + Vector2.DOWN * 15.0
 		progress_dialog()

@@ -42,9 +42,9 @@ func _process(_delta):
 		if enemy_ship_part.global_position.x == global_position.x:
 			if prev_pos_y > enemy_ship_part.global_position.y and enemy_ship_part.global_position.y >= new_pos_y:
 				_waiting_for_finish_animation = false;
+				self.queue_free();
 				enemy_ship_part.take_damage();
 				_game_space.finish_trigger(self);
-				self.queue_free();
 				break;
 				
 	

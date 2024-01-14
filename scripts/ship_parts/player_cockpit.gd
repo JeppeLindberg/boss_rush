@@ -8,6 +8,8 @@ var _main_scene: Node2D
 
 @export var textures: Dictionary
 var state = 'intact';
+var swappable = false
+var swappable_reason = 'Cannot replace your cockpit.';
 
 var _sprite: Sprite2D
 var _shoot_countdown: Label

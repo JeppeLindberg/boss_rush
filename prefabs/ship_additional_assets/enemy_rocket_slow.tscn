@@ -1,14 +1,31 @@
-[gd_scene load_steps=3 format=3 uid="uid://dt4t5gfp6hjfc"]
+[gd_scene load_steps=11 format=3 uid="uid://dt4t5gfp6hjfc"]
 
 [ext_resource type="Script" path="res://scripts/ship_additional_assets/enemy_rocket.gd" id="1_cvgwe"]
-[ext_resource type="Texture2D" uid="uid://cc6uinugkjtun" path="res://sprites/placeholder/rocket_temp.png" id="2_5b202"]
+[ext_resource type="Texture2D" uid="uid://wojn8uocp2rx" path="res://sprites/ship_additional_assets/enemy_rocket_1.png" id="2_0450o"]
+[ext_resource type="Texture2D" uid="uid://cjfmil88g8ior" path="res://sprites/ship_additional_assets/player_rocket_flame_1.png" id="2_gutsh"]
+[ext_resource type="Script" path="res://scripts/animated_sprite.gd" id="3_3msd0"]
+[ext_resource type="Texture2D" uid="uid://ym8ws6lwmhux" path="res://sprites/ship_additional_assets/enemy_rocket_2.png" id="4_e2ff4"]
+[ext_resource type="Texture2D" uid="uid://c1qhb37mcuts4" path="res://sprites/ship_additional_assets/player_rocket_flame_5.png" id="4_ewbn8"]
+[ext_resource type="Texture2D" uid="uid://b66842r8e5d0q" path="res://sprites/ship_additional_assets/player_rocket_flame_3.png" id="5_ps727"]
+[ext_resource type="Texture2D" uid="uid://cbr71erp242dc" path="res://sprites/ship_additional_assets/player_rocket_flame_4.png" id="6_fpye0"]
+[ext_resource type="Texture2D" uid="uid://c6jmms3x1shd3" path="res://sprites/ship_additional_assets/player_rocket_flame_2.png" id="7_cw58f"]
+[ext_resource type="Texture2D" uid="uid://b8ord5e7a2y3c" path="res://sprites/ship_additional_assets/player_rocket_flame_6.png" id="8_kh0wk"]
 
 [node name="enemy_rocket" type="Node2D"]
 position = Vector2(97, 79)
 script = ExtResource("1_cvgwe")
 animation_len_secs = 0.3
 
-[node name="sprite" type="Sprite2D" parent="."]
-modulate = Color(0.752941, 0.223529, 0.219608, 1)
+[node name="flame_sprite" type="Sprite2D" parent="."]
+position = Vector2(-1, -15)
 rotation = 3.14159
-texture = ExtResource("2_5b202")
+texture = ExtResource("2_gutsh")
+script = ExtResource("3_3msd0")
+frames_per_second = 8.0
+frames = Array[Texture]([ExtResource("2_gutsh"), ExtResource("4_ewbn8"), ExtResource("5_ps727"), ExtResource("6_fpye0"), ExtResource("7_cw58f"), ExtResource("8_kh0wk")])
+
+[node name="sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_0450o")
+script = ExtResource("3_3msd0")
+frames_per_second = 4.0
+frames = Array[Texture]([ExtResource("2_0450o"), ExtResource("4_e2ff4")])

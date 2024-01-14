@@ -16,6 +16,7 @@ var _start_warp_callback = []
 var _warp_callback = []
 
 var target_upgrade_option: Node2D
+var possible_replaceable_parts: int
 
 @export var animation_len_secs: float = 1.0;
 @export var upgrade_prefab_path: String
@@ -146,13 +147,21 @@ func _seperate_ship_parts():
 		child.set_lerp_to_pos(pos, _main_scene.soft_curve, self, child)
 
 func _make_upgrades_clickable():
+	possible_replaceable_parts = 1
+	_update_upgrades_clickable()
+
+func _update_upgrades_clickable():
 	for child in _enemy_ship_parts.get_children():
-		child.make_clickable()
+		child.update_clickable_state()
 
 	for child in _player_ship_parts.get_children():
-		child.make_clickable()
+		child.update_clickable_state()
 	
 	_continue_button.enable()
+
+func set_target_upgrade_option(new_target_upgrade_option):
+	target_upgrade_option = new_target_upgrade_option;
+	_update_upgrades_clickable()
 
 func continue_button_pressed():
 	_continue_button.disable()

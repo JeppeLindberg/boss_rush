@@ -5,6 +5,7 @@ var _enemy: Node2D
 var _upgrades: Node2D
 var _garage: Node2D
 var _dialog: Node2D
+var _sprite_fadeaway: Node2D
 
 var current_level = 0;
 var current_trigger = -1;
@@ -17,6 +18,7 @@ func _ready():
 	_main_scene = get_node('/root/main_scene');
 	_garage = get_node('/root/main_scene/garage');
 	_dialog = get_node('/root/main_scene/dialog');
+	_sprite_fadeaway = get_node('/root/main_scene/sprite_fadeaway');
 	_upgrades = get_node('./upgrades');
 	_enemy = get_node('./enemy');
 
@@ -48,7 +50,7 @@ func trigger_game_space():
 
 func _cull():
 	for child in _main_scene.get_children_in_groups(self, ['cullable'], true):
-		child.queue_free()
+		_sprite_fadeaway.destroy(child)
 
 func go_to_upgrade_phase():
 	current_trigger = -2

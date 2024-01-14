@@ -7,7 +7,8 @@ var state = 'intact';
 
 var _enemy: Node2D
 var _sprite: Sprite2D
-var swappable: bool
+var swappable: bool = true
+var swappable_reason = 'Always';
 
 
 
@@ -21,7 +22,6 @@ func make_ready():
 func take_damage():
 	state = 'destroyed';
 	update_texture();
-	swappable = false
 	remove_from_group('damageable_enemy_ship_part');
 	_enemy.take_damage();
 
