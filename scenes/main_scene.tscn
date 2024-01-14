@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://d675nm0i3xq8"]
+[gd_scene load_steps=31 format=3 uid="uid://d675nm0i3xq8"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_1lvpb"]
 [ext_resource type="Script" path="res://scripts/main_scene.gd" id="1_a1yef"]
@@ -19,8 +19,13 @@
 [ext_resource type="PackedScene" uid="uid://dvnitnvm74buv" path="res://prefabs/ship_parts_player/player_cockpit.tscn" id="16_kqcau"]
 [ext_resource type="Script" path="res://scripts/dialogs/dialog_1.gd" id="16_mcxju"]
 [ext_resource type="Texture2D" uid="uid://daj7bgt1k3dcy" path="res://sprites/ui/player_speech.png" id="18_u1qst"]
+[ext_resource type="Texture2D" uid="uid://ctw24jdvjffqd" path="res://sprites/ui/player_speech_digital.png" id="18_ytkm6"]
 [ext_resource type="Texture2D" uid="uid://b5vmktvy57xqs" path="res://sprites/placeholder/white_box.png" id="19_r5vs7"]
+[ext_resource type="Texture2D" uid="uid://cpf24didjtrvp" path="res://sprites/ui/enemy_speech.png" id="20_4boya"]
 [ext_resource type="Script" path="res://scripts/sprite_fadeaway.gd" id="20_fhocw"]
+[ext_resource type="Texture2D" uid="uid://bxfmor2jjx4un" path="res://sprites/ui/enter_up.png" id="20_ut104"]
+[ext_resource type="Script" path="res://scripts/animated_sprite.gd" id="21_ho7fq"]
+[ext_resource type="Texture2D" uid="uid://cvol7vxdifxuo" path="res://sprites/ui/enter_down.png" id="22_rlhf5"]
 
 [sub_resource type="Curve" id="Curve_rdql2"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -175,11 +180,17 @@ fading_sprite_path = "res://prefabs/fading_sprite.tscn"
 [node name="dialog" type="Node2D" parent="."]
 script = ExtResource("15_vrbwe")
 animation_len_secs = 1.5
+speech_symbols_per_sec = 20.0
+speech_color = Color(0.921569, 0.929412, 0.913725, 1)
+speech_player_texture = ExtResource("18_u1qst")
+digitized_color = Color(0.580392, 1, 0.866667, 1)
+digitized_player_texture = ExtResource("18_ytkm6")
 
 [node name="dialog_1" type="Node2D" parent="dialog"]
 script = ExtResource("16_mcxju")
 
 [node name="player_speech_bubble" type="Node2D" parent="dialog"]
+visible = false
 position = Vector2(120, 140)
 
 [node name="sprite" type="Sprite2D" parent="dialog/player_speech_bubble"]
@@ -187,6 +198,7 @@ position = Vector2(-15, -56)
 texture = ExtResource("18_u1qst")
 
 [node name="label" type="RichTextLabel" parent="dialog/player_speech_bubble"]
+modulate = Color(0.921569, 0.929412, 0.913725, 1)
 offset_left = -85.0
 offset_top = -88.0
 offset_right = 56.0
@@ -194,6 +206,40 @@ offset_bottom = -38.0
 theme_override_constants/line_separation = 3
 bbcode_enabled = true
 text = "[center]With this ship as a substitute for my body, it should be no problem."
+visible_characters_behavior = 1
+
+[node name="enter_promt" type="Sprite2D" parent="dialog/player_speech_bubble"]
+position = Vector2(51, -32)
+texture = ExtResource("20_ut104")
+script = ExtResource("21_ho7fq")
+frames_per_second = 1.5
+frames = Array[Texture]([ExtResource("20_ut104"), ExtResource("22_rlhf5")])
+
+[node name="enemy_speech_bubble" type="Node2D" parent="dialog"]
+visible = false
+position = Vector2(120, 40)
+
+[node name="sprite" type="Sprite2D" parent="dialog/enemy_speech_bubble"]
+position = Vector2(-15, 53)
+texture = ExtResource("20_4boya")
+
+[node name="label" type="RichTextLabel" parent="dialog/enemy_speech_bubble"]
+modulate = Color(0.921569, 0.929412, 0.913725, 1)
+offset_left = -85.0
+offset_top = 36.0
+offset_right = 56.0
+offset_bottom = 86.0
+theme_override_constants/line_separation = 3
+bbcode_enabled = true
+text = "[center]With this ship as a substitute for my body, it should be no problem."
+visible_characters_behavior = 1
+
+[node name="enter_promt" type="Sprite2D" parent="dialog/enemy_speech_bubble"]
+position = Vector2(51, 92)
+texture = ExtResource("20_ut104")
+script = ExtResource("21_ho7fq")
+frames_per_second = 1.5
+frames = Array[Texture]([ExtResource("20_ut104"), ExtResource("22_rlhf5")])
 
 [node name="garage" type="Node2D" parent="."]
 
