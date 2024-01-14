@@ -10,12 +10,16 @@ var progress = -1;
 @export var speech_player_texture: Texture;
 @export var digitized_color: Color;
 @export var digitized_player_texture: Texture;
+@export var name_reveal_time_to_health_reveal: float = 0.2
+@export var time_between_health_reveals: float = 0.15
+@export var time_after_health_reveal: float = 0.4
 
 var _main_scene: Node2D
 var _center_top: Node2D
 var _center_bottom: Node2D
 var _player_pos: Node2D
 var _enemy_pos: Node2D
+var _game_space: Node2D
 
 var _dialog_node: Node2D
 var _enemy_cockpit: Node2D
@@ -31,6 +35,9 @@ var _enemy_speech_bubble_text_label: RichTextLabel
 var _enemy_speech_bubble_sprite: Node2D
 var _enemy_speech_bubble_enter_promt: Node2D
 var _speech_bubble_text_label: RichTextLabel
+var _enemy_health_bar: Node2D
+var _enemy_name: Node2D
+var _enemy_health: Node2D
 
 var _from_pos: Vector2
 var _target_pos: Vector2
@@ -41,6 +48,12 @@ var _animation_curve: Curve
 var _speech_time_start: float
 var _waiting_for_finish_speech: bool
 var _ready_for_progress_dialog: bool
+var _waiting_for_reveal_enemy_health_bar: bool
+var _reveal_enemy_health_bar_start: float
+var _revealed_name: bool
+var _health_reveals_completed = 0
+var _waiting_for_post_reveal_enemy_health_bar: bool
+var _post_reveal_enemy_health_bar_target_time: float
 
 func _ready():
 	_main_scene = get_node('/root/main_scene')
@@ -48,7 +61,11 @@ func _ready():
 	_center_top = get_node('/root/main_scene/center_top')
 	_player_pos = get_node('/root/main_scene/player_pos')
 	_enemy_pos = get_node('/root/main_scene/enemy_pos')
+	_game_space = get_node('/root/main_scene/game_space')
 	_player_speech_bubble = get_node('./player_speech_bubble')
+	_enemy_health_bar = get_node('/root/main_scene/ui/enemy_health_bar')
+	_enemy_name = _enemy_health_bar.get_node('./enemy_name')
+	_enemy_health = _enemy_health_bar.get_node('./enemy_health')
 	_player_speech_bubble_text_label = _player_speech_bubble.get_node('./label')
 	_player_speech_bubble_sprite = _player_speech_bubble.get_node('./sprite')
 	_player_speech_bubble_enter_promt = _player_speech_bubble.get_node('./enter_promt')
@@ -71,7 +88,15 @@ func start_dialog(dialog_index):
 
 	progress_dialog()
 
+func end_dialog():
+	progress = -1;
+	status = 'inactive';
+	_game_space.start_battle();	
+
 func _process(_delta):
+	if status == 'inactive':
+		return
+
 	if _waiting_for_finish_animation:
 		var animation_progress = min((_main_scene.curr_secs() - _animation_time_start) * (1.0 / animation_len_secs), 1);
 		_animation_node.global_position = _from_pos.lerp(_target_pos, _animation_curve.sample(animation_progress));
@@ -91,9 +116,41 @@ func _process(_delta):
 			_player_speech_bubble_enter_promt.visible = true;
 			_enemy_speech_bubble_enter_promt.visible = true;
 			_ready_for_progress_dialog = true;
+	
+	elif _waiting_for_reveal_enemy_health_bar:
+		if not _revealed_name:
+			_enemy_name.visible = true
+			_enemy_name.spawn_animate()
+			_revealed_name = true;
+	
+		var index = 0;
+		for child in _enemy_health.get_children():
+			if (child.visible == false) and \
+			((_main_scene.curr_secs() - _reveal_enemy_health_bar_start) > name_reveal_time_to_health_reveal + time_between_health_reveals * index):
+				if child.modulate.a == 0.0:
+					_post_reveal_enemy_health_bar_target_time = _main_scene.curr_secs() + time_after_health_reveal
+					_waiting_for_reveal_enemy_health_bar = false
+					_waiting_for_post_reveal_enemy_health_bar = true
+					break;
+
+				child.visible = true
+				child.spawn_animate()
+				_health_reveals_completed += 1
+			
+			index += 1
+
+		return;
+	
+	elif _waiting_for_post_reveal_enemy_health_bar:
+		if _main_scene.curr_secs() > _post_reveal_enemy_health_bar_target_time:
+			progress_dialog();
+
 
 # Called on any input that has not already been handled by the UI or other sources
 func _unhandled_input(event):
+	if status == 'inactive':
+		return
+
 	if event.is_action_pressed("continue_dialog"):
 		if _waiting_for_finish_speech:
 			_speech_time_start = 0.0;
@@ -110,6 +167,14 @@ func progress_dialog():
 	_waiting_for_finish_animation = false;
 	_player_speech_bubble_enter_promt.visible = false;
 	_enemy_speech_bubble_enter_promt.visible = false;
+	_waiting_for_post_reveal_enemy_health_bar = false;
+
+	if progress == 0:
+		_enemy_name.visible = false
+		for child in _enemy_health.get_children():
+			child.visible = false
+
+	print(current_programme['type'])
 
 	if current_programme['type'] == 'player_set_pos_bottom':		
 		_player.global_position = _center_bottom.global_position + Vector2.DOWN * 15.0
@@ -160,6 +225,17 @@ func progress_dialog():
 		_speech_bubble_text_label.visible_characters = 0
 		_speech_time_start = _main_scene.curr_secs()
 		_waiting_for_finish_speech = true
+		return;
+
+	if current_programme['type'] == 'reveal_enemy_healthbar':
+		_waiting_for_reveal_enemy_health_bar = true
+		_revealed_name = false;
+		_reveal_enemy_health_bar_start = _main_scene.curr_secs()
+		_health_reveals_completed = 0
+		return;
+
+	if current_programme['type'] == 'start_battle':
+		end_dialog()
 		return;
 
 

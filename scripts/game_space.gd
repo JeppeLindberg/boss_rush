@@ -61,6 +61,10 @@ func go_to_next_battle():
 	current_level += 1
 	_load_enemy(current_level);
 	_dialog.start_dialog(current_level)
+
+func start_battle():
+	current_trigger = -1
+	current_phase = 'battle'
 	
 func _load_enemy(level):
 	for child in _enemy.get_children():

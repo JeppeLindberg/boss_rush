@@ -12,10 +12,26 @@ func _ready():
 
 func set_max_health(new_max_health):
 	var index = 0;
+	var avg_pos = Vector2.ZERO;
+	var no_visible = 0
+
 	for child in get_children():
 		child.texture = health_texture
-		child.visible = index < new_max_health
+		if index < new_max_health:
+			child.modulate.a = 1.0
+			no_visible += 1;
+			avg_pos = child.position
+		else:
+			child.modulate.a = 0.0
+
 		index += 1;
+	
+	if no_visible > 0:
+		avg_pos = avg_pos / no_visible
+
+		for child in get_children():
+			child.position -= avg_pos;
+
 
 func set_health(new_health):
 	var index = 0;
