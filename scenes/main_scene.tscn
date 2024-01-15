@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://d675nm0i3xq8"]
+[gd_scene load_steps=43 format=3 uid="uid://d675nm0i3xq8"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_1lvpb"]
 [ext_resource type="Script" path="res://scripts/main_scene.gd" id="1_a1yef"]
@@ -30,6 +30,12 @@
 [ext_resource type="Texture2D" uid="uid://bxfmor2jjx4un" path="res://sprites/ui/enter_up.png" id="20_ut104"]
 [ext_resource type="Script" path="res://scripts/animated_sprite.gd" id="21_ho7fq"]
 [ext_resource type="Texture2D" uid="uid://cvol7vxdifxuo" path="res://sprites/ui/enter_down.png" id="22_rlhf5"]
+[ext_resource type="Texture2D" uid="uid://cfubnna3yiypr" path="res://sprites/effects/explosion1.png" id="31_3xh41"]
+[ext_resource type="Texture2D" uid="uid://c0a462x048t5c" path="res://sprites/effects/explosion2.png" id="32_fpsbp"]
+[ext_resource type="Texture2D" uid="uid://cjnpe56f0ijjh" path="res://sprites/effects/explosion3.png" id="33_dejg3"]
+[ext_resource type="Texture2D" uid="uid://c7bbv82y4wcqc" path="res://sprites/effects/explosion4.png" id="34_4t51d"]
+[ext_resource type="Texture2D" uid="uid://dybniyeqpkb7p" path="res://sprites/effects/explosion5.png" id="35_7b7ex"]
+[ext_resource type="Texture2D" uid="uid://bsarjess6bule" path="res://sprites/effects/explosion6.png" id="36_bdt2k"]
 
 [sub_resource type="Curve" id="Curve_rdql2"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -324,3 +330,13 @@ position = Vector2(-20, 0)
 
 [node name="enemy_rocket_shooter" parent="garage/lvl_2" instance=ExtResource("15_n6oeg")]
 position = Vector2(40, 0)
+
+[node name="explosion" type="Sprite2D" parent="."]
+position = Vector2(200, 78)
+rotation = 4.71239
+texture = ExtResource("36_bdt2k")
+script = ExtResource("21_ho7fq")
+frames_per_second = 8.0
+self_destroy = true
+random_rotation = true
+frames = Array[Texture]([ExtResource("31_3xh41"), ExtResource("32_fpsbp"), ExtResource("33_dejg3"), ExtResource("34_4t51d"), ExtResource("35_7b7ex"), ExtResource("36_bdt2k")])
