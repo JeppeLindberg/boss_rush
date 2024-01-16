@@ -176,7 +176,7 @@ func progress_dialog():
 
 	print(current_programme['type'])
 
-	if false:
+	if true:
 		# skip dialog
 		if current_programme['type'] == 'player_speech' or current_programme['type'] == 'enemy_speech':
 			progress_dialog()

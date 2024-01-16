@@ -9,11 +9,12 @@
 [ext_resource type="Texture2D" uid="uid://bsarjess6bule" path="res://sprites/effects/explosion6.png" id="7_c5j4m"]
 
 [node name="explosion" type="Sprite2D"]
+z_index = 10
 position = Vector2(200, 78)
 rotation = 4.71239
 texture = ExtResource("1_bap1y")
 script = ExtResource("2_0m164")
-frames_per_second = 8.0
+frames_per_second = 10.0
 self_destroy = true
 random_rotation = true
 frames = Array[Texture]([ExtResource("3_4ve03"), ExtResource("4_l40fw"), ExtResource("5_qfd78"), ExtResource("1_bap1y"), ExtResource("6_2gnog"), ExtResource("7_c5j4m")])

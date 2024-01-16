@@ -4,6 +4,7 @@ var _global_vars := preload("res://scripts/library/global_vars.gd").new()
 
 var _main_scene: Node2D
 var _game_space: Node2D
+var _special_effects: Node2D
 
 var auto_trigger_order = 1;
 var _old_pos: Vector2
@@ -18,6 +19,7 @@ func _ready():
 	add_to_group('cullable');
 	_main_scene = get_node('/root/main_scene');
 	_game_space = get_node('/root/main_scene/game_space');
+	_special_effects = get_node('/root/main_scene/special_effects');
 
 func trigger():
 	_move(Vector2.UP * 2);
@@ -41,6 +43,7 @@ func _process(_delta):
 	for enemy_ship_part in enemy_ship_parts:
 		if enemy_ship_part.global_position.x == global_position.x:
 			if prev_pos_y > enemy_ship_part.global_position.y and enemy_ship_part.global_position.y >= new_pos_y:
+				_special_effects.explosion(global_position);
 				_waiting_for_finish_animation = false;
 				self.queue_free();
 				enemy_ship_part.take_damage();
