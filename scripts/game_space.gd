@@ -52,10 +52,14 @@ func _cull():
 	for child in _main_scene.get_children_in_groups(self, ['cullable'], true):
 		_sprite_fadeaway.destroy(child)
 
+func enemy_dead():
+	current_trigger = -2
+	current_phase = 'enemy_dead'
+	_cull()
+
 func go_to_upgrade_phase():
 	current_trigger = -2
 	current_phase = 'upgrade'
-	_cull()
 	_upgrades.activate_upgrade_phase()
 
 func go_to_next_battle():

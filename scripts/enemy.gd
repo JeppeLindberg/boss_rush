@@ -1,26 +1,44 @@
 extends Node2D
 
+
 var _ui_enemy_health_bar: Node2D
 var _main_scene: Node2D
 var _game_space: Node2D
+var _special_effects: Node2D
 
 var health: int
+var _go_to_upgrade_phase_time: float = -1
 
 
 func make_ready():
 	_ui_enemy_health_bar = get_node('/root/main_scene/ui/enemy_health_bar');
 	_main_scene = get_node('/root/main_scene');
 	_game_space = get_node('/root/main_scene/game_space');
-	health = len(get_children()) - 2;
-	_ui_enemy_health_bar.set_max_health(health);
+	_special_effects = get_node('/root/main_scene/special_effects');
 
 	for child in get_children():
 		child.make_ready();
+		
+	health = len(_main_scene.get_children_in_groups(self, ['enemy_ship_part'], true)) - 2;
+	_ui_enemy_health_bar.set_max_health(health);
 
+func _process(_delta):
+	if _go_to_upgrade_phase_time != -1 and _main_scene.curr_secs() > _go_to_upgrade_phase_time:
+		_go_to_upgrade_phase_time = -1;
+		_game_space.go_to_upgrade_phase();
 
 func take_damage():
 	health -= 1
 	_ui_enemy_health_bar.set_health(health);
 
 	if health == 0:
-		_game_space.go_to_upgrade_phase();
+		var _enemy_ship_parts = _main_scene.get_children_in_groups(self, ['enemy_ship_part'], true);
+
+		for ship_part in _enemy_ship_parts:
+			_special_effects.multi_explosion(ship_part.global_position);
+
+		_special_effects.screen_shake();
+
+		_go_to_upgrade_phase_time = _main_scene.curr_secs() + _special_effects.multi_explosion_delay * len(_enemy_ship_parts) * 2;
+
+		_game_space.enemy_dead();

@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://d675nm0i3xq8"]
+[gd_scene load_steps=40 format=3 uid="uid://d675nm0i3xq8"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_1lvpb"]
 [ext_resource type="Script" path="res://scripts/main_scene.gd" id="1_a1yef"]
@@ -55,6 +55,15 @@ point_count = 2
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_myouu"]
 size = Vector2(80, 26)
 
+[sub_resource type="Curve" id="Curve_hgr7j"]
+min_value = -1.0
+_data = [Vector2(0, 0), 0.0, -5.0, 0, 0, Vector2(0.25, -1), 0.0, 0.0, 0, 0, Vector2(0.75, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -5.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Curve" id="Curve_xrkwj"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.170213, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.20513, 0.0, 1, 0]
+point_count = 3
+
 [node name="main_scene" type="Node2D"]
 script = ExtResource("1_a1yef")
 soft_curve = SubResource("Curve_rdql2")
@@ -62,7 +71,11 @@ linear_curve = SubResource("Curve_rtt2q")
 rising_curve = SubResource("Curve_lxdt6")
 ui_bounce_curve = SubResource("Curve_jtcof")
 
+[node name="camera" type="Camera2D" parent="."]
+anchor_mode = 0
+
 [node name="background" type="Sprite2D" parent="."]
+z_index = -100
 position = Vector2(120, 90)
 texture = ExtResource("31_484ei")
 
@@ -224,6 +237,9 @@ position = Vector2(-40, 0)
 [node name="special_effects" type="Node2D" parent="."]
 script = ExtResource("19_e0p2g")
 explosion_path = "res://prefabs/effects/explosion.tscn"
+multi_explosion_delay = 0.3
+screen_shake_curve = SubResource("Curve_hgr7j")
+screen_shake_amount = SubResource("Curve_xrkwj")
 
 [node name="sprite_fadeaway" type="Node2D" parent="."]
 script = ExtResource("20_fhocw")

@@ -4,6 +4,7 @@ var _global_vars := preload("res://scripts/library/global_vars.gd").new()
 
 var _game_space: Node2D
 var _main_scene: Node2D
+var _special_effects: Node2D
 
 var _old_pos: Vector2
 var _target_pos: Vector2
@@ -15,6 +16,7 @@ var _waiting_for_finish_animation: bool
 func _ready():
 	_game_space = get_node('/root/main_scene/game_space')
 	_main_scene = get_node('/root/main_scene')
+	_special_effects = get_node('/root/main_scene/special_effects')
 
 func _process(_delta):
 	if not _waiting_for_finish_animation:
@@ -37,6 +39,9 @@ func _unhandled_input(event):
 	
 	if event.is_action_pressed("move_right"):
 		_move(Vector2.RIGHT);	
+
+	if event.is_action_pressed("test"):
+		_special_effects.screen_shake();
 	
 func _move(vec):
 	_move_time_begin = _main_scene.curr_secs()
