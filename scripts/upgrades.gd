@@ -9,6 +9,8 @@ var _player: Node2D
 var _player_ship_parts: Node2D
 var _continue_button: Node2D
 var _sprite_fadeaway: Node2D
+var _enemy_health_bar: Node2D
+var _colorize_screen: Node2D
 
 var _seperate_ship_parts_callback = []
 var _make_upgrades_clickable_callback = []
@@ -33,6 +35,8 @@ func _ready():
 	_player = get_node('/root/main_scene/game_space/player');
 	_player_ship_parts = get_node('./player_ship_parts')
 	_continue_button = get_node('/root/main_scene/ui/continue_button')
+	_enemy_health_bar = get_node('/root/main_scene/ui/enemy_health_bar')
+	_colorize_screen = get_node('/root/main_scene/colorize_screen')
 
 func activate_upgrade_phase():
 	var enemy_ship_parts = []
@@ -177,10 +181,15 @@ func continue_button_pressed():
 		child.set_lerp_to_pos(pos, _main_scene.soft_curve, self, child)
 
 func _start_warp():
+	_enemy_health_bar.hide_health_bar();
 	_player_ship_parts.animation_len_secs = animation_len_secs;
 	_warp_callback.append(_player_ship_parts.get_path());
 	var pos = _player_ship_parts.global_position + (Vector2.UP * 100.0)
 	_player_ship_parts.set_lerp_to_pos(pos, _main_scene.rising_curve, self, _player_ship_parts, 'fade_out')
+
+	_colorize_screen.animation_len_secs = animation_len_secs;
+	_warp_callback.append(_colorize_screen.get_path());
+	_colorize_screen.set_lerp_to_pos(_colorize_screen.global_position, _main_scene.rising_curve, self, _colorize_screen, 'fade_in')
 
 func _finish_warp():
 	for child in _player_ship_parts.get_children():

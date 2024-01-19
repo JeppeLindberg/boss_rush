@@ -117,7 +117,8 @@ var programme = \
 		'content': 'I will just take it by force then.'
 	},
 	{
-		'type': 'reveal_enemy_healthbar'
+		'type': 'reveal_enemy_healthbar',
+		'content': 'Nova Station'
 	},
 	{
 		'type': 'player_speech',

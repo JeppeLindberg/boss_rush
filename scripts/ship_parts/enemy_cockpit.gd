@@ -1,5 +1,7 @@
 extends Node2D
 
+@export var shield: int;
+
 @export var textures: Dictionary
 var state = 'intact';
 
@@ -17,9 +19,11 @@ func make_ready():
 	add_to_group('cockpit');
 
 func take_damage():
-	state = 'destroyed';
-	update_texture();
-	remove_from_group('damageable_enemy_ship_part');
+	if not _enemy.has_shield():
+		state = 'destroyed';
+		update_texture();
+		remove_from_group('damageable_enemy_ship_part');
+		
 	_enemy.take_damage();
 
 func update_texture():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://d675nm0i3xq8"]
+[gd_scene load_steps=51 format=3 uid="uid://d675nm0i3xq8"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_1lvpb"]
 [ext_resource type="Script" path="res://scripts/main_scene.gd" id="1_a1yef"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://scripts/ui/enemy_health_bar.gd" id="3_cbv2k"]
 [ext_resource type="Script" path="res://scripts/outline_manager.gd" id="3_j037h"]
 [ext_resource type="Texture2D" uid="uid://jqyyq85ke6wg" path="res://sprites/ui/enemy_health_missing.png" id="3_jbgnn"]
+[ext_resource type="Texture2D" uid="uid://b5vmktvy57xqs" path="res://sprites/placeholder/white_box.png" id="3_niuri"]
 [ext_resource type="Script" path="res://scripts/ui/ui_spawn_animation.gd" id="4_6n42c"]
 [ext_resource type="Script" path="res://scripts/upgrade_feedback.gd" id="4_hdsmy"]
 [ext_resource type="Texture2D" uid="uid://tdjrfachp4ek" path="res://sprites/ui/continue_panel.png" id="5_4re6c"]
@@ -15,7 +16,9 @@
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="6_am7g1"]
 [ext_resource type="Script" path="res://scripts/upgrades.gd" id="6_bh6pc"]
 [ext_resource type="Script" path="res://scripts/lerp_position.gd" id="7_qiwjb"]
+[ext_resource type="Texture2D" uid="uid://cwxf4b47annjq" path="res://sprites/ui/enemy_shield.png" id="10_ybmac"]
 [ext_resource type="PackedScene" uid="uid://cgmjf1a2jj33n" path="res://prefabs/ship_parts_enemy/space_station_enemy_hull.tscn" id="11_8bm1h"]
+[ext_resource type="Texture2D" uid="uid://cfp0e65s6ie3p" path="res://sprites/ui/enemy_shield_missing.png" id="11_ux6te"]
 [ext_resource type="PackedScene" uid="uid://b8te5iqrai5gm" path="res://prefabs/ship_parts_enemy/space_station_enemy_cockpit.tscn" id="12_b10r3"]
 [ext_resource type="PackedScene" uid="uid://bbemu7vwb1fbe" path="res://prefabs/ship_parts_enemy/space_station_enemy_rocket_shooter.tscn" id="15_n6oeg"]
 [ext_resource type="Script" path="res://scripts/dialog.gd" id="15_vrbwe"]
@@ -30,7 +33,13 @@
 [ext_resource type="Texture2D" uid="uid://bxfmor2jjx4un" path="res://sprites/ui/enter_up.png" id="20_ut104"]
 [ext_resource type="Script" path="res://scripts/animated_sprite.gd" id="21_ho7fq"]
 [ext_resource type="Texture2D" uid="uid://cvol7vxdifxuo" path="res://sprites/ui/enter_down.png" id="22_rlhf5"]
+[ext_resource type="Script" path="res://scripts/dialogs/dialog_2.gd" id="25_45lbu"]
 [ext_resource type="Texture2D" uid="uid://cpdvt7f20s3x1" path="res://sprites/background.png" id="31_484ei"]
+[ext_resource type="PackedScene" uid="uid://b4m1mopqxem1j" path="res://prefabs/ship_parts_enemy/cadet_enemy_hull.tscn" id="32_wkbwd"]
+[ext_resource type="PackedScene" uid="uid://nssxr3owfq0d" path="res://prefabs/ship_parts_enemy/cadet_enemy_rocket_shooter.tscn" id="33_m1aja"]
+[ext_resource type="PackedScene" uid="uid://n00k3tqdptej" path="res://prefabs/ship_parts_enemy/cadet_enemy_cockpit.tscn" id="34_xvqir"]
+[ext_resource type="Shader" path="res://shaders/post_processing.gdshader" id="39_jeecj"]
+[ext_resource type="Texture2D" uid="uid://ck0h7dy2rcm81" path="res://octo80_128.png" id="40_pvdos"]
 
 [sub_resource type="Curve" id="Curve_rdql2"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -48,6 +57,10 @@ point_count = 3
 _data = [Vector2(0, 0), 0.0, 2.68571, 0, 1, Vector2(0.37234, 1), 2.68571, 0.0, 1, 1, Vector2(0.625, 1), 0.0, -2.66667, 1, 1, Vector2(1, 0), -2.66667, -4.0, 1, 1]
 point_count = 4
 
+[sub_resource type="Curve" id="Curve_t3me5"]
+_data = [Vector2(0, 0), 0.0, 1.4, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [sub_resource type="Curve" id="Curve_l2wj1"]
 _data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
 point_count = 2
@@ -64,12 +77,17 @@ point_count = 4
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.170213, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.20513, 0.0, 1, 0]
 point_count = 3
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_66e7i"]
+shader = ExtResource("39_jeecj")
+shader_parameter/palette = ExtResource("40_pvdos")
+
 [node name="main_scene" type="Node2D"]
 script = ExtResource("1_a1yef")
 soft_curve = SubResource("Curve_rdql2")
 linear_curve = SubResource("Curve_rtt2q")
 rising_curve = SubResource("Curve_lxdt6")
 ui_bounce_curve = SubResource("Curve_jtcof")
+logathrithmic_curve = SubResource("Curve_t3me5")
 
 [node name="camera" type="Camera2D" parent="."]
 anchor_mode = 0
@@ -78,6 +96,14 @@ anchor_mode = 0
 z_index = -100
 position = Vector2(120, 90)
 texture = ExtResource("31_484ei")
+
+[node name="colorize_screen" type="Sprite2D" parent="."]
+modulate = Color(0.0352941, 0.0392157, 0.0784314, 0)
+z_index = 100
+position = Vector2(121, 92)
+scale = Vector2(5.56, 4.28)
+texture = ExtResource("3_niuri")
+script = ExtResource("7_qiwjb")
 
 [node name="center" type="Node2D" parent="."]
 position = Vector2(120, 90)
@@ -155,6 +181,8 @@ position = Vector2(0, 19)
 script = ExtResource("2_h0t0q")
 health_texture = ExtResource("2_7mvrc")
 missing_health_texture = ExtResource("3_jbgnn")
+shield_texture = ExtResource("10_ybmac")
+missing_shield_texture = ExtResource("11_ux6te")
 
 [node name="pip" type="Sprite2D" parent="ui/enemy_health_bar/enemy_health"]
 texture = ExtResource("2_7mvrc")
@@ -171,7 +199,17 @@ texture = ExtResource("3_jbgnn")
 script = ExtResource("4_6n42c")
 
 [node name="pip4" type="Sprite2D" parent="ui/enemy_health_bar/enemy_health"]
-position = Vector2(78, 0)
+position = Vector2(81, 0)
+texture = ExtResource("3_jbgnn")
+script = ExtResource("4_6n42c")
+
+[node name="pip5" type="Sprite2D" parent="ui/enemy_health_bar/enemy_health"]
+position = Vector2(108, 0)
+texture = ExtResource("3_jbgnn")
+script = ExtResource("4_6n42c")
+
+[node name="pip6" type="Sprite2D" parent="ui/enemy_health_bar/enemy_health"]
+position = Vector2(135, 0)
 texture = ExtResource("3_jbgnn")
 script = ExtResource("4_6n42c")
 
@@ -257,6 +295,9 @@ digitized_player_texture = ExtResource("18_ytkm6")
 [node name="dialog_1" type="Node2D" parent="dialog"]
 script = ExtResource("16_mcxju")
 
+[node name="dialog_2" type="Node2D" parent="dialog"]
+script = ExtResource("25_45lbu")
+
 [node name="player_speech_bubble" type="Node2D" parent="dialog"]
 visible = false
 position = Vector2(120, 140)
@@ -331,12 +372,26 @@ process_mode = 4
 visible = false
 position = Vector2(120, 40)
 
-[node name="enemy_hull" parent="garage/lvl_2" instance=ExtResource("11_8bm1h")]
+[node name="enemy_hull" parent="garage/lvl_2" instance=ExtResource("32_wkbwd")]
 
-[node name="enemy_cockpit" parent="garage/lvl_2" instance=ExtResource("12_b10r3")]
-
-[node name="enemy_hull2" parent="garage/lvl_2" instance=ExtResource("11_8bm1h")]
+[node name="cadet_enemy_rocket_shooter" parent="garage/lvl_2" instance=ExtResource("33_m1aja")]
 position = Vector2(-20, 0)
 
-[node name="enemy_rocket_shooter" parent="garage/lvl_2" instance=ExtResource("15_n6oeg")]
+[node name="enemy_cockpit" parent="garage/lvl_2" instance=ExtResource("34_xvqir")]
+
+[node name="cadet_enemy_rocket_shooter2" parent="garage/lvl_2" instance=ExtResource("33_m1aja")]
+position = Vector2(20, 0)
+
+[node name="enemy_hull2" parent="garage/lvl_2" instance=ExtResource("32_wkbwd")]
 position = Vector2(40, 0)
+
+[node name="canvas_layer" type="CanvasLayer" parent="."]
+
+[node name="color_rect" type="ColorRect" parent="canvas_layer"]
+material = SubResource("ShaderMaterial_66e7i")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

@@ -40,6 +40,9 @@ func _unhandled_input(event):
 	if event.is_action_pressed("move_right"):
 		_move(Vector2.RIGHT);	
 
+	if event.is_action_pressed("wait"):
+		_game_space.trigger_game_space();
+
 	if event.is_action_pressed("test"):
 		_special_effects.screen_shake();
 	

@@ -47,11 +47,13 @@ func spawn_rocket():
 	rocket.global_position = global_position;
 
 func take_damage():
-	state = 'destroyed';
-	update_texture();
-	remove_from_group('has_auto_trigger');
-	_shoot_countdown.queue_free();
-	remove_from_group('damageable_enemy_ship_part');
+	if not _enemy.has_shield():
+		state = 'destroyed';
+		update_texture();
+		remove_from_group('has_auto_trigger');
+		_shoot_countdown.queue_free();
+		remove_from_group('damageable_enemy_ship_part');
+		
 	_enemy.take_damage();
 
 func update_texture():

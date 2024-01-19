@@ -7,6 +7,7 @@ var _game_space: Node2D
 var _special_effects: Node2D
 
 var health: int
+var shield: int
 var _go_to_upgrade_phase_time: float = -1
 
 
@@ -16,20 +17,32 @@ func make_ready():
 	_game_space = get_node('/root/main_scene/game_space');
 	_special_effects = get_node('/root/main_scene/special_effects');
 
+	shield = 0;
+
 	for child in get_children():
 		child.make_ready();
+		if child.is_in_group('cockpit'):
+			shield += child.shield;
 		
 	health = len(_main_scene.get_children_in_groups(self, ['enemy_ship_part'], true)) - 2;
-	_ui_enemy_health_bar.set_max_health(health);
+	_ui_enemy_health_bar.set_max_health(health, shield);
 
 func _process(_delta):
 	if _go_to_upgrade_phase_time != -1 and _main_scene.curr_secs() > _go_to_upgrade_phase_time:
 		_go_to_upgrade_phase_time = -1;
 		_game_space.go_to_upgrade_phase();
 
+func has_shield():
+	return shield > 0;
+
 func take_damage():
-	health -= 1
-	_ui_enemy_health_bar.set_health(health);
+	print('enemy take damage');
+	if shield > 0:
+		shield -= 1
+	else:
+		health -= 1
+
+	_ui_enemy_health_bar.set_health(health, shield);
 
 	if health == 0:
 		var _enemy_ship_parts = _main_scene.get_children_in_groups(self, ['enemy_ship_part'], true);

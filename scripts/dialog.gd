@@ -38,6 +38,7 @@ var _speech_bubble_text_label: RichTextLabel
 var _enemy_health_bar: Node2D
 var _enemy_name: Node2D
 var _enemy_health: Node2D
+var _colorize_screen: Node2D
 
 var _from_pos: Vector2
 var _target_pos: Vector2
@@ -45,6 +46,8 @@ var _animation_node: Node2D
 var _waiting_for_finish_animation: bool
 var _animation_time_start: float
 var _animation_curve: Curve
+var _also_animate_alpha: bool
+var _inverse_animate_alpha: bool
 var _speech_time_start: float
 var _waiting_for_finish_speech: bool
 var _ready_for_progress_dialog: bool
@@ -73,6 +76,7 @@ func _ready():
 	_enemy_speech_bubble_text_label = _enemy_speech_bubble.get_node('./label')
 	_enemy_speech_bubble_sprite = _enemy_speech_bubble.get_node('./sprite')
 	_enemy_speech_bubble_enter_promt = _enemy_speech_bubble.get_node('./enter_promt')
+	_colorize_screen = get_node('/root/main_scene/colorize_screen')
 
 func start_dialog(dialog_index):
 	progress = -1;
@@ -100,6 +104,12 @@ func _process(_delta):
 	if _waiting_for_finish_animation:
 		var animation_progress = min((_main_scene.curr_secs() - _animation_time_start) * (1.0 / animation_len_secs), 1);
 		_animation_node.global_position = _from_pos.lerp(_target_pos, _animation_curve.sample(animation_progress));
+
+		if _also_animate_alpha:
+			if _inverse_animate_alpha:
+				_animation_node.modulate.a = 1.0 - animation_progress;
+			else:
+				_animation_node.modulate.a = animation_progress;
 
 		if (animation_progress == 1) and _waiting_for_finish_animation:
 			_waiting_for_finish_animation = false;
@@ -168,6 +178,8 @@ func progress_dialog():
 	_player_speech_bubble_enter_promt.visible = false;
 	_enemy_speech_bubble_enter_promt.visible = false;
 	_waiting_for_post_reveal_enemy_health_bar = false;
+	_also_animate_alpha = false;
+	_inverse_animate_alpha = false;
 
 	if progress == 0:
 		_enemy_name.visible = false
@@ -176,7 +188,7 @@ func progress_dialog():
 
 	print(current_programme['type'])
 
-	if true:
+	if false:
 		# skip dialog
 		if current_programme['type'] == 'player_speech' or current_programme['type'] == 'enemy_speech':
 			progress_dialog()
@@ -184,6 +196,11 @@ func progress_dialog():
 
 	if current_programme['type'] == 'player_set_pos_bottom':		
 		_player.global_position = _center_bottom.global_position + Vector2.DOWN * 15.0
+		progress_dialog()
+		return;
+
+	if current_programme['type'] == 'enemy_set_pos_battle':		
+		_enemy.global_position = _enemy_pos.global_position
 		progress_dialog()
 		return;
 
@@ -203,6 +220,16 @@ func progress_dialog():
 		_waiting_for_finish_animation = true
 		_animation_time_start = _main_scene.curr_secs()
 		_animation_curve = _main_scene.linear_curve
+		return;
+
+	if current_programme['type'] == 'player_warp_into_frame':		
+		_from_pos = _player.global_position
+		_target_pos = _player_pos.global_position
+		_animation_node = _player
+		_waiting_for_finish_animation = true
+		_animation_time_start = _main_scene.curr_secs()
+		_animation_curve = _main_scene.logathrithmic_curve
+		_also_animate_alpha = true;
 		return;
 	
 	if current_programme['type'] == 'player_speech':
@@ -236,8 +263,20 @@ func progress_dialog():
 	if current_programme['type'] == 'reveal_enemy_healthbar':
 		_waiting_for_reveal_enemy_health_bar = true
 		_revealed_name = false;
+		_enemy_health_bar.set_enemy_name(current_programme['content'])
 		_reveal_enemy_health_bar_start = _main_scene.curr_secs()
 		_health_reveals_completed = 0
+		return;
+
+	if current_programme['type'] == 'fade_in':		
+		_from_pos = _colorize_screen.global_position
+		_target_pos = _colorize_screen.global_position
+		_animation_node = _colorize_screen
+		_waiting_for_finish_animation = true
+		_animation_time_start = _main_scene.curr_secs()
+		_animation_curve = _main_scene.linear_curve
+		_also_animate_alpha = true;
+		_inverse_animate_alpha = true
 		return;
 
 	if current_programme['type'] == 'start_battle':

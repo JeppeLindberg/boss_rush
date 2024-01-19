@@ -7,7 +7,7 @@ var _garage: Node2D
 var _dialog: Node2D
 var _sprite_fadeaway: Node2D
 
-var current_level = 0;
+var current_level = 1;
 var current_trigger = -1;
 var current_phase = '';
 var _has_triggered = []
@@ -71,6 +71,9 @@ func go_to_next_battle():
 func start_battle():
 	current_trigger = -1
 	current_phase = 'battle'
+
+	var player_cockpit = _main_scene.get_children_in_groups(self, ['player_ship_part', 'cockpit'], true)[0]
+	player_cockpit.set_shoot_countdown(current_level)
 	
 func _load_enemy(level):
 	for child in _enemy.get_children():

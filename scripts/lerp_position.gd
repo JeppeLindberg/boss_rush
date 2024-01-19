@@ -30,7 +30,9 @@ func _process(_delta):
         _caller.finish_lerp_to_pos(_node_to_return);
     
     if _also_lerp_alpha == 'fade_out':
-        modulate = Color(1,1,1,1.0-animation_progress);
+        modulate.a = 1.0-animation_progress;
+    if _also_lerp_alpha == 'fade_in':
+        modulate.a = animation_progress;
 
 func set_lerp_to_pos(new_pos, curve, caller, node_to_return = null, also_lerp_alpha = ''):
     _move_time_begin = _main_scene.curr_secs()

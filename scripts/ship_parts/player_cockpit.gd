@@ -28,6 +28,9 @@ func _ready():
 	_game_space = get_node('/root/main_scene/game_space')
 	_shoot_countdown = get_node('./shoot_countdown/label');
 
+func set_shoot_countdown(new_countdown):
+	_shoot_countdown.text = str(new_countdown);
+
 func trigger():
 	var countdown_integer = int(_shoot_countdown.text);
 	countdown_integer -= 1;

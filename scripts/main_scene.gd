@@ -4,6 +4,7 @@ extends Node2D
 @export var linear_curve: Curve;
 @export var rising_curve: Curve;
 @export var ui_bounce_curve: Curve;
+@export var logathrithmic_curve: Curve;
 
 var _result
 
