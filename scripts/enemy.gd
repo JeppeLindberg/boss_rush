@@ -1,5 +1,6 @@
 extends Node2D
 
+@export var shield_size_5_path: String
 
 var _ui_enemy_health_bar: Node2D
 var _main_scene: Node2D
@@ -35,10 +36,28 @@ func _process(_delta):
 func has_shield():
 	return shield > 0;
 
+func activate_shield():
+	if shield > 0:
+		for child in get_children():
+			if child.is_in_group('cockpit'):
+				var shield_node = _main_scene.create_node(shield_size_5_path, child);
+				shield_node.position = Vector2.ZERO;
+
+func deactivate_shield():
+	if shield == 0:
+		for child in get_children():
+			if child.is_in_group('cockpit'):
+				for cchild in child.get_children():
+					if cchild.name == 'shield':
+						cchild.queue_free();
+
 func take_damage():
 	print('enemy take damage');
 	if shield > 0:
 		shield -= 1
+
+		if shield == 0:
+			deactivate_shield();
 	else:
 		health -= 1
 

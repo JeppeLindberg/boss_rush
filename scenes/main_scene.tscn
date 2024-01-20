@@ -252,6 +252,7 @@ script = ExtResource("7_qiwjb")
 [node name="enemy" type="Node2D" parent="game_space"]
 position = Vector2(120, 40)
 script = ExtResource("6_am7g1")
+shield_size_5_path = "res://prefabs/ship_additional_assets/shield_size_5.tscn"
 
 [node name="player" type="Node2D" parent="game_space"]
 position = Vector2(120, 140)
@@ -369,7 +370,6 @@ position = Vector2(40, 0)
 
 [node name="lvl_2" type="Node2D" parent="garage"]
 process_mode = 4
-visible = false
 position = Vector2(120, 40)
 
 [node name="enemy_hull" parent="garage/lvl_2" instance=ExtResource("32_wkbwd")]

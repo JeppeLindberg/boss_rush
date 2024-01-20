@@ -37,7 +37,7 @@ func trigger():
 
 	if countdown_integer == 0:
 		spawn_rocket();
-		countdown_integer += 5;
+		countdown_integer += 6;
 	
 	_shoot_countdown.text = str(countdown_integer);
 

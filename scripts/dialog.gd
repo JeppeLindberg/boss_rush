@@ -57,6 +57,8 @@ var _revealed_name: bool
 var _health_reveals_completed = 0
 var _waiting_for_post_reveal_enemy_health_bar: bool
 var _post_reveal_enemy_health_bar_target_time: float
+var _delay_wait_time_finish: float
+var _waiting_for_delay: bool
 
 func _ready():
 	_main_scene = get_node('/root/main_scene')
@@ -154,6 +156,10 @@ func _process(_delta):
 	elif _waiting_for_post_reveal_enemy_health_bar:
 		if _main_scene.curr_secs() > _post_reveal_enemy_health_bar_target_time:
 			progress_dialog();
+	
+	elif _waiting_for_delay:
+		if _main_scene.curr_secs() > _delay_wait_time_finish:
+			progress_dialog();
 
 
 # Called on any input that has not already been handled by the UI or other sources
@@ -180,6 +186,7 @@ func progress_dialog():
 	_waiting_for_post_reveal_enemy_health_bar = false;
 	_also_animate_alpha = false;
 	_inverse_animate_alpha = false;
+	_waiting_for_delay = false;
 
 	if progress == 0:
 		_enemy_name.visible = false
@@ -266,6 +273,12 @@ func progress_dialog():
 		_enemy_health_bar.set_enemy_name(current_programme['content'])
 		_reveal_enemy_health_bar_start = _main_scene.curr_secs()
 		_health_reveals_completed = 0
+		return;
+
+	if current_programme['type'] == 'activate_shield':
+		_enemy.activate_shield();
+		_delay_wait_time_finish = _main_scene.curr_secs() + 0.5;
+		_waiting_for_delay = true;
 		return;
 
 	if current_programme['type'] == 'fade_in':		

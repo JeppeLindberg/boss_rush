@@ -90,13 +90,26 @@ var programme = \
 		'content': 'Prove that you can defeat me, and I will let you keep your ship.'
 	},
 	{
+		'type': 'enemy_speech',
+		'theme': 'speech',
+		'content': 'You are out of your mind!'
+	},
+	{
+		'type': 'enemy_speech',
+		'theme': 'speech',
+		'content': 'I will need my shield for this. Activating it now!'
+	},
+	{
+		'type': 'activate_shield'
+	},
+	{
 		'type': 'reveal_enemy_healthbar',
 		'content': 'Alexander the Cadet'
 	},
 	{
 		'type': 'enemy_speech',
 		'theme': 'speech',
-		'content': 'You are out of your mind!'
+		'content': 'You will regret this!'
 	},
 	{
 		'type': 'start_battle'
