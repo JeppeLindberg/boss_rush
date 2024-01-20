@@ -4,8 +4,10 @@ var _game_space: Node2D
 var _main_scene: Node2D
 var _player: Node2D
 
+@export var shot_cooldown: int
+
 @export var prefab_path: String
-@export var rocket_path: String
+@export var laser_path: String
 
 @export var textures: Dictionary
 var state = 'intact';
@@ -34,16 +36,16 @@ func trigger():
 	countdown_integer -= 1;
 
 	if countdown_integer == 0:
-		spawn_rocket();
-		countdown_integer += 4;
+		_spawn_laser();
+		countdown_integer += shot_cooldown;
 	
 	_shoot_countdown.text = str(countdown_integer);
 
 	_game_space.finish_trigger(self);
 
-func spawn_rocket():
-	var rocket = _main_scene.create_node(rocket_path, _game_space);
-	rocket.global_position = global_position;
+func _spawn_laser():
+	var laser = _main_scene.create_node(laser_path, _game_space);
+	laser.global_position = global_position;
 
 func take_damage():
 	state = 'destroyed';

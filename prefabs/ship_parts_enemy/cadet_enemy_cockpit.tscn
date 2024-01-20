@@ -8,7 +8,8 @@
 [node name="enemy_cockpit" type="Node2D"]
 script = ExtResource("1_1nto8")
 shield = 2
-move_delay = 3
+move_delay = 4
+initial_move_delay = 3
 textures = {
 "destroyed": ExtResource("2_onyfe"),
 "intact": ExtResource("4_3bx06")

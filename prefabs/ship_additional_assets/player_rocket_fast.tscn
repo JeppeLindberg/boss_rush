@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://b8ord5e7a2y3c" path="res://sprites/ship_additional_assets/player_rocket_flame_6.png" id="8_mjxdj"]
 
 [node name="player_rocket" type="Node2D"]
+z_index = 10
 position = Vector2(97, 79)
 script = ExtResource("1_0lpdd")
 animation_len_secs = 0.3

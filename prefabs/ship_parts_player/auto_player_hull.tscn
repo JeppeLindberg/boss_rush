@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://dlw0js8d21g4i"]
+
+[ext_resource type="Script" path="res://scripts/ship_parts/player_hull.gd" id="1_fvjg2"]
+[ext_resource type="Texture2D" uid="uid://bglp1sawbr15" path="res://sprites/ship_parts/cadet_broken.png" id="2_cn6e6"]
+[ext_resource type="Texture2D" uid="uid://c66kk6i68ba18" path="res://sprites/ship_parts/cadet_hull.png" id="3_6nf8s"]
+
+[node name="player_hull" type="Node2D"]
+script = ExtResource("1_fvjg2")
+prefab_path = "res://prefabs/ship_parts_player/auto_player_hull.tscn"
+textures = {
+"destroyed": ExtResource("2_cn6e6"),
+"intact": ExtResource("3_6nf8s")
+}
+
+[node name="sprite" type="Sprite2D" parent="."]
+texture = ExtResource("3_6nf8s")

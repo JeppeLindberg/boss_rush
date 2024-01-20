@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://d675nm0i3xq8"]
+[gd_scene load_steps=55 format=3 uid="uid://d675nm0i3xq8"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_1lvpb"]
 [ext_resource type="Script" path="res://scripts/main_scene.gd" id="1_a1yef"]
@@ -34,12 +34,16 @@
 [ext_resource type="Script" path="res://scripts/animated_sprite.gd" id="21_ho7fq"]
 [ext_resource type="Texture2D" uid="uid://cvol7vxdifxuo" path="res://sprites/ui/enter_down.png" id="22_rlhf5"]
 [ext_resource type="Script" path="res://scripts/dialogs/dialog_2.gd" id="25_45lbu"]
+[ext_resource type="Script" path="res://scripts/dialogs/dialog_3.gd" id="29_4auxj"]
 [ext_resource type="Texture2D" uid="uid://cpdvt7f20s3x1" path="res://sprites/background.png" id="31_484ei"]
 [ext_resource type="PackedScene" uid="uid://b4m1mopqxem1j" path="res://prefabs/ship_parts_enemy/cadet_enemy_hull.tscn" id="32_wkbwd"]
 [ext_resource type="PackedScene" uid="uid://nssxr3owfq0d" path="res://prefabs/ship_parts_enemy/cadet_enemy_rocket_shooter.tscn" id="33_m1aja"]
 [ext_resource type="PackedScene" uid="uid://n00k3tqdptej" path="res://prefabs/ship_parts_enemy/cadet_enemy_cockpit.tscn" id="34_xvqir"]
 [ext_resource type="Shader" path="res://shaders/post_processing.gdshader" id="39_jeecj"]
+[ext_resource type="PackedScene" uid="uid://cmaf6h7ogjkij" path="res://prefabs/ship_parts_enemy/auto_enemy_hull.tscn" id="39_shy34"]
+[ext_resource type="PackedScene" uid="uid://de6528xtqjd4q" path="res://prefabs/ship_parts_enemy/auto_enemy_laser_shooter.tscn" id="40_omve6"]
 [ext_resource type="Texture2D" uid="uid://ck0h7dy2rcm81" path="res://octo80_128.png" id="40_pvdos"]
+[ext_resource type="PackedScene" uid="uid://dldne5hfjfahk" path="res://prefabs/ship_parts_enemy/auto_enemy_cockpit.tscn" id="41_opxhg"]
 
 [sub_resource type="Curve" id="Curve_rdql2"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -152,6 +156,7 @@ vertical_alignment = 1
 [node name="ui" type="Node2D" parent="."]
 
 [node name="enemy_health_bar" type="Node2D" parent="ui"]
+z_index = 50
 position = Vector2(120, 0)
 script = ExtResource("3_cbv2k")
 
@@ -214,6 +219,7 @@ texture = ExtResource("3_jbgnn")
 script = ExtResource("4_6n42c")
 
 [node name="continue_button" type="Area2D" parent="ui"]
+visible = false
 position = Vector2(191, 132)
 script = ExtResource("5_x0yj8")
 
@@ -257,6 +263,7 @@ shield_size_5_path = "res://prefabs/ship_additional_assets/shield_size_5.tscn"
 [node name="player" type="Node2D" parent="game_space"]
 position = Vector2(120, 140)
 script = ExtResource("1_1lvpb")
+_burning_path = "res://prefabs/effects/burn.tscn"
 animation_len_secs = 0.15
 
 [node name="player_hull" parent="game_space/player" instance=ExtResource("15_xrg6p")]
@@ -298,6 +305,9 @@ script = ExtResource("16_mcxju")
 
 [node name="dialog_2" type="Node2D" parent="dialog"]
 script = ExtResource("25_45lbu")
+
+[node name="dialog_3" type="Node2D" parent="dialog"]
+script = ExtResource("29_4auxj")
 
 [node name="player_speech_bubble" type="Node2D" parent="dialog"]
 visible = false
@@ -370,6 +380,7 @@ position = Vector2(40, 0)
 
 [node name="lvl_2" type="Node2D" parent="garage"]
 process_mode = 4
+visible = false
 position = Vector2(120, 40)
 
 [node name="enemy_hull" parent="garage/lvl_2" instance=ExtResource("32_wkbwd")]
@@ -385,10 +396,26 @@ position = Vector2(20, 0)
 [node name="enemy_hull2" parent="garage/lvl_2" instance=ExtResource("32_wkbwd")]
 position = Vector2(40, 0)
 
+[node name="lvl_3" type="Node2D" parent="garage"]
+process_mode = 4
+visible = false
+position = Vector2(120, 40)
+
+[node name="auto_enemy_laser_shooter" parent="garage/lvl_3" instance=ExtResource("40_omve6")]
+
+[node name="auto_enemy_hull" parent="garage/lvl_3" instance=ExtResource("39_shy34")]
+
+[node name="auto_enemy_cockpit" parent="garage/lvl_3" instance=ExtResource("41_opxhg")]
+
+[node name="auto_enemy_hull2" parent="garage/lvl_3" instance=ExtResource("39_shy34")]
+position = Vector2(20, 0)
+
+[node name="auto_enemy_laser_shooter2" parent="garage/lvl_3" instance=ExtResource("40_omve6")]
+position = Vector2(40, 0)
+
 [node name="canvas_layer" type="CanvasLayer" parent="."]
 
 [node name="color_rect" type="ColorRect" parent="canvas_layer"]
-z_index = 4096
 material = SubResource("ShaderMaterial_66e7i")
 anchors_preset = 15
 anchor_right = 1.0

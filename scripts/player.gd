@@ -2,6 +2,8 @@ extends Node2D
 
 var _global_vars := preload("res://scripts/library/global_vars.gd").new()
 
+@export var _burning_path: String
+
 var _game_space: Node2D
 var _main_scene: Node2D
 var _special_effects: Node2D
@@ -53,4 +55,24 @@ func _move(vec):
 func trigger_ship_parts():
 	for child in get_children():
 		child.trigger()
+
+func after_take_damage():
+	if _game_space.current_level != 1:
+		var burns = _main_scene.get_children_in_groups(self, ['burn'], true);
+		
+		for child in burns:
+			child.queue_free();
+
+		var parts = _main_scene.get_children_in_groups(self, ['damageable_player_ship_part'], false);
+
+		if len(parts) > 1:
+			for part in parts:
+				if part.is_in_group('cockpit'):
+					parts.erase(part);
+					break;
+		
+		var part = parts.pick_random();
+
+		var burning = _main_scene.create_node(_burning_path, part);
+		burning.position = Vector2.ZERO;
 

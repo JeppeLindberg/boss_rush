@@ -2,6 +2,7 @@ extends Node2D
 
 @export var shield: int;
 @export var move_delay: int;
+@export var initial_move_delay: int;
 
 @export var textures: Dictionary
 var state = 'intact';
@@ -38,7 +39,10 @@ func make_ready():
 	else:
 		_move_countdown.visible = false;
 
-	_move_countdown_label.text = str(move_delay);
+	if initial_move_delay != 0:
+		_move_countdown_label.text = str(initial_move_delay);
+	else:
+		_move_countdown_label.text = str(move_delay);
 	_plan_next_move();
 
 func _process(_delta):
@@ -54,7 +58,7 @@ func trigger():
 
 	if countdown_integer == 0:
 		_move();
-		countdown_integer += 4;
+		countdown_integer += move_delay;
 	
 	_move_countdown_label.text = str(countdown_integer);
 

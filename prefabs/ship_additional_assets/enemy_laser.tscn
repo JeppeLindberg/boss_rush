@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bah2j5qyjbh2x"]
+
+[ext_resource type="Texture2D" uid="uid://dwu0fku28kf8j" path="res://sprites/ship_additional_assets/enemy_laser.png" id="1_ematq"]
+[ext_resource type="Script" path="res://scripts/ship_additional_assets/enemy_laser.gd" id="1_t8rbk"]
+
+[node name="enemy_laser" type="Node2D"]
+position = Vector2(80, 40)
+script = ExtResource("1_t8rbk")
+animation_len_secs = 0.3
+
+[node name="sprite" type="Sprite2D" parent="."]
+position = Vector2(0, 88)
+texture = ExtResource("1_ematq")

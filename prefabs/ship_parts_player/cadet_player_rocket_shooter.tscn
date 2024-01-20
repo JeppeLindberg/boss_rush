@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/ship_parts/player_rocket_shooter.gd" id="1_62rat"]
 [ext_resource type="Texture2D" uid="uid://bglp1sawbr15" path="res://sprites/ship_parts/cadet_broken.png" id="2_5terl"]
-[ext_resource type="Texture2D" uid="uid://bigtf406ynyfr" path="res://sprites/ship_parts/cadet_cannon.png" id="3_qfq74"]
+[ext_resource type="Texture2D" uid="uid://do0gljt1tjqfv" path="res://sprites/ship_parts/cadet_cannon_player_variant.png" id="3_mqvb3"]
 [ext_resource type="PackedScene" uid="uid://burlru4li81lc" path="res://prefabs/ship_additional_assets/shoot_countdown_player.tscn" id="4_kivo2"]
 
 [node name="player_rocket_shooter" type="Node2D"]
@@ -11,10 +11,10 @@ prefab_path = "res://prefabs/ship_parts_player/cadet_player_rocket_shooter.tscn"
 rocket_path = "res://prefabs/ship_additional_assets/player_rocket_slow.tscn"
 textures = {
 "destroyed": ExtResource("2_5terl"),
-"intact": ExtResource("3_qfq74")
+"intact": ExtResource("3_mqvb3")
 }
 
 [node name="sprite" type="Sprite2D" parent="."]
-texture = ExtResource("3_qfq74")
+texture = ExtResource("3_mqvb3")
 
 [node name="shoot_countdown" parent="." instance=ExtResource("4_kivo2")]
