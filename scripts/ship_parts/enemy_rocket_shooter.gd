@@ -10,7 +10,8 @@ var _main_scene: Node2D
 var state = 'intact';
 
 var _sprite: Sprite2D
-var _shoot_countdown: Label
+var _shoot_countdown: Node2D
+var _shoot_countdown_label: Label
 var _enemy: Node2D
 
 var auto_trigger_order = 0;
@@ -28,17 +29,18 @@ func make_ready():
 	_sprite = get_node('./sprite');
 	_main_scene = get_node('/root/main_scene')
 	_game_space = get_node('/root/main_scene/game_space')
-	_shoot_countdown = get_node('./shoot_countdown/label')
+	_shoot_countdown_label = get_node('./shoot_countdown/label')
+	_shoot_countdown = get_node('./shoot_countdown')
 
 func trigger():
-	var countdown_integer = int(_shoot_countdown.text);
+	var countdown_integer = int(_shoot_countdown_label.text);
 	countdown_integer -= 1;
 
 	if countdown_integer == 0:
 		spawn_rocket();
 		countdown_integer += 4;
 	
-	_shoot_countdown.text = str(countdown_integer);
+	_shoot_countdown_label.text = str(countdown_integer);
 
 	_game_space.finish_trigger(self);
 

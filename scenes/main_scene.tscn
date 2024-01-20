@@ -388,6 +388,7 @@ position = Vector2(40, 0)
 [node name="canvas_layer" type="CanvasLayer" parent="."]
 
 [node name="color_rect" type="ColorRect" parent="canvas_layer"]
+z_index = 4096
 material = SubResource("ShaderMaterial_66e7i")
 anchors_preset = 15
 anchor_right = 1.0

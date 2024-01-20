@@ -1,10 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://8ne6r57pl6x3"]
+[gd_scene load_steps=6 format=3 uid="uid://8ne6r57pl6x3"]
 
 [ext_resource type="Texture2D" uid="uid://54km47k501nd" path="res://sprites/effects/shield_mask.png" id="1_nkgkt"]
 [ext_resource type="Shader" path="res://shaders/animate_uv.gdshader" id="2_vsjub"]
 [ext_resource type="Texture2D" uid="uid://cpikpf82wh4wl" path="res://sprites/effects/shield_energy.png" id="3_rwb8s"]
-[ext_resource type="Texture2D" uid="uid://pnqil6g8kea0" path="res://sprites/effects/shield.png" id="4_o80s2"]
-[ext_resource type="Texture2D" uid="uid://bokaceqgcq00v" path="res://sprites/effects/shield_fade.png" id="5_11f7y"]
+[ext_resource type="Texture2D" uid="uid://0m6judtulc1p" path="res://sprites/effects/shield_alternate.png" id="4_cqivp"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_h8y07"]
 shader = ExtResource("2_vsjub")
@@ -22,8 +21,4 @@ material = SubResource("ShaderMaterial_h8y07")
 texture = ExtResource("3_rwb8s")
 
 [node name="sprite" type="Sprite2D" parent="."]
-texture = ExtResource("4_o80s2")
-
-[node name="fade" type="Sprite2D" parent="."]
-clip_children = 1
-texture = ExtResource("5_11f7y")
+texture = ExtResource("4_cqivp")

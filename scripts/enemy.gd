@@ -1,5 +1,7 @@
 extends Node2D
 
+var _global_vars := preload("res://scripts/library/global_vars.gd").new()
+
 @export var shield_size_5_path: String
 
 var _ui_enemy_health_bar: Node2D
@@ -10,6 +12,12 @@ var _special_effects: Node2D
 var health: int
 var shield: int
 var _go_to_upgrade_phase_time: float = -1
+
+var _old_pos: Vector2
+var _target_pos: Vector2
+var _move_time_begin: float
+@export var animation_len_secs: float = 0.15;
+var waiting_for_finish_animation: bool = false;
 
 
 func make_ready():
@@ -32,6 +40,13 @@ func _process(_delta):
 	if _go_to_upgrade_phase_time != -1 and _main_scene.curr_secs() > _go_to_upgrade_phase_time:
 		_go_to_upgrade_phase_time = -1;
 		_game_space.go_to_upgrade_phase();
+		
+	if waiting_for_finish_animation:
+		var animation_progress = min((_main_scene.curr_secs() - _move_time_begin) * (1.0 / animation_len_secs), 1);
+		global_position = _old_pos.lerp(_target_pos, _main_scene.soft_curve.sample(animation_progress));
+
+		if (animation_progress == 1) and waiting_for_finish_animation:
+			waiting_for_finish_animation = false;
 
 func has_shield():
 	return shield > 0;
@@ -50,6 +65,12 @@ func deactivate_shield():
 				for cchild in child.get_children():
 					if cchild.name == 'shield':
 						cchild.queue_free();
+	
+func move(vec):
+	_move_time_begin = _main_scene.curr_secs()
+	_old_pos = global_position;
+	_target_pos = global_position + vec * _global_vars.GRID_SIZE_X;
+	waiting_for_finish_animation = true;
 
 func take_damage():
 	print('enemy take damage');

@@ -19,15 +19,13 @@ func _ready():
 	_special_effects = get_node('/root/main_scene/special_effects')
 
 func _process(_delta):
-	if not _waiting_for_finish_animation:
-		return;
+	if _waiting_for_finish_animation:
+		var animation_progress = min((_main_scene.curr_secs() - _move_time_begin) * (1.0 / animation_len_secs), 1);
+		global_position = _old_pos.lerp(_target_pos, _main_scene.soft_curve.sample(animation_progress));
 
-	var animation_progress = min((_main_scene.curr_secs() - _move_time_begin) * (1.0 / animation_len_secs), 1);
-	global_position = _old_pos.lerp(_target_pos, _main_scene.soft_curve.sample(animation_progress));
-
-	if (animation_progress == 1) and _waiting_for_finish_animation:
-		_waiting_for_finish_animation = false;
-		_game_space.trigger_game_space();
+		if (animation_progress == 1) and _waiting_for_finish_animation:
+			_waiting_for_finish_animation = false;
+			_game_space.trigger_game_space();
 
 # Called on any input that has not already been handled by the UI or other sources
 func _unhandled_input(event):

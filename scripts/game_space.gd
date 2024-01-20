@@ -26,7 +26,7 @@ func _process(_delta):
 	if (current_trigger == -1) or (current_phase != 'battle'):
 		return;
 	
-	if len(_waiting_for_callback) == 0:
+	while len(_waiting_for_callback) == 0:
 		for child in _main_scene.get_children_in_groups(self, ['has_auto_trigger'], true):
 			if (child.auto_trigger_order == current_trigger) and not (child.get_path() in _has_triggered):
 				_has_triggered.append(child.get_path());
@@ -35,6 +35,9 @@ func _process(_delta):
 
 		if len(_waiting_for_callback) == 0:
 			current_trigger += 1;
+		
+		if current_trigger == 5:
+			break;
 	
 	if current_trigger == 5:	
 		current_trigger = -1;
