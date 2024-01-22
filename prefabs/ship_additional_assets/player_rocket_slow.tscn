@@ -1,13 +1,31 @@
-[gd_scene load_steps=3 format=3 uid="uid://b7dafuu0agrpx"]
+[gd_scene load_steps=11 format=3 uid="uid://b7dafuu0agrpx"]
 
-[ext_resource type="Texture2D" uid="uid://cc6uinugkjtun" path="res://sprites/placeholder/rocket_temp.png" id="1_1e4ys"]
-[ext_resource type="Script" path="res://scripts/ship_additional_assets/player_rocket_slow.gd" id="1_g8kkq"]
+[ext_resource type="Script" path="res://scripts/ship_additional_assets/player_rocket.gd" id="1_dpoc0"]
+[ext_resource type="Texture2D" uid="uid://cjfmil88g8ior" path="res://sprites/ship_additional_assets/player_rocket_flame_1.png" id="2_170rt"]
+[ext_resource type="Script" path="res://scripts/animated_sprite.gd" id="3_5vkcw"]
+[ext_resource type="Texture2D" uid="uid://c1qhb37mcuts4" path="res://sprites/ship_additional_assets/player_rocket_flame_5.png" id="4_k0qak"]
+[ext_resource type="Texture2D" uid="uid://b66842r8e5d0q" path="res://sprites/ship_additional_assets/player_rocket_flame_3.png" id="5_q8mcj"]
+[ext_resource type="Texture2D" uid="uid://cbr71erp242dc" path="res://sprites/ship_additional_assets/player_rocket_flame_4.png" id="6_p2867"]
+[ext_resource type="Texture2D" uid="uid://c6jmms3x1shd3" path="res://sprites/ship_additional_assets/player_rocket_flame_2.png" id="7_yx270"]
+[ext_resource type="Texture2D" uid="uid://b8ord5e7a2y3c" path="res://sprites/ship_additional_assets/player_rocket_flame_6.png" id="8_353ek"]
+[ext_resource type="Texture2D" uid="uid://bb1n0l7of3qnc" path="res://sprites/ship_additional_assets/player_rocket_1.png" id="9_7eqd7"]
+[ext_resource type="Texture2D" uid="uid://deb8e1cwqwtly" path="res://sprites/ship_additional_assets/player_rocket_2.png" id="10_007l8"]
 
-[node name="player_rocket" type="Node2D"]
+[node name="player_rocket_slow" type="Node2D"]
 position = Vector2(97, 79)
-script = ExtResource("1_g8kkq")
+script = ExtResource("1_dpoc0")
+speed = 2
 animation_len_secs = 0.3
 
+[node name="flame_sprite" type="Sprite2D" parent="."]
+position = Vector2(0, 14)
+texture = ExtResource("2_170rt")
+script = ExtResource("3_5vkcw")
+frames_per_second = 8.0
+frames = Array[Texture]([ExtResource("2_170rt"), ExtResource("4_k0qak"), ExtResource("5_q8mcj"), ExtResource("6_p2867"), ExtResource("7_yx270"), ExtResource("8_353ek")])
+
 [node name="sprite" type="Sprite2D" parent="."]
-modulate = Color(0, 0.733333, 0.976471, 1)
-texture = ExtResource("1_1e4ys")
+texture = ExtResource("9_7eqd7")
+script = ExtResource("3_5vkcw")
+frames_per_second = 4.0
+frames = Array[Texture]([ExtResource("9_7eqd7"), ExtResource("10_007l8")])

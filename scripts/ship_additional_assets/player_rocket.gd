@@ -10,6 +10,7 @@ var auto_trigger_order = 1;
 var _old_pos: Vector2
 var _target_pos: Vector2
 var _move_time_begin: float
+@export var speed: int = 3
 @export var animation_len_secs: float = 1.0;
 var _waiting_for_finish_animation: bool
 
@@ -22,7 +23,7 @@ func _ready():
 	_special_effects = get_node('/root/main_scene/special_effects');
 
 func trigger():
-	_move(Vector2.UP * 3);
+	_move(Vector2.UP * speed);
 
 func _process(_delta):
 	if not _waiting_for_finish_animation:

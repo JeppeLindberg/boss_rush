@@ -270,6 +270,7 @@ func progress_dialog():
 	if current_programme['type'] == 'reveal_enemy_healthbar':
 		_waiting_for_reveal_enemy_health_bar = true
 		_revealed_name = false;
+		_enemy_health_bar.visible = true;
 		_enemy_health_bar.set_enemy_name(current_programme['content'])
 		_reveal_enemy_health_bar_start = _main_scene.curr_secs()
 		_health_reveals_completed = 0

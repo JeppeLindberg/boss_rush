@@ -35,9 +35,9 @@ func make_ready():
 	add_to_group('cockpit');
 	if move_delay != 0:
 		add_to_group('has_auto_trigger')
-		_move_countdown.visible = true;
+		_move_countdown.modulate.a = 1.0;
 	else:
-		_move_countdown.visible = false;
+		_move_countdown.modulate.a = 0.0;
 
 	if initial_move_delay != 0:
 		_move_countdown_label.text = str(initial_move_delay);

@@ -192,11 +192,20 @@ func _start_warp():
 	_colorize_screen.set_lerp_to_pos(_colorize_screen.global_position, _main_scene.rising_curve, self, _colorize_screen, 'fade_in')
 
 func _finish_warp():
+	var cockpit_pos = Vector2.ZERO;
+
 	for child in _player_ship_parts.get_children():
 		var part = child.create_part()
 		part.reparent(_player);
 		part.global_position.y = _player.global_position.y;
+
+		if part.is_in_group('cockpit'):
+			cockpit_pos = part.position;
+
 		child.queue_free();
+
+	for child in _player.get_children():
+		child.position -= cockpit_pos;
 	
 	_game_space.go_to_next_battle()
 
