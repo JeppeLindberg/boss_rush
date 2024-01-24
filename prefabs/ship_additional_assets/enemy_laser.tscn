@@ -12,9 +12,10 @@ position = Vector2(80, 40)
 script = ExtResource("1_t8rbk")
 animation_len_secs = 0.3
 
-[node name="sprite" type="Sprite2D" parent="."]
+[node name="laser_sprite" type="Sprite2D" parent="."]
 position = Vector2(0, 88)
 texture = ExtResource("4_uu3tm")
 script = ExtResource("3_w8mr8")
 frames_per_second = 13.0
+self_destroy = true
 frames = Array[Texture]([ExtResource("4_uu3tm"), ExtResource("5_flikm"), ExtResource("6_f5s72"), ExtResource("7_1lg78"), ExtResource("7_1lg78")])

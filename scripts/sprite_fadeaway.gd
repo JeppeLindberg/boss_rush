@@ -40,6 +40,11 @@ func destroy(node):
 				var fading_sprite = _main_scene.create_node(fading_sprite_path, self)
 				fading_sprite.global_position = child.global_position
 				child.reparent(fading_sprite)
+
+				if child.name == 'laser_sprite':
+					fading_sprite.sprite_rotation = 0.0
+				
+				child.name = 'sprite';
 		
 	node.queue_free();
 

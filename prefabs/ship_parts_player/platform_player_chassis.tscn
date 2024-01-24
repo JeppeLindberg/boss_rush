@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://0230iopt4u4l"]
+
+[ext_resource type="Script" path="res://scripts/ship_parts/player_chassis.gd" id="1_l7du1"]
+[ext_resource type="Texture2D" uid="uid://cxqqf77600tqb" path="res://sprites/ship_parts/drone_hull.png" id="3_r51lq"]
+
+[node name="platform_player_chassis" type="Node2D"]
+script = ExtResource("1_l7du1")
+
+[node name="sprite" type="Sprite2D" parent="."]
+texture = ExtResource("3_r51lq")
