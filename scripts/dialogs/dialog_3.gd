@@ -24,7 +24,7 @@ var programme = \
 	},
 	{
 		'type': 'reveal_enemy_healthbar',
-		'content': 'Alexander the Cadet'
+		'content': 'X-300 Justice Drone'
 	},
 	{
 		'type': 'enemy_speech',

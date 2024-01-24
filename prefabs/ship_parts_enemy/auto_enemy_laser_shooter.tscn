@@ -1,22 +1,23 @@
 [gd_scene load_steps=5 format=3 uid="uid://de6528xtqjd4q"]
 
 [ext_resource type="Script" path="res://scripts/ship_parts/enemy_laser_shooter.gd" id="1_2o3lp"]
-[ext_resource type="Texture2D" uid="uid://bglp1sawbr15" path="res://sprites/ship_parts/cadet_broken.png" id="2_ippgh"]
-[ext_resource type="Texture2D" uid="uid://bigtf406ynyfr" path="res://sprites/ship_parts/cadet_cannon.png" id="2_myadm"]
+[ext_resource type="Texture2D" uid="uid://bybu4v20i60wy" path="res://sprites/ship_parts/drone_broken.png" id="2_w4nvs"]
+[ext_resource type="Texture2D" uid="uid://bb4m2andjd20h" path="res://sprites/ship_parts/drone_cannon.png" id="3_7gbjs"]
 [ext_resource type="PackedScene" uid="uid://dcipdrpwsg3g7" path="res://prefabs/ship_additional_assets/shoot_countdown_enemy.tscn" id="3_qiqij"]
 
 [node name="auto_enemy_laser_shooter" type="Node2D"]
 position = Vector2(-40, 0)
 script = ExtResource("1_2o3lp")
+initial_shot_cooldown = 3
 shot_cooldown = 3
 player_upgrade_part_path = "res://prefabs/ship_parts_player/auto_player_laser_shooter.tscn"
 laser_path = "res://prefabs/ship_additional_assets/enemy_laser.tscn"
 textures = {
-"destroyed": ExtResource("2_ippgh"),
-"intact": ExtResource("2_myadm")
+"destroyed": ExtResource("2_w4nvs"),
+"intact": ExtResource("3_7gbjs")
 }
 
 [node name="sprite" type="Sprite2D" parent="."]
-texture = ExtResource("2_myadm")
+texture = ExtResource("3_7gbjs")
 
 [node name="shoot_countdown" parent="." instance=ExtResource("3_qiqij")]

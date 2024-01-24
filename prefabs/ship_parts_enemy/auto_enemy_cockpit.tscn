@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://dldne5hfjfahk"]
 
 [ext_resource type="Script" path="res://scripts/ship_parts/enemy_cockpit.gd" id="1_uf6rg"]
-[ext_resource type="Texture2D" uid="uid://bglp1sawbr15" path="res://sprites/ship_parts/cadet_broken.png" id="2_j11fw"]
-[ext_resource type="Texture2D" uid="uid://cb5h2oqunqfmj" path="res://sprites/ship_parts/cadet_cockpit.png" id="3_jjf6f"]
+[ext_resource type="Texture2D" uid="uid://bybu4v20i60wy" path="res://sprites/ship_parts/drone_broken.png" id="2_vjyni"]
+[ext_resource type="Texture2D" uid="uid://dm142y3tut0q7" path="res://sprites/ship_parts/drone_cockpit.png" id="3_fpjvg"]
 [ext_resource type="PackedScene" uid="uid://br8uxyt6aahuq" path="res://prefabs/ship_additional_assets/move_countdown.tscn" id="4_7mpqt"]
 
 [node name="auto_enemy_cockpit" type="Node2D"]
@@ -11,11 +11,11 @@ shield = 2
 move_delay = 3
 initial_move_delay = 4
 textures = {
-"destroyed": ExtResource("2_j11fw"),
-"intact": ExtResource("3_jjf6f")
+"destroyed": ExtResource("2_vjyni"),
+"intact": ExtResource("3_fpjvg")
 }
 
 [node name="sprite" type="Sprite2D" parent="."]
-texture = ExtResource("3_jjf6f")
+texture = ExtResource("3_fpjvg")
 
 [node name="move_countdown" parent="." instance=ExtResource("4_7mpqt")]

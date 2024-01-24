@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://d675nm0i3xq8"]
+[gd_scene load_steps=56 format=3 uid="uid://d675nm0i3xq8"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_1lvpb"]
 [ext_resource type="Script" path="res://scripts/main_scene.gd" id="1_a1yef"]
@@ -32,6 +32,7 @@
 [ext_resource type="Script" path="res://scripts/sprite_fadeaway.gd" id="20_fhocw"]
 [ext_resource type="Texture2D" uid="uid://bxfmor2jjx4un" path="res://sprites/ui/enter_up.png" id="20_ut104"]
 [ext_resource type="Script" path="res://scripts/animated_sprite.gd" id="21_ho7fq"]
+[ext_resource type="PackedScene" uid="uid://icxtiov115yo" path="res://prefabs/ship_parts_player/auto_player_laser_shooter.tscn" id="22_bwvsl"]
 [ext_resource type="Texture2D" uid="uid://cvol7vxdifxuo" path="res://sprites/ui/enter_down.png" id="22_rlhf5"]
 [ext_resource type="Script" path="res://scripts/dialogs/dialog_2.gd" id="25_45lbu"]
 [ext_resource type="Script" path="res://scripts/dialogs/dialog_3.gd" id="29_4auxj"]
@@ -114,6 +115,12 @@ position = Vector2(120, 90)
 
 [node name="center_top" type="Node2D" parent="."]
 position = Vector2(120, 0)
+
+[node name="left_player_limit" type="Node2D" parent="."]
+position = Vector2(-10, 0)
+
+[node name="right_player_limit" type="Node2D" parent="."]
+position = Vector2(250, 0)
 
 [node name="center_bottom" type="Node2D" parent="."]
 position = Vector2(120, 180)
@@ -266,9 +273,6 @@ script = ExtResource("1_1lvpb")
 _burning_path = "res://prefabs/effects/burn.tscn"
 animation_len_secs = 0.15
 
-[node name="player_hull" parent="game_space/player" instance=ExtResource("15_xrg6p")]
-position = Vector2(20, 0)
-
 [node name="player_hull3" parent="game_space/player" instance=ExtResource("15_xrg6p")]
 position = Vector2(-20, 0)
 
@@ -279,6 +283,9 @@ position = Vector2(40, 0)
 position = Vector2(-40, 0)
 
 [node name="player_cockpit" parent="game_space/player" instance=ExtResource("16_kqcau")]
+
+[node name="player_laser_shooter" parent="game_space/player" instance=ExtResource("22_bwvsl")]
+position = Vector2(20, 0)
 
 [node name="special_effects" type="Node2D" parent="."]
 script = ExtResource("19_e0p2g")

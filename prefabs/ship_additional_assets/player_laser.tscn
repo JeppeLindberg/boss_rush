@@ -1,0 +1,21 @@
+[gd_scene load_steps=7 format=3 uid="uid://rn6j7j6n5vip"]
+
+[ext_resource type="Script" path="res://scripts/ship_additional_assets/player_laser.gd" id="1_xrojf"]
+[ext_resource type="Texture2D" uid="uid://dv5qn4adxe56d" path="res://sprites/ship_additional_assets/player_laser1.png" id="2_533d4"]
+[ext_resource type="Script" path="res://scripts/animated_sprite.gd" id="3_qev4y"]
+[ext_resource type="Texture2D" uid="uid://c4asr72yxsu6v" path="res://sprites/ship_additional_assets/player_laser2.png" id="4_cag2l"]
+[ext_resource type="Texture2D" uid="uid://fvaf67ut5stw" path="res://sprites/ship_additional_assets/player_laser3.png" id="5_utedl"]
+[ext_resource type="Texture2D" uid="uid://djackdf1bt77n" path="res://sprites/ship_additional_assets/player_laser4.png" id="6_4ckpi"]
+
+[node name="player_laser" type="Node2D"]
+z_index = -1
+position = Vector2(80, 40)
+script = ExtResource("1_xrojf")
+animation_len_secs = 0.3
+
+[node name="sprite" type="Sprite2D" parent="."]
+position = Vector2(0, -91)
+texture = ExtResource("2_533d4")
+script = ExtResource("3_qev4y")
+frames_per_second = 13.0
+frames = Array[Texture]([ExtResource("2_533d4"), ExtResource("4_cag2l"), ExtResource("5_utedl"), ExtResource("6_4ckpi"), ExtResource("6_4ckpi")])

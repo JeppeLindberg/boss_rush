@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://bah2j5qyjbh2x"]
+[gd_scene load_steps=7 format=3 uid="uid://bah2j5qyjbh2x"]
 
-[ext_resource type="Texture2D" uid="uid://dwu0fku28kf8j" path="res://sprites/ship_additional_assets/enemy_laser.png" id="1_ematq"]
 [ext_resource type="Script" path="res://scripts/ship_additional_assets/enemy_laser.gd" id="1_t8rbk"]
+[ext_resource type="Script" path="res://scripts/animated_sprite.gd" id="3_w8mr8"]
+[ext_resource type="Texture2D" uid="uid://ba5w51ax1n8kl" path="res://sprites/ship_additional_assets/enemy_laser1.png" id="4_uu3tm"]
+[ext_resource type="Texture2D" uid="uid://bbagcxcic02yy" path="res://sprites/ship_additional_assets/enemy_laser2.png" id="5_flikm"]
+[ext_resource type="Texture2D" uid="uid://cuoa3rp4lfoly" path="res://sprites/ship_additional_assets/enemy_laser3.png" id="6_f5s72"]
+[ext_resource type="Texture2D" uid="uid://dmc71y3fy25m6" path="res://sprites/ship_additional_assets/enemy_laser4.png" id="7_1lg78"]
 
 [node name="enemy_laser" type="Node2D"]
 position = Vector2(80, 40)
@@ -10,4 +14,7 @@ animation_len_secs = 0.3
 
 [node name="sprite" type="Sprite2D" parent="."]
 position = Vector2(0, 88)
-texture = ExtResource("1_ematq")
+texture = ExtResource("4_uu3tm")
+script = ExtResource("3_w8mr8")
+frames_per_second = 13.0
+frames = Array[Texture]([ExtResource("4_uu3tm"), ExtResource("5_flikm"), ExtResource("6_f5s72"), ExtResource("7_1lg78"), ExtResource("7_1lg78")])
