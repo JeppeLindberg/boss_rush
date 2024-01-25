@@ -51,6 +51,8 @@ func spawn_rocket():
 func take_damage():
 	if not _enemy.has_shield():
 		state = 'destroyed';
+		swappable = false;
+		swappable_reason = 'Cannot take broken part.';
 		update_texture();
 		remove_from_group('has_auto_trigger');
 		_shoot_countdown.queue_free();

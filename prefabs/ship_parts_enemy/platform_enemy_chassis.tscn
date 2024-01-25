@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dcvff60nlu00w"]
 
 [ext_resource type="Script" path="res://scripts/ship_parts/enemy_chassis.gd" id="1_ljru4"]
-[ext_resource type="Texture2D" uid="uid://cxqqf77600tqb" path="res://sprites/ship_parts/drone_hull.png" id="3_u6al1"]
+[ext_resource type="Texture2D" uid="uid://bb17otgnbpteg" path="res://sprites/ship_parts/platform_chassis.png" id="2_w230e"]
 
 [node name="platform_enemy_chassis" type="Node2D"]
 position = Vector2(-60, 0)
@@ -9,4 +9,4 @@ script = ExtResource("1_ljru4")
 player_upgrade_part_path = "res://prefabs/ship_parts_player/platform_player_chassis.tscn"
 
 [node name="sprite" type="Sprite2D" parent="."]
-texture = ExtResource("3_u6al1")
+texture = ExtResource("2_w230e")

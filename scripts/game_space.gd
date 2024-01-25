@@ -76,7 +76,7 @@ func start_battle():
 	current_phase = 'battle'
 
 	var player_cockpit = _main_scene.get_children_in_groups(self, ['player_ship_part', 'cockpit'], true)[0]
-	player_cockpit.set_shoot_countdown(current_level)
+	player_cockpit.set_shoot_countdown(2 + current_level * 2.0)
 	
 func _load_enemy(level):
 	for child in _enemy.get_children():

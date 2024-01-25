@@ -439,6 +439,7 @@ position = Vector2(40, 0)
 
 [node name="lvl_4" type="Node2D" parent="garage"]
 process_mode = 4
+visible = false
 position = Vector2(120, 40)
 
 [node name="platform_enemy_mine_shooter" parent="garage/lvl_4" instance=ExtResource("43_0d2ho")]

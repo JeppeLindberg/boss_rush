@@ -1,19 +1,19 @@
 [gd_scene load_steps=5 format=3 uid="uid://cnuweb5hj3j8y"]
 
 [ext_resource type="Script" path="res://scripts/ship_parts/enemy_cockpit.gd" id="1_an3t2"]
-[ext_resource type="Texture2D" uid="uid://bybu4v20i60wy" path="res://sprites/ship_parts/drone_broken.png" id="2_26x0o"]
-[ext_resource type="Texture2D" uid="uid://dm142y3tut0q7" path="res://sprites/ship_parts/drone_cockpit.png" id="3_1rj7g"]
+[ext_resource type="Texture2D" uid="uid://c4e00e0lfu7q" path="res://sprites/ship_parts/platform_broken.png" id="2_r2uoe"]
+[ext_resource type="Texture2D" uid="uid://bsc2fi4leq0yt" path="res://sprites/ship_parts/platform_cockpit.png" id="4_a7xbd"]
 [ext_resource type="PackedScene" uid="uid://br8uxyt6aahuq" path="res://prefabs/ship_additional_assets/move_countdown.tscn" id="4_mkteo"]
 
 [node name="platform_enemy_cockpit" type="Node2D"]
 position = Vector2(-20, 0)
 script = ExtResource("1_an3t2")
 textures = {
-"destroyed": ExtResource("2_26x0o"),
-"intact": ExtResource("3_1rj7g")
+"destroyed": ExtResource("2_r2uoe"),
+"intact": ExtResource("4_a7xbd")
 }
 
 [node name="sprite" type="Sprite2D" parent="."]
-texture = ExtResource("3_1rj7g")
+texture = ExtResource("4_a7xbd")
 
 [node name="move_countdown" parent="." instance=ExtResource("4_mkteo")]

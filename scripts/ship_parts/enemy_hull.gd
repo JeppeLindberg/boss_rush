@@ -22,6 +22,8 @@ func make_ready():
 func take_damage():
 	if not _enemy.has_shield():
 		state = 'destroyed';
+		swappable = false;
+		swappable_reason = 'Cannot take broken part.';
 		update_texture();
 		remove_from_group('damageable_enemy_ship_part');
 		

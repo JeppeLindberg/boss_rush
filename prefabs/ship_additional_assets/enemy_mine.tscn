@@ -1,0 +1,17 @@
+[gd_scene load_steps=6 format=3 uid="uid://1plqp5m5xveg"]
+
+[ext_resource type="Script" path="res://scripts/ship_additional_assets/enemy_mine.gd" id="1_5y5rd"]
+[ext_resource type="Texture2D" uid="uid://cltfyeeucjldg" path="res://sprites/ship_additional_assets/enemy_mine1.png" id="2_5mujn"]
+[ext_resource type="Script" path="res://scripts/animated_sprite.gd" id="3_be27s"]
+[ext_resource type="Texture2D" uid="uid://bjvhlng6871mn" path="res://sprites/ship_additional_assets/enemy_mine2.png" id="4_vcc0m"]
+[ext_resource type="Texture2D" uid="uid://b34m4o2or1xlt" path="res://sprites/ship_additional_assets/enemy_mine3.png" id="5_k6k36"]
+
+[node name="enemy_mine" type="Node2D"]
+position = Vector2(97, 79)
+script = ExtResource("1_5y5rd")
+
+[node name="sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_5mujn")
+script = ExtResource("3_be27s")
+frames_per_second = 4.0
+frames = Array[Texture]([ExtResource("2_5mujn"), ExtResource("4_vcc0m"), ExtResource("5_k6k36")])

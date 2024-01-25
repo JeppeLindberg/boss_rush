@@ -50,12 +50,13 @@ func trigger():
 	_game_space.finish_trigger(self);
 
 func _spawn_mine():
-	var mine = _main_scene.create_node(mine_path, _game_space);
-	mine.global_position = global_position;
+	_main_scene.create_node(mine_path, _game_space);
 
 func take_damage():
 	if not _enemy.has_shield():
 		state = 'destroyed';
+		swappable = false;
+		swappable_reason = 'Cannot take broken part.';
 		update_texture();
 		remove_from_group('has_auto_trigger');
 		_shoot_countdown.queue_free();

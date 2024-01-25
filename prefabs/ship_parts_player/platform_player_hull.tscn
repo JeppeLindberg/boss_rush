@@ -1,16 +1,16 @@
 [gd_scene load_steps=4 format=3 uid="uid://o3oe5s3qu27c"]
 
 [ext_resource type="Script" path="res://scripts/ship_parts/player_hull.gd" id="1_vrpy5"]
-[ext_resource type="Texture2D" uid="uid://bybu4v20i60wy" path="res://sprites/ship_parts/drone_broken.png" id="2_jqvmr"]
-[ext_resource type="Texture2D" uid="uid://cxqqf77600tqb" path="res://sprites/ship_parts/drone_hull.png" id="3_ymler"]
+[ext_resource type="Texture2D" uid="uid://c4e00e0lfu7q" path="res://sprites/ship_parts/platform_broken.png" id="2_ggp31"]
+[ext_resource type="Texture2D" uid="uid://b8ckslcqkji0r" path="res://sprites/ship_parts/platform_hull.png" id="3_eooe2"]
 
 [node name="platform_player_hull" type="Node2D"]
 script = ExtResource("1_vrpy5")
 prefab_path = "res://prefabs/ship_parts_player/auto_player_hull.tscn"
 textures = {
-"destroyed": ExtResource("2_jqvmr"),
-"intact": ExtResource("3_ymler")
+"destroyed": ExtResource("2_ggp31"),
+"intact": ExtResource("3_eooe2")
 }
 
 [node name="sprite" type="Sprite2D" parent="."]
-texture = ExtResource("3_ymler")
+texture = ExtResource("3_eooe2")

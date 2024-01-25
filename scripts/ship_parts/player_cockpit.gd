@@ -29,7 +29,7 @@ func _ready():
 	_shoot_countdown = get_node('./shoot_countdown/label');
 
 func set_shoot_countdown(new_countdown):
-	_shoot_countdown.text = str(new_countdown);
+	_shoot_countdown.text = str(int(new_countdown));
 
 func trigger():
 	var countdown_integer = int(_shoot_countdown.text);
@@ -37,7 +37,7 @@ func trigger():
 
 	if countdown_integer == 0:
 		spawn_rocket();
-		countdown_integer += 6;
+		countdown_integer += 4 + _game_space.current_level * 2;
 	
 	_shoot_countdown.text = str(countdown_integer);
 
