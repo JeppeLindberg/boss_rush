@@ -18,7 +18,8 @@ var _arrow_behind: Sprite2D
 var _center: Node2D
 var _label: RichTextLabel
 
-var _bubble_relative_x: float
+var _bubble_initial_pos: Vector2
+var _bubble_distance_to_center_x: float
 
 
 func _ready():
@@ -31,7 +32,8 @@ func _ready():
 	_label = get_node('./bubble/label');
 	_center = get_node('/root/main_scene/center');
 
-	_bubble_relative_x = _bubble.get_node('./bubble').position.x
+	_bubble_initial_pos = _bubble.global_position
+	_bubble_distance_to_center_x = _bubble_initial_pos.x - _center.global_position.x
 
 func _process(_delta):
 	if talking_node == null:
@@ -40,11 +42,11 @@ func _process(_delta):
 	global_position = talking_node.global_position;
 
 	if global_position.x >= _center.global_position.x:
-		_bubble.global_position = global_position
+		_bubble.global_position = _bubble_initial_pos
 		_arrow.scale.x = 1
 		_arrow.global_position = global_position;
 	else:
-		_bubble.global_position = global_position + Vector2(- _bubble_relative_x * 2, 0)
+		_bubble.global_position = _bubble_initial_pos - Vector2(_bubble_distance_to_center_x * 2, 0)
 		_arrow.scale.x = -1
 		_arrow.global_position = global_position;
 

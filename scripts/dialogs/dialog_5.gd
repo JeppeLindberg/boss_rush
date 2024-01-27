@@ -70,7 +70,7 @@ var programme = \
 	},
 	{
 		'type': 'reveal_enemy_healthbar',
-		'content': 'Gillian Weapons Platform'
+		'content': 'The Galactic Rangers'
 	},
 	{
 		'type': 'enemy_speech',

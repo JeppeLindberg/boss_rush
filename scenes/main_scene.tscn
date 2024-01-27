@@ -531,6 +531,7 @@ position = Vector2(80, 0)
 
 [node name="lvl_5" type="Node2D" parent="garage"]
 process_mode = 4
+visible = false
 position = Vector2(120, 40)
 
 [node name="pink_ranger" type="Node2D" parent="garage/lvl_5"]
@@ -542,6 +543,7 @@ textures = {
 }
 
 [node name="sprite" type="Sprite2D" parent="garage/lvl_5/pink_ranger"]
+position = Vector2(-15, 0)
 texture = ExtResource("69_exr8d")
 
 [node name="ranger_chassis" type="Node2D" parent="garage/lvl_5"]
@@ -616,6 +618,7 @@ textures = {
 }
 
 [node name="sprite" type="Sprite2D" parent="garage/lvl_5/black_ranger"]
+position = Vector2(15, 0)
 texture = ExtResource("59_b07u4")
 
 [node name="shoot_countdown" parent="garage/lvl_5/black_ranger" instance=ExtResource("59_p3swm")]
