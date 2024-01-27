@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=3 uid="uid://d675nm0i3xq8"]
+[gd_scene load_steps=87 format=3 uid="uid://d675nm0i3xq8"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_1lvpb"]
 [ext_resource type="Script" path="res://scripts/main_scene.gd" id="1_a1yef"]
@@ -37,6 +37,7 @@
 [ext_resource type="Script" path="res://scripts/dialogs/dialog_3.gd" id="29_4auxj"]
 [ext_resource type="Script" path="res://scripts/dialogs/dialog_4.gd" id="30_gkfu6"]
 [ext_resource type="Texture2D" uid="uid://cpdvt7f20s3x1" path="res://sprites/background.png" id="31_484ei"]
+[ext_resource type="Script" path="res://scripts/dialogs/dialog_5.gd" id="32_clw20"]
 [ext_resource type="PackedScene" uid="uid://b4m1mopqxem1j" path="res://prefabs/ship_parts_enemy/cadet_enemy_hull.tscn" id="32_wkbwd"]
 [ext_resource type="PackedScene" uid="uid://nssxr3owfq0d" path="res://prefabs/ship_parts_enemy/cadet_enemy_rocket_shooter.tscn" id="33_m1aja"]
 [ext_resource type="PackedScene" uid="uid://n00k3tqdptej" path="res://prefabs/ship_parts_enemy/cadet_enemy_cockpit.tscn" id="34_xvqir"]
@@ -57,6 +58,24 @@
 [ext_resource type="PackedScene" uid="uid://dcvff60nlu00w" path="res://prefabs/ship_parts_enemy/platform_enemy_chassis.tscn" id="44_tg52e"]
 [ext_resource type="PackedScene" uid="uid://dyykwgga7v1vx" path="res://prefabs/ship_parts_enemy/platform_enemy_hull.tscn" id="45_arm2t"]
 [ext_resource type="PackedScene" uid="uid://cnuweb5hj3j8y" path="res://prefabs/ship_parts_enemy/platform_enemy_cockpit.tscn" id="46_abe4q"]
+[ext_resource type="Script" path="res://scripts/ship_parts/enemy_mine_shooter.gd" id="56_o0xdr"]
+[ext_resource type="Texture2D" uid="uid://c4e00e0lfu7q" path="res://sprites/ship_parts/platform_broken.png" id="57_1tna0"]
+[ext_resource type="Script" path="res://scripts/ship_parts/enemy_shield_emitter.gd" id="57_y720n"]
+[ext_resource type="Texture2D" uid="uid://cfl6h1e6awd4k" path="res://sprites/ship_parts/ranger_black_cockpit.png" id="59_b07u4"]
+[ext_resource type="PackedScene" uid="uid://dcipdrpwsg3g7" path="res://prefabs/ship_additional_assets/shoot_countdown_enemy.tscn" id="59_p3swm"]
+[ext_resource type="Texture2D" uid="uid://d1qtmurvxodci" path="res://sprites/ui/mine_pip.png" id="60_hvsrs"]
+[ext_resource type="Script" path="res://scripts/ship_parts/enemy_laser_shooter.gd" id="61_mn8yc"]
+[ext_resource type="Texture2D" uid="uid://dkvn5vu07trdg" path="res://sprites/ship_parts/ranger_pink_red_chassis.png" id="61_wovnh"]
+[ext_resource type="Script" path="res://scripts/ship_parts/enemy_chassis.gd" id="62_1mwtx"]
+[ext_resource type="Texture2D" uid="uid://bi1tb0jo4bhu2" path="res://sprites/ship_parts/ranger_red_cockpit.png" id="64_g4aku"]
+[ext_resource type="Texture2D" uid="uid://d12288e3twf81" path="res://sprites/ui/laser_pip.png" id="65_jin06"]
+[ext_resource type="Script" path="res://scripts/ship_parts/enemy_chassis_movable.gd" id="66_ybuaq"]
+[ext_resource type="Texture2D" uid="uid://bakipadw2sb1j" path="res://sprites/ship_parts/ranger_red_blue_chassis.png" id="67_13s2i"]
+[ext_resource type="Script" path="res://scripts/ship_parts/enemy_rocket_shooter.gd" id="67_cck2p"]
+[ext_resource type="PackedScene" uid="uid://br8uxyt6aahuq" path="res://prefabs/ship_additional_assets/move_countdown.tscn" id="67_wtsoi"]
+[ext_resource type="Texture2D" uid="uid://1mfg711oesub" path="res://sprites/ship_parts/ranger_blue_cockpit.png" id="68_c7iap"]
+[ext_resource type="Texture2D" uid="uid://cu1bdv4gapugk" path="res://sprites/ship_parts/ranger_pink_cockpit.png" id="69_exr8d"]
+[ext_resource type="Texture2D" uid="uid://busgt1didf8u4" path="res://sprites/ship_parts/ranger_blue_black_chassis.png" id="71_hdssq"]
 
 [sub_resource type="Curve" id="Curve_rdql2"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -304,7 +323,7 @@ animation_len_secs = 0.15
 [node name="player_hull3" parent="game_space/player" instance=ExtResource("15_xrg6p")]
 position = Vector2(-20, 0)
 
-[node name="player_hull2" parent="game_space/player" instance=ExtResource("15_xrg6p")]
+[node name="player_hull6" parent="game_space/player" instance=ExtResource("15_xrg6p")]
 position = Vector2(20, 0)
 
 [node name="player_hull4" parent="game_space/player" instance=ExtResource("15_xrg6p")]
@@ -349,6 +368,9 @@ script = ExtResource("29_4auxj")
 
 [node name="dialog_4" type="Node2D" parent="dialog"]
 script = ExtResource("30_gkfu6")
+
+[node name="dialog_5" type="Node2D" parent="dialog"]
+script = ExtResource("32_clw20")
 
 [node name="player_speech_bubble" type="Node2D" parent="dialog"]
 visible = false
@@ -507,6 +529,100 @@ position = Vector2(60, 0)
 [node name="platform_enemy_hull4" parent="garage/lvl_4" instance=ExtResource("45_arm2t")]
 position = Vector2(80, 0)
 
+[node name="lvl_5" type="Node2D" parent="garage"]
+process_mode = 4
+position = Vector2(120, 40)
+
+[node name="pink_ranger" type="Node2D" parent="garage/lvl_5"]
+position = Vector2(-60, 0)
+script = ExtResource("57_y720n")
+textures = {
+"destroyed": ExtResource("57_1tna0"),
+"intact": ExtResource("69_exr8d")
+}
+
+[node name="sprite" type="Sprite2D" parent="garage/lvl_5/pink_ranger"]
+texture = ExtResource("69_exr8d")
+
+[node name="ranger_chassis" type="Node2D" parent="garage/lvl_5"]
+position = Vector2(-40, 0)
+script = ExtResource("62_1mwtx")
+player_upgrade_part_path = "res://prefabs/ship_parts_player/platform_player_chassis.tscn"
+
+[node name="sprite" type="Sprite2D" parent="garage/lvl_5/ranger_chassis"]
+texture = ExtResource("61_wovnh")
+
+[node name="red_ranger" type="Node2D" parent="garage/lvl_5"]
+position = Vector2(-20, 0)
+script = ExtResource("61_mn8yc")
+initial_shot_cooldown = 4
+shot_cooldown = 4
+laser_path = "res://prefabs/ship_additional_assets/enemy_laser.tscn"
+textures = {
+"destroyed": ExtResource("57_1tna0"),
+"intact": ExtResource("64_g4aku")
+}
+
+[node name="sprite" type="Sprite2D" parent="garage/lvl_5/red_ranger"]
+texture = ExtResource("64_g4aku")
+
+[node name="shoot_countdown" parent="garage/lvl_5/red_ranger" instance=ExtResource("59_p3swm")]
+
+[node name="pip" parent="garage/lvl_5/red_ranger/shoot_countdown" index="1"]
+texture = ExtResource("65_jin06")
+
+[node name="ranger_chassis_moveable" type="Node2D" parent="garage/lvl_5"]
+script = ExtResource("66_ybuaq")
+move_delay = 2
+initial_move_delay = 2
+
+[node name="sprite" type="Sprite2D" parent="garage/lvl_5/ranger_chassis_moveable"]
+texture = ExtResource("67_13s2i")
+
+[node name="move_countdown" parent="garage/lvl_5/ranger_chassis_moveable" instance=ExtResource("67_wtsoi")]
+
+[node name="blue_ranger" type="Node2D" parent="garage/lvl_5"]
+position = Vector2(20, 0)
+script = ExtResource("67_cck2p")
+initial_shot_cooldown = 2
+shot_cooldown = 2
+rocket_path = "res://prefabs/ship_additional_assets/enemy_rocket_slow.tscn"
+textures = {
+"destroyed": ExtResource("57_1tna0"),
+"intact": ExtResource("68_c7iap")
+}
+
+[node name="sprite" type="Sprite2D" parent="garage/lvl_5/blue_ranger"]
+texture = ExtResource("68_c7iap")
+
+[node name="shoot_countdown" parent="garage/lvl_5/blue_ranger" instance=ExtResource("59_p3swm")]
+
+[node name="ranger_chassis2" type="Node2D" parent="garage/lvl_5"]
+position = Vector2(40, 0)
+script = ExtResource("62_1mwtx")
+
+[node name="sprite" type="Sprite2D" parent="garage/lvl_5/ranger_chassis2"]
+texture = ExtResource("71_hdssq")
+
+[node name="black_ranger" type="Node2D" parent="garage/lvl_5"]
+position = Vector2(60, 0)
+script = ExtResource("56_o0xdr")
+initial_shot_cooldown = 3
+shot_cooldown = 3
+mine_path = "res://prefabs/ship_additional_assets/enemy_mine.tscn"
+textures = {
+"destroyed": ExtResource("57_1tna0"),
+"intact": ExtResource("59_b07u4")
+}
+
+[node name="sprite" type="Sprite2D" parent="garage/lvl_5/black_ranger"]
+texture = ExtResource("59_b07u4")
+
+[node name="shoot_countdown" parent="garage/lvl_5/black_ranger" instance=ExtResource("59_p3swm")]
+
+[node name="pip" parent="garage/lvl_5/black_ranger/shoot_countdown" index="1"]
+texture = ExtResource("60_hvsrs")
+
 [node name="canvas_layer" type="CanvasLayer" parent="."]
 
 [node name="color_rect" type="ColorRect" parent="canvas_layer"]
@@ -517,3 +633,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[editable path="garage/lvl_5/red_ranger/shoot_countdown"]
+[editable path="garage/lvl_5/black_ranger/shoot_countdown"]

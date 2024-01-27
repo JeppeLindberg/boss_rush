@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dfrhqjkm2f5pl"]
+[gd_scene load_steps=6 format=3 uid="uid://dfrhqjkm2f5pl"]
 
 [ext_resource type="Script" path="res://scripts/ship_parts/enemy_mine_shooter.gd" id="1_lbksp"]
 [ext_resource type="Texture2D" uid="uid://ca7t6xfggxx8v" path="res://sprites/ship_parts/platform_cannon.png" id="2_8rm8q"]
 [ext_resource type="Texture2D" uid="uid://c4e00e0lfu7q" path="res://sprites/ship_parts/platform_broken.png" id="2_77283"]
 [ext_resource type="PackedScene" uid="uid://dcipdrpwsg3g7" path="res://prefabs/ship_additional_assets/shoot_countdown_enemy.tscn" id="4_chf55"]
+[ext_resource type="Texture2D" uid="uid://d1qtmurvxodci" path="res://sprites/ui/mine_pip.png" id="5_m0klg"]
 
 [node name="platform_enemy_mine_shooter" type="Node2D"]
 position = Vector2(-80, 0)
@@ -21,3 +22,8 @@ textures = {
 texture = ExtResource("2_8rm8q")
 
 [node name="shoot_countdown" parent="." instance=ExtResource("4_chf55")]
+
+[node name="pip" parent="shoot_countdown" index="1"]
+texture = ExtResource("5_m0klg")
+
+[editable path="shoot_countdown"]

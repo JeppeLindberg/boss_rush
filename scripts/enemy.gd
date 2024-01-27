@@ -32,8 +32,12 @@ func make_ready():
 		child.make_ready();
 		if child.is_in_group('cockpit'):
 			shield += child.shield;
-		
-	health = len(_main_scene.get_children_in_groups(self, ['damageable_enemy_ship_part'], true)) - 2;
+	
+	var health_modifier = -2;
+	if _game_space.current_level == 5:
+		health_modifier = 0;
+
+	health = len(_main_scene.get_children_in_groups(self, ['damageable_enemy_ship_part'], true)) + health_modifier;
 	_ui_enemy_health_bar.set_max_health(health, shield);
 
 func _process(_delta):

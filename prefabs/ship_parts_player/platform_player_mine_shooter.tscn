@@ -1,20 +1,26 @@
-[gd_scene load_steps=5 format=3 uid="uid://cddo6d35rciye"]
+[gd_scene load_steps=6 format=3 uid="uid://cddo6d35rciye"]
 
-[ext_resource type="Script" path="res://scripts/ship_parts/player_rocket_shooter.gd" id="1_pulcu"]
-[ext_resource type="Texture2D" uid="uid://bglp1sawbr15" path="res://sprites/ship_parts/cadet_broken.png" id="2_lsbsk"]
-[ext_resource type="Texture2D" uid="uid://do0gljt1tjqfv" path="res://sprites/ship_parts/cadet_cannon_player_variant.png" id="3_lg08k"]
+[ext_resource type="Script" path="res://scripts/ship_parts/player_mine_shooter.gd" id="1_bpup2"]
+[ext_resource type="Texture2D" uid="uid://c4e00e0lfu7q" path="res://sprites/ship_parts/platform_broken.png" id="2_htvb0"]
+[ext_resource type="Texture2D" uid="uid://dw260cgg3ptjf" path="res://sprites/ship_parts/platform_cannon_player_variant.png" id="3_d3kms"]
 [ext_resource type="PackedScene" uid="uid://burlru4li81lc" path="res://prefabs/ship_additional_assets/shoot_countdown_player.tscn" id="4_kqivw"]
+[ext_resource type="Texture2D" uid="uid://d1qtmurvxodci" path="res://sprites/ui/mine_pip.png" id="5_psyfg"]
 
 [node name="player_rocket_shooter" type="Node2D"]
-script = ExtResource("1_pulcu")
-prefab_path = "res://prefabs/ship_parts_player/cadet_player_rocket_shooter.tscn"
-rocket_path = "res://prefabs/ship_additional_assets/player_rocket_slow.tscn"
+script = ExtResource("1_bpup2")
+prefab_path = "res://prefabs/ship_parts_player/platform_player_mine_shooter.tscn"
+mine_path = "res://prefabs/ship_additional_assets/player_mine.tscn"
 textures = {
-"destroyed": ExtResource("2_lsbsk"),
-"intact": ExtResource("3_lg08k")
+"destroyed": ExtResource("2_htvb0"),
+"intact": ExtResource("3_d3kms")
 }
 
 [node name="sprite" type="Sprite2D" parent="."]
-texture = ExtResource("3_lg08k")
+texture = ExtResource("3_d3kms")
 
 [node name="shoot_countdown" parent="." instance=ExtResource("4_kqivw")]
+
+[node name="pip" parent="shoot_countdown" index="1"]
+texture = ExtResource("5_psyfg")
+
+[editable path="shoot_countdown"]

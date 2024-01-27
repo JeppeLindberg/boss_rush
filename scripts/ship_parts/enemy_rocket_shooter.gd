@@ -3,6 +3,9 @@ extends Node2D
 var _game_space: Node2D
 var _main_scene: Node2D
 
+@export var initial_shot_cooldown: int = 4
+@export var shot_cooldown: int = 4
+
 @export var player_upgrade_part_path: String
 @export var rocket_path: String
 
@@ -32,13 +35,15 @@ func make_ready():
 	_shoot_countdown_label = get_node('./shoot_countdown/label')
 	_shoot_countdown = get_node('./shoot_countdown')
 
+	_shoot_countdown_label.text = str(initial_shot_cooldown);
+
 func trigger():
 	var countdown_integer = int(_shoot_countdown_label.text);
 	countdown_integer -= 1;
 
 	if countdown_integer == 0:
 		spawn_rocket();
-		countdown_integer += 4;
+		countdown_integer += shot_cooldown;
 	
 	_shoot_countdown_label.text = str(countdown_integer);
 
