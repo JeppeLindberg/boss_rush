@@ -9,6 +9,10 @@ var programme = \
 		'type': 'enemy_set_pos_battle'
 	},
 	{
+		'type': 'play_music',
+		'content': 'alexander_theme'
+	},
+	{
 		'type': 'fade_in'
 	},
 	{

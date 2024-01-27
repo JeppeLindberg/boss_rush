@@ -14,12 +14,17 @@ var progress = -1;
 @export var time_between_health_reveals: float = 0.15
 @export var time_after_health_reveal: float = 0.4
 
+@export var white: Color;
+@export var cyan: Color;
+@export var red: Color;
+
 var _main_scene: Node2D
 var _center_top: Node2D
 var _center_bottom: Node2D
 var _player_pos: Node2D
 var _enemy_pos: Node2D
 var _game_space: Node2D
+var _audio: Node2D
 
 var _dialog_node: Node2D
 var _enemy_cockpit: Node2D
@@ -32,7 +37,6 @@ var _player_speech_bubble_sprite: Node2D
 var _player_speech_bubble_enter_promt: Node2D
 var _enemy_speech_bubble: Node2D
 var _enemy_speech_bubble_text_label: RichTextLabel
-var _enemy_speech_bubble_sprite: Node2D
 var _enemy_speech_bubble_enter_promt: Node2D
 var _speech_bubble_text_label: RichTextLabel
 var _enemy_health_bar: Node2D
@@ -75,10 +79,10 @@ func _ready():
 	_player_speech_bubble_sprite = _player_speech_bubble.get_node('./sprite')
 	_player_speech_bubble_enter_promt = _player_speech_bubble.get_node('./enter_promt')
 	_enemy_speech_bubble = get_node('./enemy_speech_bubble')
-	_enemy_speech_bubble_text_label = _enemy_speech_bubble.get_node('./label')
-	_enemy_speech_bubble_sprite = _enemy_speech_bubble.get_node('./sprite')
-	_enemy_speech_bubble_enter_promt = _enemy_speech_bubble.get_node('./enter_promt')
+	_enemy_speech_bubble_text_label = _enemy_speech_bubble.get_node('./bubble/label')
+	_enemy_speech_bubble_enter_promt = _enemy_speech_bubble.get_node('./bubble/enter_promt')
 	_colorize_screen = get_node('/root/main_scene/colorize_screen')
+	_audio = get_node('/root/main_scene/camera/audio')
 
 func start_dialog(dialog_index):
 	progress = -1;
@@ -195,7 +199,7 @@ func progress_dialog():
 
 	print(current_programme['type'])
 
-	if true:
+	if false:
 		# skip dialog
 		if current_programme['type'] == 'player_speech' or current_programme['type'] == 'enemy_speech':
 			progress_dialog()
@@ -208,6 +212,11 @@ func progress_dialog():
 
 	if current_programme['type'] == 'enemy_set_pos_battle':		
 		_enemy.global_position = _enemy_pos.global_position
+		progress_dialog()
+		return;
+
+	if current_programme['type'] == 'enemy_set_pos_top':		
+		_enemy.global_position = _center_top.global_position + Vector2.UP * 15.0
 		progress_dialog()
 		return;
 
@@ -265,6 +274,28 @@ func progress_dialog():
 		_speech_bubble_text_label.visible_characters = 0
 		_speech_time_start = _main_scene.curr_secs()
 		_waiting_for_finish_speech = true
+
+		if current_programme.get('follow', false):
+			pass
+		else:
+			var enemy_cockpit = _main_scene.get_children_in_groups(_game_space, ['enemy_ship_part', 'cockpit'], true)[0];
+			_enemy_speech_bubble.talking_node = enemy_cockpit
+
+		if current_programme.get('theme', false):
+			_enemy_speech_bubble.set_theme(current_programme['theme'])
+		else:
+			_enemy_speech_bubble.set_theme('speech')
+		
+		if current_programme.get('color', false):
+			if current_programme['color'] == 'white':
+				_enemy_speech_bubble.set_color(white);
+			if current_programme['color'] == 'red':
+				_enemy_speech_bubble.set_color(red);
+			if current_programme['color'] == 'cyan':
+				_enemy_speech_bubble.set_color(cyan);
+		else:
+			_enemy_speech_bubble.set_color(white);
+				
 		return;
 
 	if current_programme['type'] == 'reveal_enemy_healthbar':
@@ -291,6 +322,17 @@ func progress_dialog():
 		_animation_curve = _main_scene.linear_curve
 		_also_animate_alpha = true;
 		_inverse_animate_alpha = true
+		return;
+
+	if current_programme['type'] == 'play_music':
+		if current_programme['content'] == 'alexander_theme':
+			_audio.play_alexander_theme()
+		if current_programme['content'] == 'drone_theme':
+			_audio.play_drone_theme()
+		if current_programme['content'] == 'platform_theme':
+			_audio.play_platform_theme()
+		
+		progress_dialog()
 		return;
 
 	if current_programme['type'] == 'start_battle':

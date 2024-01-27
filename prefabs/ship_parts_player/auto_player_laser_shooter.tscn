@@ -7,8 +7,8 @@
 
 [node name="player_laser_shooter" type="Node2D"]
 script = ExtResource("1_1iydu")
-initial_shot_cooldown = 3
-shot_cooldown = 3
+initial_shot_cooldown = 5
+shot_cooldown = 5
 prefab_path = "res://prefabs/ship_parts_player/auto_player_laser_shooter.tscn"
 laser_path = "res://prefabs/ship_additional_assets/player_laser.tscn"
 textures = {

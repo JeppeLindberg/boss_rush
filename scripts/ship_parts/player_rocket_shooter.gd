@@ -4,7 +4,8 @@ var _game_space: Node2D
 var _main_scene: Node2D
 var _player: Node2D
 
-@export var start_shoot_delay: int = 6
+@export var initial_shoot_delay: int = 7
+@export var shoot_delay: int = 5
 
 @export var prefab_path: String
 @export var rocket_path: String
@@ -32,7 +33,7 @@ func _ready():
 	_shoot_countdown = get_node('./shoot_countdown');
 	_shoot_countdown_label = get_node('./shoot_countdown/label');
 	_player = get_node('/root/main_scene/game_space/player');
-	_shoot_countdown_label.text = str(start_shoot_delay);
+	_shoot_countdown_label.text = str(initial_shoot_delay);
 
 func trigger():
 	var countdown_integer = int(_shoot_countdown_label.text);
@@ -40,7 +41,7 @@ func trigger():
 
 	if countdown_integer == 0:
 		spawn_rocket();
-		countdown_integer += 4;
+		countdown_integer += shoot_delay;
 	
 	_shoot_countdown_label.text = str(countdown_integer);
 
