@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://tofgtianbtjl" path="res://sprites/ui/attack_pip.png" id="2_igt4p"]
 
 [node name="shoot_countdown" type="Node2D"]
+z_index = 60
 position = Vector2(0, 27)
 script = ExtResource("1_eick5")
 

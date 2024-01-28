@@ -1,4 +1,4 @@
-[gd_scene load_steps=109 format=3 uid="uid://d675nm0i3xq8"]
+[gd_scene load_steps=110 format=3 uid="uid://d675nm0i3xq8"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_1lvpb"]
 [ext_resource type="Script" path="res://scripts/main_scene.gd" id="1_a1yef"]
@@ -68,6 +68,7 @@
 [ext_resource type="Texture2D" uid="uid://c25urpluma307" path="res://sprites/ui/speech_digitized.png" id="37_7lahi"]
 [ext_resource type="Texture2D" uid="uid://ch7m416seqxn0" path="res://sprites/ui/speech_bubble.png" id="37_bu3we"]
 [ext_resource type="Texture2D" uid="uid://beepi3erxbcri" path="res://sprites/ui/speech_bubble_behind.png" id="38_npa0t"]
+[ext_resource type="Script" path="res://scripts/ui/warnings.gd" id="39_1h1w0"]
 [ext_resource type="Shader" path="res://shaders/post_processing.gdshader" id="39_jeecj"]
 [ext_resource type="PackedScene" uid="uid://cmaf6h7ogjkij" path="res://prefabs/ship_parts_enemy/auto_enemy_hull.tscn" id="39_shy34"]
 [ext_resource type="Texture2D" uid="uid://c2tcln17siwka" path="res://sprites/ui/speech_digitized_behind.png" id="39_vhnoa"]
@@ -438,6 +439,10 @@ texture = ExtResource("27_8bv2y")
 script = ExtResource("21_ho7fq")
 frames_per_second = 1.5
 frames = Array[Texture]([ExtResource("27_8bv2y"), ExtResource("28_5ncc0"), ExtResource("29_j13kg"), ExtResource("30_xv1ds"), ExtResource("31_ryumw"), ExtResource("32_ecxdd"), ExtResource("33_0hp6n"), ExtResource("34_xr0ng"), ExtResource("35_no5o2"), ExtResource("36_jnnh7"), ExtResource("37_0noxw")])
+
+[node name="warnings" type="Node2D" parent="ui"]
+script = ExtResource("39_1h1w0")
+warning_red_path = "res://prefabs/ui/warning_red.tscn"
 
 [node name="game_space" type="Node2D" parent="."]
 script = ExtResource("1_iqqtq")

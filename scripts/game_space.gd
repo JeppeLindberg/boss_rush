@@ -6,8 +6,9 @@ var _upgrades: Node2D
 var _garage: Node2D
 var _dialog: Node2D
 var _sprite_fadeaway: Node2D
+var _warnings: Node2D
 
-var current_level = 0;
+var current_level = 3;
 var current_trigger = -1;
 var current_phase = '';
 var _has_triggered = []
@@ -19,6 +20,7 @@ func _ready():
 	_garage = get_node('/root/main_scene/garage');
 	_dialog = get_node('/root/main_scene/dialog');
 	_sprite_fadeaway = get_node('/root/main_scene/sprite_fadeaway');
+	_warnings = get_node('/root/main_scene/ui/warnings')
 	_upgrades = get_node('./upgrades');
 	_enemy = get_node('./enemy');
 
@@ -31,6 +33,7 @@ func _process(_delta):
 			if (child.auto_trigger_order == current_trigger) and not (child.get_path() in _has_triggered):
 				_has_triggered.append(child.get_path());
 				_waiting_for_callback.append(child.get_path());
+				_warnings.clear_warnings(child);
 				child.trigger();
 
 		if len(_waiting_for_callback) == 0:
@@ -58,6 +61,7 @@ func _cull():
 func enemy_dead():
 	current_trigger = -2
 	current_phase = 'enemy_dead'
+	_warnings.clear_all_warnings()
 	_cull()
 
 func go_to_upgrade_phase():

@@ -2,6 +2,7 @@ extends Node2D
 
 var _game_space: Node2D
 var _main_scene: Node2D
+var _warnings: Node2D
 
 @export var initial_shot_cooldown: int = 4
 @export var shot_cooldown: int = 4
@@ -32,6 +33,7 @@ func make_ready():
 	_sprite = get_node('./sprite');
 	_main_scene = get_node('/root/main_scene')
 	_game_space = get_node('/root/main_scene/game_space')
+	_warnings = get_node('/root/main_scene/ui/warnings')
 	_shoot_countdown_label = get_node('./shoot_countdown/label')
 	_shoot_countdown = get_node('./shoot_countdown')
 
@@ -40,6 +42,10 @@ func make_ready():
 func trigger():
 	var countdown_integer = int(_shoot_countdown_label.text);
 	countdown_integer -= 1;
+
+	if countdown_integer == 1:
+		_warnings.add_warning(self, global_position, Vector2.DOWN * 1)
+		_warnings.add_warning(self, global_position, Vector2.DOWN * 2)
 
 	if countdown_integer == 0:
 		spawn_rocket();

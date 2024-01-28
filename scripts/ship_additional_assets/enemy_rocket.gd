@@ -5,6 +5,7 @@ var _global_vars := preload("res://scripts/library/global_vars.gd").new()
 var _main_scene: Node2D
 var _game_space: Node2D
 var _special_effects: Node2D
+var _warnings: Node2D
 
 var auto_trigger_order = 1;
 
@@ -21,6 +22,7 @@ func _ready():
 	_main_scene = get_node('/root/main_scene');
 	_game_space = get_node('/root/main_scene/game_space');
 	_special_effects = get_node('/root/main_scene/special_effects');
+	_warnings = get_node('/root/main_scene/ui/warnings');
 
 func trigger():
 	_move(Vector2.DOWN * 2);
@@ -36,6 +38,8 @@ func _process(_delta):
 
 	if (animation_progress == 1) and _waiting_for_finish_animation:
 		_waiting_for_finish_animation = false;
+		_warnings.add_warning(self, global_position, Vector2.DOWN * 1)
+		_warnings.add_warning(self, global_position, Vector2.DOWN * 2)
 		_game_space.finish_trigger(self);
 		return;
 
