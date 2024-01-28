@@ -7,7 +7,7 @@ var _garage: Node2D
 var _dialog: Node2D
 var _sprite_fadeaway: Node2D
 
-var current_level = 4;
+var current_level = 0;
 var current_trigger = -1;
 var current_phase = '';
 var _has_triggered = []

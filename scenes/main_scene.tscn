@@ -1,4 +1,4 @@
-[gd_scene load_steps=87 format=3 uid="uid://d675nm0i3xq8"]
+[gd_scene load_steps=109 format=3 uid="uid://d675nm0i3xq8"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_1lvpb"]
 [ext_resource type="Script" path="res://scripts/main_scene.gd" id="1_a1yef"]
@@ -26,24 +26,45 @@
 [ext_resource type="PackedScene" uid="uid://cksn4kc3wapj4" path="res://prefabs/ship_parts_player/player_hull.tscn" id="15_xrg6p"]
 [ext_resource type="PackedScene" uid="uid://dvnitnvm74buv" path="res://prefabs/ship_parts_player/player_cockpit.tscn" id="16_kqcau"]
 [ext_resource type="Script" path="res://scripts/dialogs/dialog_1.gd" id="16_mcxju"]
+[ext_resource type="Script" path="res://scripts/ui/controls_panel.gd" id="17_rcpl2"]
+[ext_resource type="Texture2D" uid="uid://k6h8mka26i3k" path="res://sprites/ui/controls_panel.png" id="17_wo7jr"]
 [ext_resource type="Texture2D" uid="uid://daj7bgt1k3dcy" path="res://sprites/ui/player_speech.png" id="18_u1qst"]
+[ext_resource type="Texture2D" uid="uid://lc4wq865cd6t" path="res://sprites/ui/left_up.png" id="18_y3and"]
 [ext_resource type="Texture2D" uid="uid://ctw24jdvjffqd" path="res://sprites/ui/player_speech_digital.png" id="18_ytkm6"]
+[ext_resource type="Texture2D" uid="uid://b51g3otnrf2lb" path="res://sprites/ui/space_up.png" id="19_b2y47"]
 [ext_resource type="Script" path="res://scripts/special_effects.gd" id="19_e0p2g"]
 [ext_resource type="Script" path="res://scripts/sprite_fadeaway.gd" id="20_fhocw"]
+[ext_resource type="Texture2D" uid="uid://dk11wbfovrlyf" path="res://sprites/ui/left_down.png" id="20_u4htt"]
+[ext_resource type="Texture2D" uid="uid://6mla6trtpow1" path="res://sprites/ui/right_up.png" id="20_uik0i"]
 [ext_resource type="Texture2D" uid="uid://bxfmor2jjx4un" path="res://sprites/ui/enter_up.png" id="20_ut104"]
 [ext_resource type="Script" path="res://scripts/animated_sprite.gd" id="21_ho7fq"]
+[ext_resource type="Texture2D" uid="uid://cnxea2w5eubph" path="res://sprites/ui/space_down.png" id="22_4lmid"]
 [ext_resource type="Texture2D" uid="uid://cvol7vxdifxuo" path="res://sprites/ui/enter_down.png" id="22_rlhf5"]
+[ext_resource type="Texture2D" uid="uid://djmap7ad3iwem" path="res://sprites/ui/right_down.png" id="24_udebo"]
+[ext_resource type="Texture2D" uid="uid://blclvvndgmxy7" path="res://sprites/ui/up_arrow.png" id="25_2g5n0"]
 [ext_resource type="Script" path="res://scripts/dialogs/dialog_2.gd" id="25_45lbu"]
+[ext_resource type="Texture2D" uid="uid://dhdg87i8sl0eu" path="res://sprites/ui/mouse_control_tutorial1.png" id="27_8bv2y"]
+[ext_resource type="Script" path="res://scripts/ui/mouse_control_tutorial.gd" id="27_33c7k"]
+[ext_resource type="Texture2D" uid="uid://cmru6tiwmlhco" path="res://sprites/ui/mouse_control_tutorial2.png" id="28_5ncc0"]
 [ext_resource type="Script" path="res://scripts/dialogs/dialog_3.gd" id="29_4auxj"]
+[ext_resource type="Texture2D" uid="uid://c87f0m87m8wdg" path="res://sprites/ui/mouse_control_tutorial3.png" id="29_j13kg"]
 [ext_resource type="Script" path="res://scripts/dialogs/dialog_4.gd" id="30_gkfu6"]
+[ext_resource type="Texture2D" uid="uid://dywy5v7au5yjk" path="res://sprites/ui/mouse_control_tutorial4.png" id="30_xv1ds"]
 [ext_resource type="Texture2D" uid="uid://cpdvt7f20s3x1" path="res://sprites/background.png" id="31_484ei"]
+[ext_resource type="Texture2D" uid="uid://dqu0my6oduhah" path="res://sprites/ui/mouse_control_tutorial5.png" id="31_ryumw"]
 [ext_resource type="Script" path="res://scripts/dialogs/dialog_5.gd" id="32_clw20"]
+[ext_resource type="Texture2D" uid="uid://cm2hqmdddttyt" path="res://sprites/ui/mouse_control_tutorial6.png" id="32_ecxdd"]
 [ext_resource type="PackedScene" uid="uid://b4m1mopqxem1j" path="res://prefabs/ship_parts_enemy/cadet_enemy_hull.tscn" id="32_wkbwd"]
+[ext_resource type="Texture2D" uid="uid://c6snft3ja030b" path="res://sprites/ui/mouse_control_tutorial7.png" id="33_0hp6n"]
 [ext_resource type="PackedScene" uid="uid://nssxr3owfq0d" path="res://prefabs/ship_parts_enemy/cadet_enemy_rocket_shooter.tscn" id="33_m1aja"]
+[ext_resource type="Texture2D" uid="uid://dl4wo5e4umje" path="res://sprites/ui/mouse_control_tutorial8.png" id="34_xr0ng"]
 [ext_resource type="PackedScene" uid="uid://n00k3tqdptej" path="res://prefabs/ship_parts_enemy/cadet_enemy_cockpit.tscn" id="34_xvqir"]
 [ext_resource type="Texture2D" uid="uid://cpf24didjtrvp" path="res://sprites/ui/speech_arrow.png" id="35_6rmvp"]
 [ext_resource type="Texture2D" uid="uid://crfk1iy1gsh1x" path="res://sprites/ui/speech_arrow_behind.png" id="35_codpn"]
+[ext_resource type="Texture2D" uid="uid://bvwx3obsst0hy" path="res://sprites/ui/mouse_control_tutorial9.png" id="35_no5o2"]
 [ext_resource type="Script" path="res://scripts/ui/enemy_speech_bubble.gd" id="35_v2x0w"]
+[ext_resource type="Texture2D" uid="uid://cxlwrhxbggpiq" path="res://sprites/ui/mouse_control_tutorial10.png" id="36_jnnh7"]
+[ext_resource type="Texture2D" uid="uid://g4hrvmiv2adc" path="res://sprites/ui/mouse_control_tutorial11.png" id="37_0noxw"]
 [ext_resource type="Texture2D" uid="uid://c25urpluma307" path="res://sprites/ui/speech_digitized.png" id="37_7lahi"]
 [ext_resource type="Texture2D" uid="uid://ch7m416seqxn0" path="res://sprites/ui/speech_bubble.png" id="37_bu3we"]
 [ext_resource type="Texture2D" uid="uid://beepi3erxbcri" path="res://sprites/ui/speech_bubble_behind.png" id="38_npa0t"]
@@ -103,6 +124,9 @@ point_count = 2
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_myouu"]
 size = Vector2(80, 26)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t517e"]
+size = Vector2(210, 14)
 
 [sub_resource type="Curve" id="Curve_hgr7j"]
 min_value = -1.0
@@ -292,6 +316,128 @@ vertical_alignment = 1
 
 [node name="collider" type="CollisionShape2D" parent="ui/continue_button"]
 shape = SubResource("RectangleShape2D_myouu")
+
+[node name="controls_panel" type="Area2D" parent="ui"]
+z_index = 2000
+position = Vector2(120, 216)
+script = ExtResource("17_rcpl2")
+
+[node name="collider" type="CollisionShape2D" parent="ui/controls_panel"]
+position = Vector2(1, -43)
+shape = SubResource("RectangleShape2D_t517e")
+
+[node name="moveable_panel" type="Node2D" parent="ui/controls_panel"]
+
+[node name="panel" type="Sprite2D" parent="ui/controls_panel/moveable_panel"]
+position = Vector2(1, -26)
+texture = ExtResource("17_wo7jr")
+
+[node name="left_sprite" type="Sprite2D" parent="ui/controls_panel/moveable_panel"]
+position = Vector2(-46, -27)
+texture = ExtResource("18_y3and")
+script = ExtResource("21_ho7fq")
+frames_per_second = 1.5
+frames = Array[Texture]([ExtResource("18_y3and"), ExtResource("20_u4htt")])
+override_button = "move_left"
+
+[node name="wait_sprite" type="Sprite2D" parent="ui/controls_panel/moveable_panel"]
+position = Vector2(19, -27)
+texture = ExtResource("19_b2y47")
+script = ExtResource("21_ho7fq")
+frames_per_second = 1.5
+frames = Array[Texture]([ExtResource("19_b2y47"), ExtResource("22_4lmid")])
+override_button = "wait"
+
+[node name="right_sprite" type="Sprite2D" parent="ui/controls_panel/moveable_panel"]
+position = Vector2(91, -27)
+texture = ExtResource("20_uik0i")
+script = ExtResource("21_ho7fq")
+frames_per_second = 1.5
+frames = Array[Texture]([ExtResource("20_uik0i"), ExtResource("24_udebo")])
+override_button = "move_right"
+
+[node name="up_arrow" type="Sprite2D" parent="ui/controls_panel/moveable_panel"]
+position = Vector2(40, -42)
+texture = ExtResource("25_2g5n0")
+
+[node name="title" type="Label" parent="ui/controls_panel/moveable_panel"]
+modulate = Color(0.921569, 0.929412, 0.913725, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.0
+offset_top = -47.0
+offset_right = 31.0
+offset_bottom = -37.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Controls
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="left" type="Label" parent="ui/controls_panel/moveable_panel"]
+modulate = Color(0.921569, 0.929412, 0.913725, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -105.0
+offset_top = -34.0
+offset_right = -41.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Left:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="wait" type="Label" parent="ui/controls_panel/moveable_panel"]
+modulate = Color(0.921569, 0.929412, 0.913725, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -43.0
+offset_top = -34.0
+offset_right = 21.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Wait:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="right" type="Label" parent="ui/controls_panel/moveable_panel"]
+modulate = Color(0.921569, 0.929412, 0.913725, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 28.0
+offset_top = -34.0
+offset_right = 92.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Right:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="mouse_control_tutorial" type="Node2D" parent="ui"]
+position = Vector2(212, 89)
+script = ExtResource("27_33c7k")
+
+[node name="sprite" type="Sprite2D" parent="ui/mouse_control_tutorial"]
+texture = ExtResource("27_8bv2y")
+script = ExtResource("21_ho7fq")
+frames_per_second = 1.5
+frames = Array[Texture]([ExtResource("27_8bv2y"), ExtResource("28_5ncc0"), ExtResource("29_j13kg"), ExtResource("30_xv1ds"), ExtResource("31_ryumw"), ExtResource("32_ecxdd"), ExtResource("33_0hp6n"), ExtResource("34_xr0ng"), ExtResource("35_no5o2"), ExtResource("36_jnnh7"), ExtResource("37_0noxw")])
 
 [node name="game_space" type="Node2D" parent="."]
 script = ExtResource("1_iqqtq")
