@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://3ce35rc4mh84"]
-
-[ext_resource type="AudioStream" uid="uid://c77il2tb03hrn" path="res://audio/music/alexander_theme_v1.mp3" id="1_o1vbp"]
-
-[node name="alexander_theme" type="AudioStreamPlayer2D" groups=["music"]]
-stream = ExtResource("1_o1vbp")
-autoplay = true

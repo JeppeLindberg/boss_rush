@@ -3,6 +3,7 @@ extends Node2D
 var _global_vars := preload("res://scripts/library/global_vars.gd").new()
 
 @export var shield_size_5_path: String
+@export var shield_size_1_path: String
 
 var _ui_enemy_health_bar: Node2D
 var _main_scene: Node2D
@@ -40,6 +41,10 @@ func make_ready():
 	health = len(_main_scene.get_children_in_groups(self, ['damageable_enemy_ship_part'], true)) + health_modifier;
 	_ui_enemy_health_bar.set_max_health(health, shield);
 
+	if _game_space.current_level == 5:
+		shield -= 1;
+		_ui_enemy_health_bar.set_health(health, shield);
+
 func _process(_delta):
 	if _go_to_upgrade_phase_time != -1 and _main_scene.curr_secs() > _go_to_upgrade_phase_time:
 		_go_to_upgrade_phase_time = -1;
@@ -50,20 +55,56 @@ func _process(_delta):
 		global_position = _old_pos.lerp(_target_pos, _main_scene.soft_curve.sample(animation_progress));
 
 		if (animation_progress == 1) and waiting_for_finish_animation:
+			for child in _main_scene.get_children_in_groups(self, ['has_warning_auto_trigger'], true):
+				child.warning_trigger();
+				
 			waiting_for_finish_animation = false;
 
 func has_shield():
 	return shield > 0;
 
+func _rangers_activate_shield():
+	shield = 1;
+	_ui_enemy_health_bar.set_health(health, shield);
+	var parts = _main_scene.get_children_in_groups(self, ['damageable_enemy_ship_part'], true);
+
+	for part in parts:
+		var shield_node = _main_scene.create_node(shield_size_1_path, part);
+		var pivot = part.get_node_or_null('./pivot/');
+		if pivot != null:
+			shield_node.position = pivot.position;
+		else:
+			shield_node.position = Vector2.ZERO;
+
 func activate_shield():
+	print(_game_space.current_level);
+	if _game_space.current_level == 5:
+		_rangers_activate_shield();
+		return;
+
 	if shield > 0:
 		for child in get_children():
 			if child.is_in_group('cockpit'):
 				var shield_node = _main_scene.create_node(shield_size_5_path, child);
 				shield_node.position = Vector2.ZERO;
 
+func _rangers_deactivate_shield():
+	var shields = _main_scene.get_children_in_groups(self, ['shield'], true);
+
+	for s in shields:
+		s.queue_free();	
+
+	var parts = _main_scene.get_children_in_groups(self, ['damageable_enemy_ship_part'], true);
+	for part in parts:
+		if part.name == 'pink_ranger':
+			part.shield_deactivated();
+	
 func deactivate_shield():
 	if shield == 0:
+		if _game_space.current_level == 5:
+			_rangers_deactivate_shield();
+			return;
+
 		for child in get_children():
 			if child.is_in_group('cockpit'):
 				for cchild in child.get_children():

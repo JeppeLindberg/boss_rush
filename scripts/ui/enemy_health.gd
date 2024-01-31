@@ -60,7 +60,7 @@ func set_health(new_health, new_shield = 0):
 	for child in get_children():
 		if index < new_health:
 			child.texture = health_texture
-		elif index < new_health + new_shield:
+		elif _max_health < index and index < _max_health + new_shield:
 			child.texture = shield_texture;
 
 		index += 1;

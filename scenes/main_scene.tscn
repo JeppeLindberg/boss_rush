@@ -155,9 +155,9 @@ anchor_mode = 0
 
 [node name="audio" type="AudioListener2D" parent="camera"]
 script = ExtResource("2_hni4v")
-alexander_theme_path = "res://prefabs/audio/alexander_theme.tscn"
-drone_theme_path = "res://prefabs/audio/drone_theme.tscn"
-platform_theme_path = "res://prefabs/audio/platform_theme.tscn"
+alexander_intro_path = "res://prefabs/audio/music/alexander_intro.tscn"
+drone_intro_path = "res://prefabs/audio/music/drone_intro.tscn"
+platform_intro_path = "res://prefabs/audio/music/platform_intro.tscn"
 
 [node name="background" type="Sprite2D" parent="."]
 z_index = -100
@@ -464,6 +464,7 @@ script = ExtResource("7_qiwjb")
 position = Vector2(120, 40)
 script = ExtResource("6_am7g1")
 shield_size_5_path = "res://prefabs/ship_additional_assets/shield_size_5.tscn"
+shield_size_1_path = "res://prefabs/ship_additional_assets/shield.tscn"
 
 [node name="player" type="Node2D" parent="game_space"]
 position = Vector2(120, 140)
@@ -471,10 +472,10 @@ script = ExtResource("1_1lvpb")
 _burning_path = "res://prefabs/effects/burn.tscn"
 animation_len_secs = 0.15
 
-[node name="player_hull3" parent="game_space/player" instance=ExtResource("15_xrg6p")]
+[node name="player_hull6" parent="game_space/player" instance=ExtResource("15_xrg6p")]
 position = Vector2(-20, 0)
 
-[node name="player_hull6" parent="game_space/player" instance=ExtResource("15_xrg6p")]
+[node name="player_hull7" parent="game_space/player" instance=ExtResource("15_xrg6p")]
 position = Vector2(20, 0)
 
 [node name="player_hull4" parent="game_space/player" instance=ExtResource("15_xrg6p")]
@@ -688,6 +689,7 @@ position = Vector2(120, 40)
 [node name="pink_ranger" type="Node2D" parent="garage/lvl_5"]
 position = Vector2(-60, 0)
 script = ExtResource("57_y720n")
+emit_cooldown = 10
 textures = {
 "destroyed": ExtResource("57_1tna0"),
 "intact": ExtResource("69_exr8d")
@@ -696,6 +698,19 @@ textures = {
 [node name="sprite" type="Sprite2D" parent="garage/lvl_5/pink_ranger"]
 position = Vector2(-15, 0)
 texture = ExtResource("69_exr8d")
+
+[node name="emit_countdown" parent="garage/lvl_5/pink_ranger" instance=ExtResource("59_p3swm")]
+position = Vector2(1, 27)
+
+[node name="label" parent="garage/lvl_5/pink_ranger/emit_countdown" index="0"]
+modulate = Color(0.776471, 0.317647, 0.592157, 1)
+
+[node name="pip" parent="garage/lvl_5/pink_ranger/emit_countdown" index="1"]
+modulate = Color(0.776471, 0.317647, 0.592157, 1)
+texture = ExtResource("65_jin06")
+
+[node name="pivot" type="Node2D" parent="garage/lvl_5/pink_ranger"]
+position = Vector2(1, 0)
 
 [node name="ranger_chassis" type="Node2D" parent="garage/lvl_5"]
 position = Vector2(-40, 0)
@@ -708,8 +723,8 @@ texture = ExtResource("61_wovnh")
 [node name="red_ranger" type="Node2D" parent="garage/lvl_5"]
 position = Vector2(-20, 0)
 script = ExtResource("61_mn8yc")
-initial_shot_cooldown = 4
-shot_cooldown = 4
+initial_shot_cooldown = 6
+shot_cooldown = 6
 laser_path = "res://prefabs/ship_additional_assets/enemy_laser.tscn"
 textures = {
 "destroyed": ExtResource("57_1tna0"),
@@ -726,6 +741,7 @@ texture = ExtResource("65_jin06")
 
 [node name="ranger_chassis_moveable" type="Node2D" parent="garage/lvl_5"]
 script = ExtResource("66_ybuaq")
+shield = 1
 move_delay = 2
 initial_move_delay = 2
 
@@ -737,8 +753,6 @@ texture = ExtResource("67_13s2i")
 [node name="blue_ranger" type="Node2D" parent="garage/lvl_5"]
 position = Vector2(20, 0)
 script = ExtResource("67_cck2p")
-initial_shot_cooldown = 2
-shot_cooldown = 2
 rocket_path = "res://prefabs/ship_additional_assets/enemy_rocket_slow.tscn"
 textures = {
 "destroyed": ExtResource("57_1tna0"),
@@ -760,8 +774,8 @@ texture = ExtResource("71_hdssq")
 [node name="black_ranger" type="Node2D" parent="garage/lvl_5"]
 position = Vector2(60, 0)
 script = ExtResource("56_o0xdr")
-initial_shot_cooldown = 3
-shot_cooldown = 3
+initial_shot_cooldown = 4
+shot_cooldown = 4
 mine_path = "res://prefabs/ship_additional_assets/enemy_mine.tscn"
 textures = {
 "destroyed": ExtResource("57_1tna0"),
@@ -773,9 +787,13 @@ position = Vector2(15, 0)
 texture = ExtResource("59_b07u4")
 
 [node name="shoot_countdown" parent="garage/lvl_5/black_ranger" instance=ExtResource("59_p3swm")]
+position = Vector2(-1, 27)
 
 [node name="pip" parent="garage/lvl_5/black_ranger/shoot_countdown" index="1"]
 texture = ExtResource("60_hvsrs")
+
+[node name="pivot" type="Node2D" parent="garage/lvl_5/black_ranger"]
+position = Vector2(-1, 0)
 
 [node name="canvas_layer" type="CanvasLayer" parent="."]
 
@@ -788,5 +806,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
+[editable path="garage/lvl_5/pink_ranger/emit_countdown"]
 [editable path="garage/lvl_5/red_ranger/shoot_countdown"]
 [editable path="garage/lvl_5/black_ranger/shoot_countdown"]

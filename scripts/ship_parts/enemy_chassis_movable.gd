@@ -58,6 +58,9 @@ func trigger():
 	if countdown_integer == 0:
 		_move();
 		countdown_integer += move_delay;
+	else:
+		for child in _main_scene.get_children_in_groups(_enemy, ['has_warning_auto_trigger'], true):
+			child.warning_trigger();
 	
 	_move_countdown_label.text = str(countdown_integer);
 

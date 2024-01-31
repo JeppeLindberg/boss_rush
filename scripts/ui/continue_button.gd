@@ -5,8 +5,6 @@ var _clicked_this = false;
 
 var player_upgrade_part_path: String
 
-@export var drag_arrow_path: String
-
 var _main_scene: Node2D
 var _upgrades: Node2D
 var _collider: Node2D

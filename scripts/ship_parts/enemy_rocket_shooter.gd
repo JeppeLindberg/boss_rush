@@ -28,6 +28,8 @@ func make_ready():
 	add_to_group('damageable_enemy_ship_part');
 	add_to_group('has_auto_trigger');
 	add_to_group('enemy_ship_part');
+	add_to_group('has_warning_auto_trigger');
+
 	swappable = true;
 	_enemy = get_parent();
 	_sprite = get_node('./sprite');
@@ -43,10 +45,6 @@ func trigger():
 	var countdown_integer = int(_shoot_countdown_label.text);
 	countdown_integer -= 1;
 
-	if countdown_integer == 1:
-		_warnings.add_warning(self, global_position, Vector2.DOWN * 1)
-		_warnings.add_warning(self, global_position, Vector2.DOWN * 2)
-
 	if countdown_integer == 0:
 		spawn_rocket();
 		countdown_integer += shot_cooldown;
@@ -54,6 +52,13 @@ func trigger():
 	_shoot_countdown_label.text = str(countdown_integer);
 
 	_game_space.finish_trigger(self);
+
+func warning_trigger():
+	var countdown_integer = int(_shoot_countdown_label.text);
+	
+	if countdown_integer == 1:
+		_warnings.add_warning(self, global_position, Vector2.DOWN * 1)
+		_warnings.add_warning(self, global_position, Vector2.DOWN * 2)
 
 func spawn_rocket():
 	var rocket = _main_scene.create_node(rocket_path, _game_space);
@@ -66,6 +71,7 @@ func take_damage():
 		swappable_reason = 'Cannot take broken part.';
 		update_texture();
 		remove_from_group('has_auto_trigger');
+		remove_from_group('has_warning_auto_trigger');
 		_shoot_countdown.queue_free();
 		remove_from_group('damageable_enemy_ship_part');
 		

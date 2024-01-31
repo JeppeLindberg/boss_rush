@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3 uid="uid://c3m3tkxbxbn4u"]
+
+[ext_resource type="Texture2D" uid="uid://lc42uyb62jod" path="res://sprites/effects/shield_mask_size_1.png" id="1_pygue"]
+[ext_resource type="Shader" path="res://shaders/animate_uv.gdshader" id="2_h3fcv"]
+[ext_resource type="Texture2D" uid="uid://cpikpf82wh4wl" path="res://sprites/effects/shield_energy.png" id="3_k862f"]
+[ext_resource type="Texture2D" uid="uid://c44y7fvaea67m" path="res://sprites/effects/shield_size_1_alternate.png" id="4_yo0sq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xxaoc"]
+shader = ExtResource("2_h3fcv")
+
+[node name="shield" type="Node2D" groups=["shield"]]
+z_index = 5
+
+[node name="mask" type="Sprite2D" parent="."]
+clip_children = 1
+texture = ExtResource("1_pygue")
+
+[node name="energy" type="Sprite2D" parent="mask"]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_xxaoc")
+texture = ExtResource("3_k862f")
+
+[node name="sprite" type="Sprite2D" parent="."]
+texture = ExtResource("4_yo0sq")

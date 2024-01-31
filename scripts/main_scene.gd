@@ -9,7 +9,9 @@ extends Node2D
 var _result
 
 func _ready():
-	get_node('./game_space').go_to_next_battle();
+	var game_space = get_node_or_null('./game_space')
+	if game_space != null:
+		game_space.go_to_next_battle();
 
 # Get all children of the node that belongs to all of the given groups
 func get_children_in_groups(node, groups, recursive = false):

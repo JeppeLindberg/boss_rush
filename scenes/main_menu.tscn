@@ -1,0 +1,61 @@
+[gd_scene load_steps=12 format=3 uid="uid://bvkhej2pmtyba"]
+
+[ext_resource type="Script" path="res://scripts/main_scene.gd" id="1_22dtq"]
+[ext_resource type="Script" path="res://scripts/audio.gd" id="1_jusry"]
+[ext_resource type="Texture2D" uid="uid://cpdvt7f20s3x1" path="res://sprites/background.png" id="2_205ae"]
+[ext_resource type="Script" path="res://scripts/ui/begin_button.gd" id="4_mr3q0"]
+[ext_resource type="Script" path="res://scripts/animated_sprite.gd" id="4_ufwrw"]
+[ext_resource type="Texture2D" uid="uid://dy5m812frodnb" path="res://sprites/ui/icon1.png" id="5_7rfqe"]
+[ext_resource type="Texture2D" uid="uid://cli24lwwjc8wm" path="res://sprites/ui/begin_panel.png" id="5_ahqlv"]
+[ext_resource type="Texture2D" uid="uid://dd5bxc38iuniq" path="res://sprites/ui/icon2.png" id="6_uspbc"]
+[ext_resource type="Texture2D" uid="uid://cmrxu0va5q7lx" path="res://sprites/ui/icon3.png" id="7_22a03"]
+[ext_resource type="Texture2D" uid="uid://tltyaoh37d5d" path="res://sprites/ui/icon4.png" id="8_xdnld"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5fo8t"]
+size = Vector2(80, 26)
+
+[node name="main_menu" type="Node2D"]
+script = ExtResource("1_22dtq")
+
+[node name="camera" type="Camera2D" parent="."]
+anchor_mode = 0
+
+[node name="audio" type="AudioListener2D" parent="camera"]
+script = ExtResource("1_jusry")
+alexander_intro_path = "res://prefabs/audio/music/alexander_intro.tscn"
+drone_intro_path = "res://prefabs/audio/music/drone_intro.tscn"
+platform_intro_path = "res://prefabs/audio/music/platform_intro.tscn"
+
+[node name="background" type="Sprite2D" parent="."]
+z_index = -100
+position = Vector2(120, 90)
+texture = ExtResource("2_205ae")
+
+[node name="begin_button" type="Area2D" parent="."]
+z_index = 10
+position = Vector2(120, 133)
+script = ExtResource("4_mr3q0")
+main_scene_path = "res://scenes/main_scene.tscn"
+
+[node name="sprite" type="Sprite2D" parent="begin_button"]
+texture = ExtResource("5_ahqlv")
+
+[node name="label" type="Label" parent="begin_button"]
+modulate = Color(0.921569, 0.929412, 0.913725, 1)
+offset_left = -32.0
+offset_top = -5.0
+offset_right = 32.0
+offset_bottom = 5.0
+text = "BEGIN"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="collider" type="CollisionShape2D" parent="begin_button"]
+shape = SubResource("RectangleShape2D_5fo8t")
+
+[node name="icon" type="Sprite2D" parent="."]
+position = Vector2(122, 45)
+texture = ExtResource("5_7rfqe")
+script = ExtResource("4_ufwrw")
+frames_per_second = 15.0
+frames = Array[Texture]([ExtResource("5_7rfqe"), ExtResource("6_uspbc"), ExtResource("7_22a03"), ExtResource("8_xdnld"), ExtResource("5_7rfqe"), ExtResource("5_7rfqe"), ExtResource("5_7rfqe"), ExtResource("5_7rfqe"), ExtResource("5_7rfqe"), ExtResource("5_7rfqe"), ExtResource("5_7rfqe"), ExtResource("5_7rfqe")])

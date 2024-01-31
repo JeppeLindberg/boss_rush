@@ -8,7 +8,7 @@ var _dialog: Node2D
 var _sprite_fadeaway: Node2D
 var _warnings: Node2D
 
-var current_level = 3;
+var current_level = 0;
 var current_trigger = -1;
 var current_phase = '';
 var _has_triggered = []
@@ -42,7 +42,7 @@ func _process(_delta):
 		if current_trigger == 5:
 			break;
 	
-	if current_trigger == 5:	
+	if current_trigger == 5:
 		current_trigger = -1;
 
 func finish_trigger(node):

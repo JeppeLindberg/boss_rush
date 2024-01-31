@@ -27,6 +27,7 @@ var swappable_reason = 'Always';
 func make_ready():
 	add_to_group('damageable_enemy_ship_part');
 	add_to_group('has_auto_trigger');
+	add_to_group('has_warning_auto_trigger');
 	add_to_group('enemy_ship_part');
 	swappable = true;
 	_enemy = get_parent();
@@ -43,10 +44,6 @@ func trigger():
 	var countdown_integer = int(_shoot_countdown_label.text);
 	countdown_integer -= 1;
 
-	if countdown_integer == 1:
-		for i in range(1, 11):
-			_warnings.add_warning(self, global_position, Vector2.DOWN * i)
-
 	if countdown_integer == 0:
 		_spawn_laser();
 		countdown_integer += shot_cooldown;
@@ -54,6 +51,13 @@ func trigger():
 	_shoot_countdown_label.text = str(countdown_integer);
 
 	_game_space.finish_trigger(self);
+
+func warning_trigger():
+	var countdown_integer = int(_shoot_countdown_label.text);
+	
+	if countdown_integer == 1:
+		for i in range(1, 11):
+			_warnings.add_warning(self, global_position, Vector2.DOWN * i)
 
 func _spawn_laser():
 	var laser = _main_scene.create_node(laser_path, _game_space);
@@ -66,6 +70,7 @@ func take_damage():
 		swappable_reason = 'Cannot take broken part.';
 		update_texture();
 		remove_from_group('has_auto_trigger');
+		remove_from_group('has_warning_auto_trigger');
 		_shoot_countdown.queue_free();
 		remove_from_group('damageable_enemy_ship_part');
 		

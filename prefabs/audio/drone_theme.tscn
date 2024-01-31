@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://dyvfax04ccvie"]
-
-[ext_resource type="AudioStream" uid="uid://cxkptg2wjwrfr" path="res://audio/music/drone_theme_v1.mp3" id="1_ejnpm"]
-
-[node name="drone_theme" type="AudioStreamPlayer2D" groups=["music"]]
-stream = ExtResource("1_ejnpm")
-autoplay = true
