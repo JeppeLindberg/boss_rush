@@ -16,6 +16,7 @@ var _move_time_begin: float
 @export var animation_len_secs: float = 1.0;
 var _waiting_for_finish_animation: bool
 var _trigger_game_space_when_ready: bool
+var _go_to_game_over_time: float = -1
 
 var _move_left_down: bool;
 var _move_right_down: bool;
@@ -34,6 +35,10 @@ func _ready():
 	_wait_down = false;
 
 func _process(_delta):
+	if _go_to_game_over_time != -1 and _main_scene.curr_secs() > _go_to_game_over_time:
+		_go_to_game_over_time = -1;
+		_game_space.go_to_game_over();
+
 	if _game_space.current_phase == 'battle' and _game_space.current_trigger == -1 and not _waiting_for_finish_animation:
 		if _move_left_down:
 			_move(Vector2.LEFT);
@@ -114,4 +119,14 @@ func after_take_damage():
 
 		var burning = _main_scene.create_node(_burning_path, part);
 		burning.position = Vector2.ZERO;
+
+func die():	
+	var _player_ship_parts = _main_scene.get_children_in_groups(self, ['player_ship_part'], true);
+
+	for ship_part in _player_ship_parts:
+		_special_effects.multi_explosion(ship_part.global_position);
+
+	_special_effects.screen_shake();
+
+	_go_to_game_over_time = _main_scene.curr_secs() + _special_effects.multi_explosion_delay * len(_player_ship_parts) * 2;
 

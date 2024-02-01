@@ -65,6 +65,8 @@ func _process(_delta):
 			var y = screen_shake_curve.sample(offset_y) * amount
 
 			_camera.global_position = _screen_shake_start_pos + Vector2(x, y)
+	else:
+		_camera.global_position = _screen_shake_start_pos
 
 func explosion(pos):
 	var new_node = _main_scene.create_node(explosion_path, self)

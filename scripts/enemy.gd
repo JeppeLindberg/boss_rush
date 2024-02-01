@@ -77,7 +77,6 @@ func _rangers_activate_shield():
 			shield_node.position = Vector2.ZERO;
 
 func activate_shield():
-	print(_game_space.current_level);
 	if _game_space.current_level == 5:
 		_rangers_activate_shield();
 		return;

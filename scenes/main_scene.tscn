@@ -1,4 +1,4 @@
-[gd_scene load_steps=110 format=3 uid="uid://d675nm0i3xq8"]
+[gd_scene load_steps=111 format=3 uid="uid://d675nm0i3xq8"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_1lvpb"]
 [ext_resource type="Script" path="res://scripts/main_scene.gd" id="1_a1yef"]
@@ -98,6 +98,7 @@
 [ext_resource type="Texture2D" uid="uid://1mfg711oesub" path="res://sprites/ship_parts/ranger_blue_cockpit.png" id="68_c7iap"]
 [ext_resource type="Texture2D" uid="uid://cu1bdv4gapugk" path="res://sprites/ship_parts/ranger_pink_cockpit.png" id="69_exr8d"]
 [ext_resource type="Texture2D" uid="uid://busgt1didf8u4" path="res://sprites/ship_parts/ranger_blue_black_chassis.png" id="71_hdssq"]
+[ext_resource type="Texture2D" uid="uid://cerekbtvkmwe2" path="res://sprites/ui/shield_pip.png" id="83_dx0gc"]
 
 [sub_resource type="Curve" id="Curve_rdql2"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -446,6 +447,7 @@ warning_red_path = "res://prefabs/ui/warning_red.tscn"
 
 [node name="game_space" type="Node2D" parent="."]
 script = ExtResource("1_iqqtq")
+game_over_path = "res://prefabs/ui/game_over.tscn"
 
 [node name="upgrades" type="Node2D" parent="game_space"]
 script = ExtResource("6_bh6pc")
@@ -508,6 +510,7 @@ digitized_player_texture = ExtResource("18_ytkm6")
 white = Color(0.921569, 0.929412, 0.913725, 1)
 cyan = Color(0.580392, 1, 0.866667, 1)
 red = Color(0.921569, 0.372549, 0.27451, 1)
+pink = Color(0.847059, 0.47451, 0.623529, 1)
 
 [node name="dialog_1" type="Node2D" parent="dialog"]
 script = ExtResource("16_mcxju")
@@ -683,10 +686,9 @@ position = Vector2(80, 0)
 
 [node name="lvl_5" type="Node2D" parent="garage"]
 process_mode = 4
-visible = false
 position = Vector2(120, 40)
 
-[node name="pink_ranger" type="Node2D" parent="garage/lvl_5"]
+[node name="pink_ranger" type="Node2D" parent="garage/lvl_5" groups=["pink_ranger"]]
 position = Vector2(-60, 0)
 script = ExtResource("57_y720n")
 emit_cooldown = 10
@@ -707,7 +709,7 @@ modulate = Color(0.776471, 0.317647, 0.592157, 1)
 
 [node name="pip" parent="garage/lvl_5/pink_ranger/emit_countdown" index="1"]
 modulate = Color(0.776471, 0.317647, 0.592157, 1)
-texture = ExtResource("65_jin06")
+texture = ExtResource("83_dx0gc")
 
 [node name="pivot" type="Node2D" parent="garage/lvl_5/pink_ranger"]
 position = Vector2(1, 0)
@@ -720,7 +722,7 @@ player_upgrade_part_path = "res://prefabs/ship_parts_player/platform_player_chas
 [node name="sprite" type="Sprite2D" parent="garage/lvl_5/ranger_chassis"]
 texture = ExtResource("61_wovnh")
 
-[node name="red_ranger" type="Node2D" parent="garage/lvl_5"]
+[node name="red_ranger" type="Node2D" parent="garage/lvl_5" groups=["red_ranger"]]
 position = Vector2(-20, 0)
 script = ExtResource("61_mn8yc")
 initial_shot_cooldown = 6
@@ -750,7 +752,7 @@ texture = ExtResource("67_13s2i")
 
 [node name="move_countdown" parent="garage/lvl_5/ranger_chassis_moveable" instance=ExtResource("67_wtsoi")]
 
-[node name="blue_ranger" type="Node2D" parent="garage/lvl_5"]
+[node name="blue_ranger" type="Node2D" parent="garage/lvl_5" groups=["blue_ranger"]]
 position = Vector2(20, 0)
 script = ExtResource("67_cck2p")
 rocket_path = "res://prefabs/ship_additional_assets/enemy_rocket_slow.tscn"
@@ -771,7 +773,7 @@ script = ExtResource("62_1mwtx")
 [node name="sprite" type="Sprite2D" parent="garage/lvl_5/ranger_chassis2"]
 texture = ExtResource("71_hdssq")
 
-[node name="black_ranger" type="Node2D" parent="garage/lvl_5"]
+[node name="black_ranger" type="Node2D" parent="garage/lvl_5" groups=["black_ranger"]]
 position = Vector2(60, 0)
 script = ExtResource("56_o0xdr")
 initial_shot_cooldown = 4

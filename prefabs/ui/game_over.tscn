@@ -1,0 +1,50 @@
+[gd_scene load_steps=4 format=3 uid="uid://cw8sdbojdmm4u"]
+
+[ext_resource type="Script" path="res://scripts/ui/begin_button.gd" id="1_urp31"]
+[ext_resource type="Texture2D" uid="uid://cli24lwwjc8wm" path="res://sprites/ui/begin_panel.png" id="2_mq5x3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p8wnh"]
+size = Vector2(80, 26)
+
+[node name="game_over" type="Node2D"]
+z_index = 1000
+
+[node name="label" type="Label" parent="."]
+modulate = Color(0.819608, 0.235294, 0.211765, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 73.0
+offset_top = 63.0
+offset_right = 169.0
+offset_bottom = 73.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Game Over"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="go_to_menu_button" type="Area2D" parent="."]
+z_index = 10
+position = Vector2(120, 98)
+script = ExtResource("1_urp31")
+animation_len_secs = -1.0
+main_scene_path = "res://scenes/main_menu.tscn"
+
+[node name="sprite" type="Sprite2D" parent="go_to_menu_button"]
+texture = ExtResource("2_mq5x3")
+
+[node name="label" type="Label" parent="go_to_menu_button"]
+modulate = Color(0.921569, 0.929412, 0.913725, 1)
+offset_left = -32.0
+offset_top = -5.0
+offset_right = 32.0
+offset_bottom = 5.0
+text = "RETRY"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="collider" type="CollisionShape2D" parent="go_to_menu_button"]
+shape = SubResource("RectangleShape2D_p8wnh")

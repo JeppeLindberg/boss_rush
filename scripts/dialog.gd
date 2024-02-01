@@ -17,6 +17,7 @@ var progress = -1;
 @export var white: Color;
 @export var cyan: Color;
 @export var red: Color;
+@export var pink: Color;
 
 var _main_scene: Node2D
 var _center_top: Node2D
@@ -276,7 +277,8 @@ func progress_dialog():
 		_waiting_for_finish_speech = true
 
 		if current_programme.get('follow', false):
-			pass
+			var follow_target = _main_scene.get_children_in_groups(_game_space, [current_programme['follow']], true)[0];
+			_enemy_speech_bubble.talking_node = follow_target
 		else:
 			var enemy_cockpit = _main_scene.get_children_in_groups(_game_space, ['enemy_ship_part', 'cockpit'], true)[0];
 			_enemy_speech_bubble.talking_node = enemy_cockpit
@@ -293,6 +295,8 @@ func progress_dialog():
 				_enemy_speech_bubble.set_color(red);
 			if current_programme['color'] == 'cyan':
 				_enemy_speech_bubble.set_color(cyan);
+			if current_programme['color'] == 'pink':
+				_enemy_speech_bubble.set_color(pink);
 		else:
 			_enemy_speech_bubble.set_color(white);
 				

@@ -2,6 +2,7 @@ extends Node2D
 
 var _game_space: Node2D
 var _main_scene: Node2D
+var _player: Node2D
 
 @export var prefab_path: String
 @export var rocket_path: String
@@ -27,6 +28,7 @@ func _ready():
 	_main_scene = get_node('/root/main_scene')
 	_game_space = get_node('/root/main_scene/game_space')
 	_shoot_countdown = get_node('./shoot_countdown/label');
+	_player = get_parent()
 
 func set_shoot_countdown(new_countdown):
 	_shoot_countdown.text = str(int(new_countdown));
@@ -50,6 +52,7 @@ func spawn_rocket():
 func take_damage():
 	state = 'destroyed';
 	update_texture();
+	_player.die();
 	
 func update_texture():
 	_sprite.texture = textures[state];

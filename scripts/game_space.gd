@@ -7,12 +7,18 @@ var _garage: Node2D
 var _dialog: Node2D
 var _sprite_fadeaway: Node2D
 var _warnings: Node2D
+var _colorize_screen: Node2D
+var _ui: Node2D
 
-var current_level = 0;
+var current_level = 4;
 var current_trigger = -1;
 var current_phase = '';
 var _has_triggered = []
 var _waiting_for_callback = []
+var _fade_callback = []
+
+@export var game_over_path: String
+@export var victory_path: String
 
 
 func _ready():
@@ -21,8 +27,10 @@ func _ready():
 	_dialog = get_node('/root/main_scene/dialog');
 	_sprite_fadeaway = get_node('/root/main_scene/sprite_fadeaway');
 	_warnings = get_node('/root/main_scene/ui/warnings')
+	_ui = get_node('/root/main_scene/ui')
 	_upgrades = get_node('./upgrades');
 	_enemy = get_node('./enemy');
+	_colorize_screen = get_node('/root/main_scene/colorize_screen')
 
 func _process(_delta):
 	if (current_trigger == -1) or (current_phase != 'battle'):
@@ -45,6 +53,15 @@ func _process(_delta):
 	if current_trigger == 5:
 		current_trigger = -1;
 
+func finish_lerp_to_pos(node):
+	_fade_callback.erase(node.get_path());
+
+	if len(_fade_callback) == 0:
+		if current_phase == 'victory':
+			_reveal_victory_menu();
+		elif current_phase == 'game_over':
+			_reveal_game_over_menu();
+
 func finish_trigger(node):
 	if current_phase == 'battle':
 		_waiting_for_callback.erase(node.get_path());
@@ -64,10 +81,44 @@ func enemy_dead():
 	_warnings.clear_all_warnings()
 	_cull()
 
+func player_dead():
+	current_trigger = -2
+	current_phase = 'player_dead'
+	_warnings.clear_all_warnings()
+	_cull()
+
 func go_to_upgrade_phase():
+	if current_level == 5:
+		go_to_victory()
+		return;
+	
 	current_trigger = -2
 	current_phase = 'upgrade'
 	_upgrades.activate_upgrade_phase()
+
+func go_to_victory():
+	current_trigger = -2
+	current_phase = 'victory'
+
+	_colorize_screen.animation_len_secs = 1.0;
+	_colorize_screen.alpha_modifier = 0.5;
+	_fade_callback.append(_colorize_screen.get_path());
+	_colorize_screen.set_lerp_to_pos(_colorize_screen.global_position, _main_scene.rising_curve, self, _colorize_screen, 'fade_in')
+
+func go_to_game_over():
+	current_trigger = -2
+	current_phase = 'game_over'
+
+	_colorize_screen.animation_len_secs = 1.0;
+	_colorize_screen.alpha_modifier = 0.5;
+	_fade_callback.append(_colorize_screen.get_path());
+	_colorize_screen.set_lerp_to_pos(_colorize_screen.global_position, _main_scene.rising_curve, self, _colorize_screen, 'fade_in')
+
+func _reveal_game_over_menu():
+	_main_scene.create_node(game_over_path, _main_scene)
+
+func _reveal_victory_menu():
+	_main_scene.create_node(victory_path, _main_scene)
 
 func go_to_next_battle():
 	current_phase = 'dialog';

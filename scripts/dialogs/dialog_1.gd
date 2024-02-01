@@ -6,6 +6,9 @@ var programme = \
 		'type': 'player_set_pos_bottom'
 	},
 	{
+		'type': 'fade_in'
+	},
+	{
 		'type': 'player_move_into_frame'
 	},
 	{
@@ -46,17 +49,32 @@ var programme = \
 	{
 		'type': 'player_speech',
 		'theme': 'speech',
-		'content': 'Ahem. I mean, of course it worked, I never make miscalculations.'
+		'content': 'Ahem. I mean, of course it worked.'
 	},
 	{
 		'type': 'player_speech',
 		'theme': 'speech',
-		'content': 'Now I can finally achieve my dreams of WORLD DOMINATION!'
+		'content': 'After all, my calculations are always correct.'
 	},
 	{
 		'type': 'player_speech',
 		'theme': 'speech',
-		'content': 'With this ship as a substitute for my body, it should be no problem.'
+		'content': 'Now I can finally enact revenge on those pesky rangers!'
+	},
+	{
+		'type': 'player_speech',
+		'theme': 'speech',
+		'content': 'They really thought that destroying my body would stop me?'
+	},
+	{
+		'type': 'player_speech',
+		'theme': 'speech',
+		'content': 'This ship is more powerful than my old body ever were.'
+	},
+	{
+		'type': 'player_speech',
+		'theme': 'speech',
+		'content': 'I FEEL INVINCIBLE!'
 	},
 	{
 		'type': 'player_speech',

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bvkhej2pmtyba"]
+[gd_scene load_steps=15 format=3 uid="uid://bvkhej2pmtyba"]
 
 [ext_resource type="Script" path="res://scripts/main_scene.gd" id="1_22dtq"]
 [ext_resource type="Script" path="res://scripts/audio.gd" id="1_jusry"]
@@ -10,12 +10,19 @@
 [ext_resource type="Texture2D" uid="uid://dd5bxc38iuniq" path="res://sprites/ui/icon2.png" id="6_uspbc"]
 [ext_resource type="Texture2D" uid="uid://cmrxu0va5q7lx" path="res://sprites/ui/icon3.png" id="7_22a03"]
 [ext_resource type="Texture2D" uid="uid://tltyaoh37d5d" path="res://sprites/ui/icon4.png" id="8_xdnld"]
+[ext_resource type="Texture2D" uid="uid://b5vmktvy57xqs" path="res://sprites/placeholder/white_box.png" id="11_0wawa"]
+[ext_resource type="Script" path="res://scripts/lerp_position.gd" id="12_6glvb"]
+
+[sub_resource type="Curve" id="Curve_lxdt6"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.728155, 0.136842), 0.583806, 0.583806, 0, 0, Vector2(1, 1), 6.0453, 0.0, 0, 0]
+point_count = 3
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5fo8t"]
 size = Vector2(80, 26)
 
 [node name="main_menu" type="Node2D"]
 script = ExtResource("1_22dtq")
+rising_curve = SubResource("Curve_lxdt6")
 
 [node name="camera" type="Camera2D" parent="."]
 anchor_mode = 0
@@ -30,6 +37,14 @@ platform_intro_path = "res://prefabs/audio/music/platform_intro.tscn"
 z_index = -100
 position = Vector2(120, 90)
 texture = ExtResource("2_205ae")
+
+[node name="colorize_screen" type="Sprite2D" parent="."]
+modulate = Color(0.0352941, 0.0392157, 0.0784314, 0)
+z_index = 100
+position = Vector2(121, 92)
+scale = Vector2(5.56, 4.28)
+texture = ExtResource("11_0wawa")
+script = ExtResource("12_6glvb")
 
 [node name="begin_button" type="Area2D" parent="."]
 z_index = 10
