@@ -2,6 +2,6 @@
 
 [ext_resource type="AudioStream" uid="uid://7ttffbe15mb" path="res://audio/music/drone_v1_intro.wav" id="1_inxvv"]
 
-[node name="drone_theme" type="AudioStreamPlayer2D" groups=["music"]]
+[node name="drone_intro" type="AudioStreamPlayer2D" groups=["music"]]
 stream = ExtResource("1_inxvv")
 autoplay = true

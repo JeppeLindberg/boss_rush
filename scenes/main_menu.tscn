@@ -1,8 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://bvkhej2pmtyba"]
+[gd_scene load_steps=18 format=3 uid="uid://bvkhej2pmtyba"]
 
 [ext_resource type="Script" path="res://scripts/main_scene.gd" id="1_22dtq"]
-[ext_resource type="Script" path="res://scripts/audio.gd" id="1_jusry"]
 [ext_resource type="Texture2D" uid="uid://cpdvt7f20s3x1" path="res://sprites/background.png" id="2_205ae"]
+[ext_resource type="PackedScene" uid="uid://d0aelhiut2xh4" path="res://prefabs/audio/audio.tscn" id="2_jgf5i"]
 [ext_resource type="Script" path="res://scripts/ui/begin_button.gd" id="4_mr3q0"]
 [ext_resource type="Script" path="res://scripts/animated_sprite.gd" id="4_ufwrw"]
 [ext_resource type="Texture2D" uid="uid://dy5m812frodnb" path="res://sprites/ui/icon1.png" id="5_7rfqe"]
@@ -12,6 +12,9 @@
 [ext_resource type="Texture2D" uid="uid://tltyaoh37d5d" path="res://sprites/ui/icon4.png" id="8_xdnld"]
 [ext_resource type="Texture2D" uid="uid://b5vmktvy57xqs" path="res://sprites/placeholder/white_box.png" id="11_0wawa"]
 [ext_resource type="Script" path="res://scripts/lerp_position.gd" id="12_6glvb"]
+[ext_resource type="Texture2D" uid="uid://du2xluq71jgr6" path="res://sprites/ui/icon5.png" id="13_dnvdu"]
+[ext_resource type="Script" path="res://scripts/play_menu_theme.gd" id="13_qrpvb"]
+[ext_resource type="Texture2D" uid="uid://c21kk8067fe4o" path="res://sprites/ui/icon6.png" id="14_0gdny"]
 
 [sub_resource type="Curve" id="Curve_lxdt6"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.728155, 0.136842), 0.583806, 0.583806, 0, 0, Vector2(1, 1), 6.0453, 0.0, 0, 0]
@@ -27,11 +30,7 @@ rising_curve = SubResource("Curve_lxdt6")
 [node name="camera" type="Camera2D" parent="."]
 anchor_mode = 0
 
-[node name="audio" type="AudioListener2D" parent="camera"]
-script = ExtResource("1_jusry")
-alexander_intro_path = "res://prefabs/audio/music/alexander_intro.tscn"
-drone_intro_path = "res://prefabs/audio/music/drone_intro.tscn"
-platform_intro_path = "res://prefabs/audio/music/platform_intro.tscn"
+[node name="audio" parent="camera" instance=ExtResource("2_jgf5i")]
 
 [node name="background" type="Sprite2D" parent="."]
 z_index = -100
@@ -72,5 +71,8 @@ shape = SubResource("RectangleShape2D_5fo8t")
 position = Vector2(122, 45)
 texture = ExtResource("5_7rfqe")
 script = ExtResource("4_ufwrw")
-frames_per_second = 15.0
-frames = Array[Texture]([ExtResource("5_7rfqe"), ExtResource("6_uspbc"), ExtResource("7_22a03"), ExtResource("8_xdnld"), ExtResource("5_7rfqe"), ExtResource("5_7rfqe"), ExtResource("5_7rfqe"), ExtResource("5_7rfqe"), ExtResource("5_7rfqe"), ExtResource("5_7rfqe"), ExtResource("5_7rfqe"), ExtResource("5_7rfqe")])
+frames_per_second = 2.0
+frames = Array[Texture]([ExtResource("5_7rfqe"), ExtResource("6_uspbc"), ExtResource("7_22a03"), ExtResource("8_xdnld"), ExtResource("13_dnvdu"), ExtResource("14_0gdny")])
+
+[node name="play_menu_theme" type="Node2D" parent="."]
+script = ExtResource("13_qrpvb")

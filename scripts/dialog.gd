@@ -200,7 +200,7 @@ func progress_dialog():
 
 	print(current_programme['type'])
 
-	if false:
+	if true:
 		# skip dialog
 		if current_programme['type'] == 'player_speech' or current_programme['type'] == 'enemy_speech':
 			progress_dialog()
@@ -326,15 +326,20 @@ func progress_dialog():
 		_animation_curve = _main_scene.linear_curve
 		_also_animate_alpha = true;
 		_inverse_animate_alpha = true
+		_process(0)
 		return;
 
 	if current_programme['type'] == 'play_music':
+		if current_programme['content'] == 'nova_theme':
+			_audio.play_nova_theme()
 		if current_programme['content'] == 'alexander_theme':
 			_audio.play_alexander_theme()
 		if current_programme['content'] == 'drone_theme':
 			_audio.play_drone_theme()
 		if current_programme['content'] == 'platform_theme':
 			_audio.play_platform_theme()
+		if current_programme['content'] == 'ranger_theme':
+			_audio.play_ranger_theme()
 		
 		progress_dialog()
 		return;

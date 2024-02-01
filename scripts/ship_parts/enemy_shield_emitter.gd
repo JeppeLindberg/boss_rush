@@ -67,7 +67,7 @@ func take_damage():
 		swappable_reason = 'Cannot take broken part.';
 		update_texture();
 		remove_from_group('damageable_enemy_ship_part');
-		add_to_group('has_auto_trigger');
+		remove_from_group('has_auto_trigger');
 		_emit_countdown.queue_free();
 		
 	_enemy.take_damage();

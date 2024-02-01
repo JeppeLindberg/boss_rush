@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://d0aelhiut2xh4"]
+
+[ext_resource type="Script" path="res://scripts/audio.gd" id="1_ros2r"]
+
+[node name="audio" type="AudioListener2D"]
+script = ExtResource("1_ros2r")
+menu_intro_path = "res://prefabs/audio/music/menu_intro.tscn"
+menu_theme_path = "res://prefabs/audio/music/menu_theme.tscn"
+nova_intro_path = "res://prefabs/audio/music/nova_intro.tscn"
+nova_theme_path = "res://prefabs/audio/music/nova_theme.tscn"
+alexander_intro_path = "res://prefabs/audio/music/alexander_intro.tscn"
+alexander_theme_path = "res://prefabs/audio/music/alexander_theme.tscn"
+drone_intro_path = "res://prefabs/audio/music/drone_intro.tscn"
+drone_theme_path = "res://prefabs/audio/music/drone_theme.tscn"
+platform_intro_path = "res://prefabs/audio/music/platform_intro.tscn"
+platform_theme_path = "res://prefabs/audio/music/platform_theme.tscn"
+ranger_intro_path = "res://prefabs/audio/music/rangers_intro.tscn"
+ranger_theme_path = "res://prefabs/audio/music/rangers_theme.tscn"

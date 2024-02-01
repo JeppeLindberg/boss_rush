@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://5ob6se60c0xc"]
+
+[ext_resource type="AudioStream" uid="uid://dimehned68a11" path="res://audio/music/nova_station_v1_loop.wav" id="1_gkhwt"]
+
+[node name="nova_theme" type="AudioStreamPlayer2D" groups=["music"]]
+stream = ExtResource("1_gkhwt")
+autoplay = true

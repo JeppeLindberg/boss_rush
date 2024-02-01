@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://in83fmewh5ap"]
+
+[ext_resource type="AudioStream" uid="uid://dnehgkeitldyr" path="res://audio/music/galactic_rangers_v1_loop.wav" id="1_ut0sw"]
+
+[node name="rangers_theme" type="AudioStreamPlayer2D" groups=["music"]]
+stream = ExtResource("1_ut0sw")
+autoplay = true

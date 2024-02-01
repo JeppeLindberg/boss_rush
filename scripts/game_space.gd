@@ -10,7 +10,7 @@ var _warnings: Node2D
 var _colorize_screen: Node2D
 var _ui: Node2D
 
-var current_level = 4;
+var current_level = 0;
 var current_trigger = -1;
 var current_phase = '';
 var _has_triggered = []

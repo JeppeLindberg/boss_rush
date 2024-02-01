@@ -28,7 +28,7 @@ func _ready():
 	_main_scene = get_node('/root/main_scene')
 	_game_space = get_node('/root/main_scene/game_space')
 	_shoot_countdown = get_node('./shoot_countdown/label');
-	_player = get_parent()
+	_player = get_node('/root/main_scene/game_space/player')
 
 func set_shoot_countdown(new_countdown):
 	_shoot_countdown.text = str(int(new_countdown));

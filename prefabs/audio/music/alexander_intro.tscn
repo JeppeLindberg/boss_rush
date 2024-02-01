@@ -2,6 +2,6 @@
 
 [ext_resource type="AudioStream" uid="uid://ds3uqn7wtyf6b" path="res://audio/music/alexander_theme_v1_intro.wav" id="1_v0jqb"]
 
-[node name="alexander_theme" type="AudioStreamPlayer2D" groups=["music"]]
+[node name="alexander_intro" type="AudioStreamPlayer2D" groups=["music"]]
 stream = ExtResource("1_v0jqb")
 autoplay = true

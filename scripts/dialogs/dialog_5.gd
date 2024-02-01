@@ -10,7 +10,7 @@ var programme = \
 	},
 	{
 		'type': 'play_music',
-		'content': 'platform_theme'
+		'content': 'ranger_theme'
 	},
 	{
 		'type': 'fade_in'
@@ -121,7 +121,7 @@ var programme = \
 		'theme': 'speech',
 		'follow': 'blue_ranger',
 		'color': 'cyan',
-		'content': 'Halt. Identify yourself.'
+		'content': 'Halt. State your identity.'
 	},
 	{
 		'type': 'player_speech',

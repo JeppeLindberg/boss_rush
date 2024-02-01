@@ -6,6 +6,10 @@ var programme = \
 		'type': 'player_set_pos_bottom'
 	},
 	{
+		'type': 'play_music',
+		'content': 'nova_theme'
+	},
+	{
 		'type': 'fade_in'
 	},
 	{
@@ -136,7 +140,7 @@ var programme = \
 	},
 	{
 		'type': 'reveal_enemy_healthbar',
-		'content': 'Nova Station'
+		'content': 'Jar full of Brains'
 	},
 	{
 		'type': 'player_speech',

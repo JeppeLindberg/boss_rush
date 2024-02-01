@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://scripts/game_space.gd" id="1_iqqtq"]
 [ext_resource type="Texture2D" uid="uid://b0uuo031s7sgs" path="res://sprites/ui/enemy_health.png" id="2_7mvrc"]
 [ext_resource type="Script" path="res://scripts/ui/enemy_health.gd" id="2_h0t0q"]
-[ext_resource type="Script" path="res://scripts/audio.gd" id="2_hni4v"]
+[ext_resource type="PackedScene" uid="uid://d0aelhiut2xh4" path="res://prefabs/audio/audio.tscn" id="2_hlieo"]
 [ext_resource type="Script" path="res://scripts/ui/enemy_health_bar.gd" id="3_cbv2k"]
 [ext_resource type="Script" path="res://scripts/outline_manager.gd" id="3_j037h"]
 [ext_resource type="Texture2D" uid="uid://jqyyq85ke6wg" path="res://sprites/ui/enemy_health_missing.png" id="3_jbgnn"]
@@ -154,11 +154,7 @@ logathrithmic_curve = SubResource("Curve_t3me5")
 [node name="camera" type="Camera2D" parent="."]
 anchor_mode = 0
 
-[node name="audio" type="AudioListener2D" parent="camera"]
-script = ExtResource("2_hni4v")
-alexander_intro_path = "res://prefabs/audio/music/alexander_intro.tscn"
-drone_intro_path = "res://prefabs/audio/music/drone_intro.tscn"
-platform_intro_path = "res://prefabs/audio/music/platform_intro.tscn"
+[node name="audio" parent="camera" instance=ExtResource("2_hlieo")]
 
 [node name="background" type="Sprite2D" parent="."]
 z_index = -100
@@ -448,6 +444,7 @@ warning_red_path = "res://prefabs/ui/warning_red.tscn"
 [node name="game_space" type="Node2D" parent="."]
 script = ExtResource("1_iqqtq")
 game_over_path = "res://prefabs/ui/game_over.tscn"
+victory_path = "res://prefabs/ui/victory.tscn"
 
 [node name="upgrades" type="Node2D" parent="game_space"]
 script = ExtResource("6_bh6pc")
@@ -474,17 +471,17 @@ script = ExtResource("1_1lvpb")
 _burning_path = "res://prefabs/effects/burn.tscn"
 animation_len_secs = 0.15
 
-[node name="player_hull6" parent="game_space/player" instance=ExtResource("15_xrg6p")]
+[node name="player_hull" parent="game_space/player" instance=ExtResource("15_xrg6p")]
+position = Vector2(-40, 0)
+
+[node name="player_hull2" parent="game_space/player" instance=ExtResource("15_xrg6p")]
 position = Vector2(-20, 0)
 
-[node name="player_hull7" parent="game_space/player" instance=ExtResource("15_xrg6p")]
+[node name="player_hull3" parent="game_space/player" instance=ExtResource("15_xrg6p")]
 position = Vector2(20, 0)
 
 [node name="player_hull4" parent="game_space/player" instance=ExtResource("15_xrg6p")]
 position = Vector2(40, 0)
-
-[node name="player_hull5" parent="game_space/player" instance=ExtResource("15_xrg6p")]
-position = Vector2(-40, 0)
 
 [node name="player_cockpit" parent="game_space/player" instance=ExtResource("16_kqcau")]
 
@@ -686,6 +683,7 @@ position = Vector2(80, 0)
 
 [node name="lvl_5" type="Node2D" parent="garage"]
 process_mode = 4
+visible = false
 position = Vector2(120, 40)
 
 [node name="pink_ranger" type="Node2D" parent="garage/lvl_5" groups=["pink_ranger"]]
