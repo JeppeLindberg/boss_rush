@@ -50,7 +50,7 @@
 [ext_resource type="Texture2D" uid="uid://c87f0m87m8wdg" path="res://sprites/ui/mouse_control_tutorial3.png" id="29_j13kg"]
 [ext_resource type="Script" path="res://scripts/dialogs/dialog_4.gd" id="30_gkfu6"]
 [ext_resource type="Texture2D" uid="uid://dywy5v7au5yjk" path="res://sprites/ui/mouse_control_tutorial4.png" id="30_xv1ds"]
-[ext_resource type="Texture2D" uid="uid://cpdvt7f20s3x1" path="res://sprites/background.png" id="31_484ei"]
+[ext_resource type="Texture2D" uid="uid://cpdvt7f20s3x1" path="res://sprites/backgrounds/background_purple.png" id="31_484ei"]
 [ext_resource type="Texture2D" uid="uid://dqu0my6oduhah" path="res://sprites/ui/mouse_control_tutorial5.png" id="31_ryumw"]
 [ext_resource type="Script" path="res://scripts/dialogs/dialog_5.gd" id="32_clw20"]
 [ext_resource type="Texture2D" uid="uid://cm2hqmdddttyt" path="res://sprites/ui/mouse_control_tutorial6.png" id="32_ecxdd"]

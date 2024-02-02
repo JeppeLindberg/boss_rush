@@ -1,13 +1,16 @@
-[gd_scene load_steps=18 format=3 uid="uid://bvkhej2pmtyba"]
+[gd_scene load_steps=24 format=3 uid="uid://bvkhej2pmtyba"]
 
 [ext_resource type="Script" path="res://scripts/main_scene.gd" id="1_22dtq"]
-[ext_resource type="Texture2D" uid="uid://cpdvt7f20s3x1" path="res://sprites/background.png" id="2_205ae"]
 [ext_resource type="PackedScene" uid="uid://d0aelhiut2xh4" path="res://prefabs/audio/audio.tscn" id="2_jgf5i"]
+[ext_resource type="Texture2D" uid="uid://hybhvebt5ncu" path="res://sprites/backgrounds/background_menu1.png" id="4_ah40h"]
 [ext_resource type="Script" path="res://scripts/ui/begin_button.gd" id="4_mr3q0"]
 [ext_resource type="Script" path="res://scripts/animated_sprite.gd" id="4_ufwrw"]
 [ext_resource type="Texture2D" uid="uid://dy5m812frodnb" path="res://sprites/ui/icon1.png" id="5_7rfqe"]
+[ext_resource type="Texture2D" uid="uid://ksyg03jogbvs" path="res://sprites/backgrounds/background_menu2.png" id="5_33632"]
 [ext_resource type="Texture2D" uid="uid://cli24lwwjc8wm" path="res://sprites/ui/begin_panel.png" id="5_ahqlv"]
+[ext_resource type="Texture2D" uid="uid://ce7b22122xxoh" path="res://sprites/backgrounds/background_menu3.png" id="6_orwo4"]
 [ext_resource type="Texture2D" uid="uid://dd5bxc38iuniq" path="res://sprites/ui/icon2.png" id="6_uspbc"]
+[ext_resource type="Texture2D" uid="uid://d113i00pm7hmy" path="res://sprites/backgrounds/background_menu4.png" id="7_3ixrb"]
 [ext_resource type="Texture2D" uid="uid://cmrxu0va5q7lx" path="res://sprites/ui/icon3.png" id="7_22a03"]
 [ext_resource type="Texture2D" uid="uid://tltyaoh37d5d" path="res://sprites/ui/icon4.png" id="8_xdnld"]
 [ext_resource type="Texture2D" uid="uid://b5vmktvy57xqs" path="res://sprites/placeholder/white_box.png" id="11_0wawa"]
@@ -15,6 +18,8 @@
 [ext_resource type="Texture2D" uid="uid://du2xluq71jgr6" path="res://sprites/ui/icon5.png" id="13_dnvdu"]
 [ext_resource type="Script" path="res://scripts/play_menu_theme.gd" id="13_qrpvb"]
 [ext_resource type="Texture2D" uid="uid://c21kk8067fe4o" path="res://sprites/ui/icon6.png" id="14_0gdny"]
+[ext_resource type="Shader" path="res://shaders/post_processing.gdshader" id="19_jl8bc"]
+[ext_resource type="Texture2D" uid="uid://ck0h7dy2rcm81" path="res://octo80_128.png" id="20_x8cu1"]
 
 [sub_resource type="Curve" id="Curve_lxdt6"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.728155, 0.136842), 0.583806, 0.583806, 0, 0, Vector2(1, 1), 6.0453, 0.0, 0, 0]
@@ -22,6 +27,10 @@ point_count = 3
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5fo8t"]
 size = Vector2(80, 26)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_om3qq"]
+shader = ExtResource("19_jl8bc")
+shader_parameter/palette = ExtResource("20_x8cu1")
 
 [node name="main_menu" type="Node2D"]
 script = ExtResource("1_22dtq")
@@ -35,7 +44,9 @@ anchor_mode = 0
 [node name="background" type="Sprite2D" parent="."]
 z_index = -100
 position = Vector2(120, 90)
-texture = ExtResource("2_205ae")
+texture = ExtResource("4_ah40h")
+script = ExtResource("4_ufwrw")
+frames = Array[Texture]([ExtResource("4_ah40h"), ExtResource("5_33632"), ExtResource("6_orwo4"), ExtResource("7_3ixrb")])
 
 [node name="colorize_screen" type="Sprite2D" parent="."]
 modulate = Color(0.0352941, 0.0392157, 0.0784314, 0)
@@ -47,7 +58,7 @@ script = ExtResource("12_6glvb")
 
 [node name="begin_button" type="Area2D" parent="."]
 z_index = 10
-position = Vector2(120, 133)
+position = Vector2(120, 111)
 script = ExtResource("4_mr3q0")
 main_scene_path = "res://scenes/main_scene.tscn"
 
@@ -68,7 +79,7 @@ vertical_alignment = 1
 shape = SubResource("RectangleShape2D_5fo8t")
 
 [node name="icon" type="Sprite2D" parent="."]
-position = Vector2(122, 45)
+position = Vector2(122, 52)
 texture = ExtResource("5_7rfqe")
 script = ExtResource("4_ufwrw")
 frames_per_second = 2.0
@@ -76,3 +87,14 @@ frames = Array[Texture]([ExtResource("5_7rfqe"), ExtResource("6_uspbc"), ExtReso
 
 [node name="play_menu_theme" type="Node2D" parent="."]
 script = ExtResource("13_qrpvb")
+
+[node name="canvas_layer" type="CanvasLayer" parent="."]
+
+[node name="color_rect" type="ColorRect" parent="canvas_layer"]
+material = SubResource("ShaderMaterial_om3qq")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

@@ -140,7 +140,7 @@ var programme = \
 	},
 	{
 		'type': 'reveal_enemy_healthbar',
-		'content': 'Jar full of Brains'
+		'content': 'Nova Station'
 	},
 	{
 		'type': 'player_speech',
