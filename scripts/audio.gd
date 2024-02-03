@@ -42,9 +42,7 @@ func _ready():
 	_play_sfx(retro_speech)
 	set_playing_retro_speech_sfx(false);
 
-func make_ready():	
-	print('branch-1')
-	print('branch-2')
+func make_ready():
 	_main_scene = get_node_or_null('/root/main_scene')
 	if _main_scene == null or _main_scene.is_queued_for_deletion():
 		_main_scene = get_node('/root/main_menu')
