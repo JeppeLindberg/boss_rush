@@ -26,6 +26,7 @@ var _player_pos: Node2D
 var _enemy_pos: Node2D
 var _game_space: Node2D
 var _audio: Node2D
+var _extra_controls: Node2D
 
 var _dialog_node: Node2D
 var _enemy_cockpit: Node2D
@@ -84,6 +85,7 @@ func _ready():
 	_enemy_speech_bubble_enter_promt = _enemy_speech_bubble.get_node('./bubble/enter_promt')
 	_colorize_screen = get_node('/root/main_scene/colorize_screen')
 	_audio = get_node('/root/main_scene/camera/audio')
+	_extra_controls = get_node('/root/main_scene/extra_controls')
 
 func start_dialog(dialog_index):
 	progress = -1;
@@ -204,7 +206,7 @@ func progress_dialog():
 
 	print(current_programme['type'])
 
-	if false:
+	if _extra_controls.skip_dialog:
 		# skip dialog
 		if current_programme['type'] == 'player_speech' or current_programme['type'] == 'enemy_speech':
 			progress_dialog()

@@ -26,6 +26,9 @@ extends AudioListener2D
 @export var shield_power_up: String
 @export var upgrade_select: String
 @export var victory: String
+@export var rocket: String
+@export var move: String
+@export var laser: String
 
 var _main_scene: Node2D
 var _center: Node2D
@@ -43,8 +46,6 @@ func _ready():
 	set_playing_retro_speech_sfx(false);
 
 func make_ready():
-	print('branch-1')
-	print('branch-2')
 	_main_scene = get_node_or_null('/root/main_scene')
 	if _main_scene == null or _main_scene.is_queued_for_deletion():
 		_main_scene = get_node('/root/main_menu')
@@ -77,6 +78,13 @@ func play_shield_power_up_sfx():
 	_play_sfx(shield_power_up);
 func play_upgrade_select_sfx():
 	_play_sfx(upgrade_select);
+func play_rocket_sfx():
+	_play_sfx(rocket, 'rocket');
+func play_move_sfx():
+	_play_sfx(move);	
+func play_laser_sfx():
+	_play_sfx(laser, 'laser');
+	
 func play_victory_sfx():
 	var current_music = _main_scene.get_children_in_groups(self, ['music'], false)
 	for node in current_music:

@@ -94,6 +94,7 @@ func _move(vec):
 			_audio.play_cant_do_that_sfx();
 			return;
 
+	_audio.play_move_sfx();
 	_move_time_begin = _main_scene.curr_secs()
 	_old_pos = global_position;
 	_target_pos = global_position + delta_vec;

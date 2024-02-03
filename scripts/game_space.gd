@@ -9,6 +9,7 @@ var _sprite_fadeaway: Node2D
 var _warnings: Node2D
 var _colorize_screen: Node2D
 var _ui: Node2D
+var _audio: Node2D
 var _backgrounds
 
 var current_level = 0;
@@ -33,6 +34,7 @@ func _ready():
 	_upgrades = get_node('./upgrades');
 	_enemy = get_node('./enemy');
 	_colorize_screen = get_node('/root/main_scene/colorize_screen')
+	_audio = get_node('/root/main_scene/camera/audio')
 
 func _process(_delta):
 	if (current_trigger == -1) or (current_phase != 'battle'):
@@ -101,6 +103,7 @@ func go_to_upgrade_phase():
 func go_to_victory():
 	current_trigger = -2
 	current_phase = 'victory'
+	_audio.play_victory_sfx();
 
 	_colorize_screen.animation_len_secs = 1.0;
 	_colorize_screen.alpha_modifier = 0.5;

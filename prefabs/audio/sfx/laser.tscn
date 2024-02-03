@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cwuxqsy70p0vd"]
+
+[ext_resource type="AudioStream" uid="uid://dytirj0q4cau2" path="res://audio/sfx/laser.wav" id="1_tfum5"]
+
+[node name="laser" type="AudioStreamPlayer2D" groups=["sfx"]]
+stream = ExtResource("1_tfum5")
+autoplay = true

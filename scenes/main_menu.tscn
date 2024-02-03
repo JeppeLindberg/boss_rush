@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bvkhej2pmtyba"]
+[gd_scene load_steps=26 format=3 uid="uid://bvkhej2pmtyba"]
 
 [ext_resource type="Script" path="res://scripts/main_scene.gd" id="1_22dtq"]
 [ext_resource type="PackedScene" uid="uid://cecnafs4uyunx" path="res://prefabs/audio/audio.tscn" id="2_jgf5i"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://d113i00pm7hmy" path="res://sprites/backgrounds/background_menu4.png" id="7_3ixrb"]
 [ext_resource type="Texture2D" uid="uid://cmrxu0va5q7lx" path="res://sprites/ui/icon3.png" id="7_22a03"]
 [ext_resource type="Texture2D" uid="uid://tltyaoh37d5d" path="res://sprites/ui/icon4.png" id="8_xdnld"]
+[ext_resource type="PackedScene" uid="uid://c04himc7mq5mm" path="res://prefabs/extra_controls.tscn" id="10_t2y5l"]
 [ext_resource type="Texture2D" uid="uid://b5vmktvy57xqs" path="res://sprites/placeholder/white_box.png" id="11_0wawa"]
 [ext_resource type="Script" path="res://scripts/lerp_position.gd" id="12_6glvb"]
 [ext_resource type="Texture2D" uid="uid://du2xluq71jgr6" path="res://sprites/ui/icon5.png" id="13_dnvdu"]
@@ -60,6 +61,8 @@ position = Vector2(121, 92)
 scale = Vector2(5.56, 4.28)
 texture = ExtResource("11_0wawa")
 script = ExtResource("12_6glvb")
+
+[node name="extra_controls" parent="." instance=ExtResource("10_t2y5l")]
 
 [node name="center" type="Node2D" parent="."]
 position = Vector2(120, 90)

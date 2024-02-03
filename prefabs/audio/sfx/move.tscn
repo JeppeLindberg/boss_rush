@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bsvavbvcqh16b"]
+
+[ext_resource type="AudioStream" uid="uid://cemjsjae7c5sv" path="res://audio/sfx/move.wav" id="1_xmhpt"]
+
+[node name="move" type="AudioStreamPlayer2D" groups=["sfx"]]
+stream = ExtResource("1_xmhpt")
+autoplay = true

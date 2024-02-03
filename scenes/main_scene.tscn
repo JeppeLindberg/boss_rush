@@ -1,4 +1,4 @@
-[gd_scene load_steps=120 format=3 uid="uid://d675nm0i3xq8"]
+[gd_scene load_steps=121 format=3 uid="uid://d675nm0i3xq8"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_1lvpb"]
 [ext_resource type="Script" path="res://scripts/main_scene.gd" id="1_a1yef"]
@@ -24,6 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://bk2gkdeyiir43" path="res://sprites/backgrounds/background_rainbow.png" id="8_gkwvj"]
 [ext_resource type="Texture2D" uid="uid://cwxf4b47annjq" path="res://sprites/ui/enemy_shield.png" id="10_ybmac"]
 [ext_resource type="PackedScene" uid="uid://cgmjf1a2jj33n" path="res://prefabs/ship_parts_enemy/space_station_enemy_hull.tscn" id="11_8bm1h"]
+[ext_resource type="PackedScene" uid="uid://c04himc7mq5mm" path="res://prefabs/extra_controls.tscn" id="11_71mqg"]
 [ext_resource type="Texture2D" uid="uid://cfp0e65s6ie3p" path="res://sprites/ui/enemy_shield_missing.png" id="11_ux6te"]
 [ext_resource type="PackedScene" uid="uid://b8te5iqrai5gm" path="res://prefabs/ship_parts_enemy/space_station_enemy_cockpit.tscn" id="12_b10r3"]
 [ext_resource type="PackedScene" uid="uid://bbemu7vwb1fbe" path="res://prefabs/ship_parts_enemy/space_station_enemy_rocket_shooter.tscn" id="15_n6oeg"]
@@ -222,6 +223,8 @@ script = ExtResource("7_qiwjb")
 [node name="center" type="Node2D" parent="."]
 position = Vector2(120, 90)
 
+[node name="extra_controls" parent="." instance=ExtResource("11_71mqg")]
+
 [node name="center_top" type="Node2D" parent="."]
 position = Vector2(120, 0)
 
@@ -247,6 +250,7 @@ unselectable_prefab_path = "res://prefabs/unselectable_outline_sprite.tscn"
 
 [node name="upgrade_feedback" type="Node2D" parent="."]
 visible = false
+z_index = 200
 position = Vector2(120, 67)
 script = ExtResource("4_hdsmy")
 duration_secs = 3.0

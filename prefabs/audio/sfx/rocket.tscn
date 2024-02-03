@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dgyg4nlncdwym"]
+
+[ext_resource type="AudioStream" uid="uid://b8kievqesdrig" path="res://audio/sfx/rocket.wav" id="1_ebinc"]
+
+[node name="rocket" type="AudioStreamPlayer2D" groups=["sfx"]]
+stream = ExtResource("1_ebinc")
+autoplay = true

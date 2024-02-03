@@ -3,6 +3,7 @@ extends Node2D
 var _game_space: Node2D
 var _main_scene: Node2D
 var _warnings: Node2D
+var _audio: Node2D
 
 @export var initial_shot_cooldown: int
 @export var shot_cooldown: int
@@ -37,6 +38,7 @@ func make_ready():
 	_warnings = get_node('/root/main_scene/ui/warnings')
 	_shoot_countdown_label = get_node('./shoot_countdown/label')
 	_shoot_countdown = get_node('./shoot_countdown')
+	_audio = get_node('/root/main_scene/camera/audio')
 
 	_shoot_countdown_label.text = str(initial_shot_cooldown);
 
@@ -60,6 +62,7 @@ func warning_trigger():
 			_warnings.add_warning(self, global_position, Vector2.DOWN * i)
 
 func _spawn_laser():
+	_audio.play_laser_sfx();
 	var laser = _main_scene.create_node(laser_path, _game_space);
 	laser.global_position = global_position;
 
