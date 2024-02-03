@@ -37,15 +37,18 @@ var _overlap_group: Array = []
 
 
 func _ready():
+	make_ready()
+	
+	_play_sfx(retro_speech)
+	set_playing_retro_speech_sfx(false);
+
+func make_ready():	
 	_main_scene = get_node_or_null('/root/main_scene')
 	if _main_scene == null or _main_scene.is_queued_for_deletion():
 		_main_scene = get_node('/root/main_menu')
 	_center = get_node_or_null('/root/main_scene/center')
 	if _center == null or _center.is_queued_for_deletion():
 		_center = get_node('/root/main_menu/center')
-	
-	_play_sfx(retro_speech)
-	set_playing_retro_speech_sfx(false);
 
 func _process(_delta):
 	_overlap_group.clear();
@@ -115,6 +118,7 @@ func play_ranger_theme():
 	_play_music()
 
 func _play_sfx(path, overlap_group = ''):	
+	make_ready()
 	if overlap_group != '':
 		if overlap_group in _overlap_group:
 			return
@@ -132,11 +136,13 @@ func _play_sfx(path, overlap_group = ''):
 		index += 1
 
 func _set_playing(group, new_playing):
+	make_ready()
 	var current_sfx = _main_scene.get_children_in_groups(self, [group], false)
 	for node in current_sfx:
 		node.playing = new_playing;
 
 func _play_music():
+	make_ready()
 	var current_music = _main_scene.get_children_in_groups(self, ['music'], false)
 	for node in current_music:
 		node.queue_free()

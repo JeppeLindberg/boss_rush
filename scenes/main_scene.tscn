@@ -1,4 +1,4 @@
-[gd_scene load_steps=119 format=3 uid="uid://d675nm0i3xq8"]
+[gd_scene load_steps=120 format=3 uid="uid://d675nm0i3xq8"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_1lvpb"]
 [ext_resource type="Script" path="res://scripts/main_scene.gd" id="1_a1yef"]
@@ -21,6 +21,7 @@
 [ext_resource type="Script" path="res://scripts/upgrades.gd" id="6_bh6pc"]
 [ext_resource type="Texture2D" uid="uid://bq6o7bopv1fcm" path="res://sprites/backgrounds/background_blue.png" id="6_vli3r"]
 [ext_resource type="Script" path="res://scripts/lerp_position.gd" id="7_qiwjb"]
+[ext_resource type="Texture2D" uid="uid://bk2gkdeyiir43" path="res://sprites/backgrounds/background_rainbow.png" id="8_gkwvj"]
 [ext_resource type="Texture2D" uid="uid://cwxf4b47annjq" path="res://sprites/ui/enemy_shield.png" id="10_ybmac"]
 [ext_resource type="PackedScene" uid="uid://cgmjf1a2jj33n" path="res://prefabs/ship_parts_enemy/space_station_enemy_hull.tscn" id="11_8bm1h"]
 [ext_resource type="Texture2D" uid="uid://cfp0e65s6ie3p" path="res://sprites/ui/enemy_shield_missing.png" id="11_ux6te"]
@@ -208,7 +209,7 @@ texture = ExtResource("3_nrpmc")
 
 [node name="background" type="Sprite2D" parent="backgrounds/lvl_5"]
 z_index = -100
-texture = ExtResource("3_nrpmc")
+texture = ExtResource("8_gkwvj")
 
 [node name="colorize_screen" type="Sprite2D" parent="."]
 modulate = Color(0.0352941, 0.0392157, 0.0784314, 0)
@@ -833,8 +834,8 @@ texture = ExtResource("71_hdssq")
 [node name="black_ranger" type="Node2D" parent="garage/lvl_5" groups=["black_ranger"]]
 position = Vector2(60, 0)
 script = ExtResource("56_o0xdr")
-initial_shot_cooldown = 4
-shot_cooldown = 4
+initial_shot_cooldown = 5
+shot_cooldown = 5
 mine_path = "res://prefabs/ship_additional_assets/enemy_mine.tscn"
 textures = {
 "destroyed": ExtResource("97_jxjev"),
