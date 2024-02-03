@@ -9,6 +9,7 @@ var _main_scene: Node2D
 var _special_effects: Node2D
 var _left_player_limit: Node2D
 var _right_player_limit: Node2D
+var _audio: Node2D
 
 var _old_pos: Vector2
 var _target_pos: Vector2
@@ -29,6 +30,7 @@ func _ready():
 	_special_effects = get_node('/root/main_scene/special_effects')
 	_left_player_limit = get_node('/root/main_scene/left_player_limit')
 	_right_player_limit = get_node('/root/main_scene/right_player_limit')
+	_audio = get_node('/root/main_scene/camera/audio')
 
 	_move_left_down = false;
 	_move_right_down = false;
@@ -86,8 +88,10 @@ func _move(vec):
 
 	for child in get_children():
 		if child.global_position.x + delta_vec.x < _left_player_limit.global_position.x:
+			_audio.play_cant_do_that_sfx();
 			return;
 		if child.global_position.x + delta_vec.x > _right_player_limit.global_position.x:
+			_audio.play_cant_do_that_sfx();
 			return;
 
 	_move_time_begin = _main_scene.curr_secs()
@@ -114,6 +118,8 @@ func after_take_damage():
 				if part.is_in_group('cockpit'):
 					parts.erase(part);
 					break;
+		else:
+			_audio.play_low_health_sfx();
 		
 		var part = parts.pick_random();
 
@@ -121,6 +127,8 @@ func after_take_damage():
 		burning.position = Vector2.ZERO;
 
 func die():	
+	_audio.play_character_death_sfx();
+
 	var _player_ship_parts = _main_scene.get_children_in_groups(self, ['player_ship_part'], true);
 
 	for ship_part in _player_ship_parts:

@@ -12,6 +12,7 @@ extends Node2D
 
 var _main_scene: Node2D
 var _camera: Node2D
+var _audio: Node2D
 
 var _multi_explosion_locations: Array = []
 var _last_multi_explosion_time: float = 0
@@ -21,6 +22,7 @@ var _screen_shake_start_pos = Vector2(0, 0)
 func _ready():
 	_main_scene = get_node("/root/main_scene")
 	_camera = get_node("/root/main_scene/camera")
+	_audio = get_node('/root/main_scene/camera/audio')
 	_screen_shake_start_pos = _camera.global_position
 
 func _process(_delta):
@@ -69,6 +71,7 @@ func _process(_delta):
 		_camera.global_position = _screen_shake_start_pos
 
 func explosion(pos):
+	_audio.play_explosion_sfx();
 	var new_node = _main_scene.create_node(explosion_path, self)
 	new_node.global_position = pos
 	screen_shake([0.4, 0.6].pick_random());

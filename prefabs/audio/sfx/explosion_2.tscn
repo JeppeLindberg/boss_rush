@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2rv5focbcp8y"]
+
+[ext_resource type="AudioStream" uid="uid://qm4eugshtb7r" path="res://audio/sfx/explosion_2.wav" id="1_pago4"]
+
+[node name="explosion_2" type="AudioStreamPlayer2D" groups=["sfx"]]
+stream = ExtResource("1_pago4")
+volume_db = -5.0
+autoplay = true

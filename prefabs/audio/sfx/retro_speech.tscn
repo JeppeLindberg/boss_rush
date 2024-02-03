@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://ddw5eobci3fut"]
+
+[ext_resource type="AudioStream" uid="uid://b0vj1wwu31k1g" path="res://audio/sfx/retro_speech.wav" id="1_km8bv"]
+
+[node name="retro_speech" type="AudioStreamPlayer2D" groups=["speech"]]
+stream = ExtResource("1_km8bv")
+volume_db = -10.0
+autoplay = true

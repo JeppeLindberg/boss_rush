@@ -126,6 +126,8 @@ func _process(_delta):
 		var symbols_visible = int((_main_scene.curr_secs() - _speech_time_start) * speech_symbols_per_sec)
 		_speech_bubble_text_label.visible_characters = symbols_visible
 
+		_audio.set_playing_retro_speech_sfx(0 < _speech_bubble_text_label.visible_ratio and _speech_bubble_text_label.visible_ratio < 1.0)
+
 		if _speech_bubble_text_label.visible_ratio >= 1.0:
 			_waiting_for_finish_speech = false;
 			_player_speech_bubble_enter_promt.start_animation()
@@ -174,8 +176,10 @@ func _unhandled_input(event):
 
 	if event.is_action_pressed("continue_dialog"):
 		if _waiting_for_finish_speech:
+			_audio.play_button_select_sfx()
 			_speech_time_start = 0.0;
 		elif _ready_for_progress_dialog:
+			_audio.play_button_select_sfx()
 			progress_dialog()
 
 func progress_dialog():
@@ -200,7 +204,7 @@ func progress_dialog():
 
 	print(current_programme['type'])
 
-	if true:
+	if false:
 		# skip dialog
 		if current_programme['type'] == 'player_speech' or current_programme['type'] == 'enemy_speech':
 			progress_dialog()

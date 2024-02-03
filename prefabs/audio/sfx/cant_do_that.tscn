@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://xirnif6almx5"]
+
+[ext_resource type="AudioStream" uid="uid://ssvjrujrcri4" path="res://audio/sfx/cant_do_that.wav" id="1_hdk8j"]
+
+[node name="cant_do_that" type="AudioStreamPlayer2D" groups=["sfx"]]
+stream = ExtResource("1_hdk8j")
+autoplay = true

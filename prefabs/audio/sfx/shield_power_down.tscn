@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bbymb6ff8isvg"]
+
+[ext_resource type="AudioStream" uid="uid://bgfw08hirpkl1" path="res://audio/sfx/shield_power_down.wav" id="1_ui53e"]
+
+[node name="shield_power_down" type="AudioStreamPlayer2D" groups=["sfx"]]
+stream = ExtResource("1_ui53e")
+volume_db = -5.0
+autoplay = true

@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bo7fq61owfj8u"]
+
+[ext_resource type="AudioStream" uid="uid://bq31gyvwjmbhq" path="res://audio/music/victory_v1.wav" id="1_5cqsq"]
+
+[node name="victory" type="AudioStreamPlayer2D" groups=["sfx"]]
+stream = ExtResource("1_5cqsq")
+autoplay = true

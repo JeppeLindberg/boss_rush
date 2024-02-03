@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://0f114csggsw7"]
+
+[ext_resource type="AudioStream" uid="uid://cx47ub6q4g2w1" path="res://audio/sfx/character_death.wav" id="1_pv52g"]
+
+[node name="character_death" type="AudioStreamPlayer2D" groups=["sfx"]]
+stream = ExtResource("1_pv52g")
+autoplay = true

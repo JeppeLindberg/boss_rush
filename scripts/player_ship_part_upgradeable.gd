@@ -17,6 +17,7 @@ var _upgrades: Node2D
 var _lerp_position: Node2D
 var _outline_manager: Node2D;
 var _upgrade_feedback: Node2D;
+var _audio: Node2D
 
 
 func _ready():
@@ -26,6 +27,7 @@ func _ready():
 	_upgrade_feedback = get_node('/root/main_scene/upgrade_feedback')
 	_lerp_position = get_node('./lerp_position');
 	_collider = get_node('./collider');
+	_audio = get_node('/root/main_scene/camera/audio')
 	_lerp_position.node_to_move = self;
 
 func initialize_from_part(part):
@@ -70,6 +72,8 @@ func set_lerp_to_pos(new_pos, curve, caller, node_to_return = null):
 func _upgrade_this():
 	if _upgrades.target_upgrade_option == null:
 		return;
+	
+	_audio.play_upgrade_select_sfx()
 		
 	self.get_node('./sprite').queue_free()
 	var new_sprite = _upgrades.target_upgrade_option.get_node('./sprite')

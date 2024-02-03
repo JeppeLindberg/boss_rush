@@ -2,6 +2,7 @@ extends Node2D
 
 var _game_space: Node2D
 var _main_scene: Node2D
+var _audio: Node2D
 
 @export var initial_shot_cooldown: int
 @export var shot_cooldown: int
@@ -34,6 +35,7 @@ func make_ready():
 	_game_space = get_node('/root/main_scene/game_space')
 	_shoot_countdown_label = get_node('./shoot_countdown/label')
 	_shoot_countdown = get_node('./shoot_countdown')
+	_audio = get_node('/root/main_scene/camera/audio')
 
 	_shoot_countdown_label.text = str(initial_shot_cooldown);
 
@@ -50,6 +52,7 @@ func trigger():
 	_game_space.finish_trigger(self);
 
 func _spawn_mine():
+	_audio.play_mine_deploy_sfx();
 	_main_scene.create_node(mine_path, _game_space);
 
 func take_damage():

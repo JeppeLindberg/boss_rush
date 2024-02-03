@@ -11,6 +11,7 @@ var _continue_button: Node2D
 var _sprite_fadeaway: Node2D
 var _enemy_health_bar: Node2D
 var _colorize_screen: Node2D
+var _audio: Node2D
 
 var _seperate_ship_parts_callback = []
 var _make_upgrades_clickable_callback = []
@@ -21,6 +22,7 @@ var target_upgrade_option: Node2D
 var possible_replaceable_parts: int
 
 @export var animation_len_secs: float = 1.0;
+@export var warp_animation_len_secs: float = 2.5;
 @export var upgrade_prefab_path: String
 @export var player_part_prefab_path: String
 
@@ -37,6 +39,7 @@ func _ready():
 	_continue_button = get_node('/root/main_scene/ui/continue_button')
 	_enemy_health_bar = get_node('/root/main_scene/ui/enemy_health_bar')
 	_colorize_screen = get_node('/root/main_scene/colorize_screen')
+	_audio = get_node('/root/main_scene/camera/audio')
 
 func activate_upgrade_phase():
 	var enemy_ship_parts = []
@@ -181,15 +184,16 @@ func continue_button_pressed():
 		child.set_lerp_to_pos(pos, _main_scene.soft_curve, self, child)
 
 func _start_warp():
+	_audio.play_player_warp_sfx();
 	_enemy_health_bar.hide_health_bar();
-	_player_ship_parts.animation_len_secs = animation_len_secs;
+	_player_ship_parts.animation_len_secs = warp_animation_len_secs;
 	_warp_callback.append(_player_ship_parts.get_path());
 	var pos = _player_ship_parts.global_position + (Vector2.UP * 100.0)
-	_player_ship_parts.set_lerp_to_pos(pos, _main_scene.rising_curve, self, _player_ship_parts, 'fade_out')
+	_player_ship_parts.set_lerp_to_pos(pos, _main_scene.warp_curve, self, _player_ship_parts, 'fade_out')
 
-	_colorize_screen.animation_len_secs = animation_len_secs;
+	_colorize_screen.animation_len_secs = warp_animation_len_secs;
 	_warp_callback.append(_colorize_screen.get_path());
-	_colorize_screen.set_lerp_to_pos(_colorize_screen.global_position, _main_scene.rising_curve, self, _colorize_screen, 'fade_in')
+	_colorize_screen.set_lerp_to_pos(_colorize_screen.global_position, _main_scene.warp_curve_2, self, _colorize_screen, 'fade_in')
 
 func _finish_warp():
 	var cockpit_pos = Vector2.ZERO;

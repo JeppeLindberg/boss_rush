@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://g3w0s5bk5nkg"]
+
+[ext_resource type="AudioStream" uid="uid://c1o1520br6exh" path="res://audio/sfx/low_health.wav" id="1_3ewtb"]
+
+[node name="low_health" type="AudioStreamPlayer2D" groups=["sfx"]]
+stream = ExtResource("1_3ewtb")
+volume_db = -5.0
+autoplay = true

@@ -1,7 +1,7 @@
-[gd_scene load_steps=24 format=3 uid="uid://bvkhej2pmtyba"]
+[gd_scene load_steps=25 format=3 uid="uid://bvkhej2pmtyba"]
 
 [ext_resource type="Script" path="res://scripts/main_scene.gd" id="1_22dtq"]
-[ext_resource type="PackedScene" uid="uid://d0aelhiut2xh4" path="res://prefabs/audio/audio.tscn" id="2_jgf5i"]
+[ext_resource type="PackedScene" uid="uid://cecnafs4uyunx" path="res://prefabs/audio/audio.tscn" id="2_jgf5i"]
 [ext_resource type="Texture2D" uid="uid://hybhvebt5ncu" path="res://sprites/backgrounds/background_menu1.png" id="4_ah40h"]
 [ext_resource type="Script" path="res://scripts/ui/begin_button.gd" id="4_mr3q0"]
 [ext_resource type="Script" path="res://scripts/animated_sprite.gd" id="4_ufwrw"]
@@ -21,6 +21,10 @@
 [ext_resource type="Shader" path="res://shaders/post_processing.gdshader" id="19_jl8bc"]
 [ext_resource type="Texture2D" uid="uid://ck0h7dy2rcm81" path="res://octo80_128.png" id="20_x8cu1"]
 
+[sub_resource type="Curve" id="Curve_fkhbo"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
 [sub_resource type="Curve" id="Curve_lxdt6"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.728155, 0.136842), 0.583806, 0.583806, 0, 0, Vector2(1, 1), 6.0453, 0.0, 0, 0]
 point_count = 3
@@ -34,6 +38,7 @@ shader_parameter/palette = ExtResource("20_x8cu1")
 
 [node name="main_menu" type="Node2D"]
 script = ExtResource("1_22dtq")
+linear_curve = SubResource("Curve_fkhbo")
 rising_curve = SubResource("Curve_lxdt6")
 
 [node name="camera" type="Camera2D" parent="."]
@@ -55,6 +60,9 @@ position = Vector2(121, 92)
 scale = Vector2(5.56, 4.28)
 texture = ExtResource("11_0wawa")
 script = ExtResource("12_6glvb")
+
+[node name="center" type="Node2D" parent="."]
+position = Vector2(120, 90)
 
 [node name="begin_button" type="Area2D" parent="."]
 z_index = 10

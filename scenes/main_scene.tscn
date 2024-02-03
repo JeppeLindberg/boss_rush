@@ -1,21 +1,25 @@
-[gd_scene load_steps=111 format=3 uid="uid://d675nm0i3xq8"]
+[gd_scene load_steps=119 format=3 uid="uid://d675nm0i3xq8"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_1lvpb"]
 [ext_resource type="Script" path="res://scripts/main_scene.gd" id="1_a1yef"]
 [ext_resource type="Script" path="res://scripts/game_space.gd" id="1_iqqtq"]
 [ext_resource type="Texture2D" uid="uid://b0uuo031s7sgs" path="res://sprites/ui/enemy_health.png" id="2_7mvrc"]
 [ext_resource type="Script" path="res://scripts/ui/enemy_health.gd" id="2_h0t0q"]
-[ext_resource type="PackedScene" uid="uid://d0aelhiut2xh4" path="res://prefabs/audio/audio.tscn" id="2_hlieo"]
+[ext_resource type="PackedScene" uid="uid://cecnafs4uyunx" path="res://prefabs/audio/audio.tscn" id="2_hlieo"]
 [ext_resource type="Script" path="res://scripts/ui/enemy_health_bar.gd" id="3_cbv2k"]
+[ext_resource type="Script" path="res://scripts/backgrounds.gd" id="3_eq4oy"]
 [ext_resource type="Script" path="res://scripts/outline_manager.gd" id="3_j037h"]
 [ext_resource type="Texture2D" uid="uid://jqyyq85ke6wg" path="res://sprites/ui/enemy_health_missing.png" id="3_jbgnn"]
 [ext_resource type="Texture2D" uid="uid://b5vmktvy57xqs" path="res://sprites/placeholder/white_box.png" id="3_niuri"]
+[ext_resource type="Texture2D" uid="uid://cfvlv3rq6pwuj" path="res://sprites/backgrounds/background_empty_purple.png" id="3_nrpmc"]
+[ext_resource type="Texture2D" uid="uid://d0cd0ag6qfyet" path="res://sprites/backgrounds/background_empty_yellow.png" id="3_qfhw7"]
 [ext_resource type="Script" path="res://scripts/ui/ui_spawn_animation.gd" id="4_6n42c"]
 [ext_resource type="Script" path="res://scripts/upgrade_feedback.gd" id="4_hdsmy"]
 [ext_resource type="Texture2D" uid="uid://tdjrfachp4ek" path="res://sprites/ui/continue_panel.png" id="5_4re6c"]
 [ext_resource type="Script" path="res://scripts/ui/continue_button.gd" id="5_x0yj8"]
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="6_am7g1"]
 [ext_resource type="Script" path="res://scripts/upgrades.gd" id="6_bh6pc"]
+[ext_resource type="Texture2D" uid="uid://bq6o7bopv1fcm" path="res://sprites/backgrounds/background_blue.png" id="6_vli3r"]
 [ext_resource type="Script" path="res://scripts/lerp_position.gd" id="7_qiwjb"]
 [ext_resource type="Texture2D" uid="uid://cwxf4b47annjq" path="res://sprites/ui/enemy_shield.png" id="10_ybmac"]
 [ext_resource type="PackedScene" uid="uid://cgmjf1a2jj33n" path="res://prefabs/ship_parts_enemy/space_station_enemy_hull.tscn" id="11_8bm1h"]
@@ -81,7 +85,6 @@
 [ext_resource type="PackedScene" uid="uid://dyykwgga7v1vx" path="res://prefabs/ship_parts_enemy/platform_enemy_hull.tscn" id="45_arm2t"]
 [ext_resource type="PackedScene" uid="uid://cnuweb5hj3j8y" path="res://prefabs/ship_parts_enemy/platform_enemy_cockpit.tscn" id="46_abe4q"]
 [ext_resource type="Script" path="res://scripts/ship_parts/enemy_mine_shooter.gd" id="56_o0xdr"]
-[ext_resource type="Texture2D" uid="uid://c4e00e0lfu7q" path="res://sprites/ship_parts/platform_broken.png" id="57_1tna0"]
 [ext_resource type="Script" path="res://scripts/ship_parts/enemy_shield_emitter.gd" id="57_y720n"]
 [ext_resource type="Texture2D" uid="uid://cfl6h1e6awd4k" path="res://sprites/ship_parts/ranger_black_cockpit.png" id="59_b07u4"]
 [ext_resource type="PackedScene" uid="uid://dcipdrpwsg3g7" path="res://prefabs/ship_additional_assets/shoot_countdown_enemy.tscn" id="59_p3swm"]
@@ -98,7 +101,10 @@
 [ext_resource type="Texture2D" uid="uid://1mfg711oesub" path="res://sprites/ship_parts/ranger_blue_cockpit.png" id="68_c7iap"]
 [ext_resource type="Texture2D" uid="uid://cu1bdv4gapugk" path="res://sprites/ship_parts/ranger_pink_cockpit.png" id="69_exr8d"]
 [ext_resource type="Texture2D" uid="uid://busgt1didf8u4" path="res://sprites/ship_parts/ranger_blue_black_chassis.png" id="71_hdssq"]
+[ext_resource type="Texture2D" uid="uid://cfbsyaqyhgomb" path="res://sprites/ship_parts/ranger_pink_destroyed.png" id="80_mkuug"]
 [ext_resource type="Texture2D" uid="uid://cerekbtvkmwe2" path="res://sprites/ui/shield_pip.png" id="83_dx0gc"]
+[ext_resource type="Texture2D" uid="uid://bmgfr66chg6w2" path="res://sprites/ship_parts/ranger_destroyed.png" id="87_6hewk"]
+[ext_resource type="Texture2D" uid="uid://dcqy5dessyolr" path="res://sprites/ship_parts/ranger_black_destroyed.png" id="97_jxjev"]
 
 [sub_resource type="Curve" id="Curve_rdql2"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -119,6 +125,14 @@ point_count = 4
 [sub_resource type="Curve" id="Curve_t3me5"]
 _data = [Vector2(0, 0), 0.0, 1.4, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
+
+[sub_resource type="Curve" id="Curve_udhci"]
+_data = [Vector2(0, 0), 0.0, 0.111665, 0, 1, Vector2(0.848404, 0.0947368), 0.111665, 5.97156, 1, 1, Vector2(1, 1), 5.97156, 0.0, 1, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_8g6pi"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.864362, 0), 0.0, 7.37255, 0, 1, Vector2(1, 1), 7.37255, 0.0, 1, 0]
+point_count = 3
 
 [sub_resource type="Curve" id="Curve_l2wj1"]
 _data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
@@ -150,16 +164,51 @@ linear_curve = SubResource("Curve_rtt2q")
 rising_curve = SubResource("Curve_lxdt6")
 ui_bounce_curve = SubResource("Curve_jtcof")
 logathrithmic_curve = SubResource("Curve_t3me5")
+warp_curve = SubResource("Curve_udhci")
+warp_curve_2 = SubResource("Curve_8g6pi")
 
 [node name="camera" type="Camera2D" parent="."]
 anchor_mode = 0
 
 [node name="audio" parent="camera" instance=ExtResource("2_hlieo")]
 
-[node name="background" type="Sprite2D" parent="."]
-z_index = -100
+[node name="backgrounds" type="Node2D" parent="."]
 position = Vector2(120, 90)
+script = ExtResource("3_eq4oy")
+
+[node name="lvl_1" type="Node2D" parent="backgrounds"]
+visible = false
+
+[node name="background" type="Sprite2D" parent="backgrounds/lvl_1"]
+z_index = -100
 texture = ExtResource("31_484ei")
+
+[node name="lvl_2" type="Node2D" parent="backgrounds"]
+visible = false
+
+[node name="background" type="Sprite2D" parent="backgrounds/lvl_2"]
+z_index = -100
+texture = ExtResource("3_qfhw7")
+
+[node name="lvl_3" type="Node2D" parent="backgrounds"]
+visible = false
+
+[node name="background" type="Sprite2D" parent="backgrounds/lvl_3"]
+z_index = -100
+texture = ExtResource("6_vli3r")
+
+[node name="lvl_4" type="Node2D" parent="backgrounds"]
+visible = false
+
+[node name="background" type="Sprite2D" parent="backgrounds/lvl_4"]
+z_index = -100
+texture = ExtResource("3_nrpmc")
+
+[node name="lvl_5" type="Node2D" parent="backgrounds"]
+
+[node name="background" type="Sprite2D" parent="backgrounds/lvl_5"]
+z_index = -100
+texture = ExtResource("3_nrpmc")
 
 [node name="colorize_screen" type="Sprite2D" parent="."]
 modulate = Color(0.0352941, 0.0392157, 0.0784314, 0)
@@ -298,6 +347,16 @@ script = ExtResource("4_6n42c")
 visible = false
 position = Vector2(191, 132)
 script = ExtResource("5_x0yj8")
+
+[node name="instructions" type="Label" parent="ui/continue_button"]
+modulate = Color(0.921569, 0.929412, 0.913725, 1)
+offset_left = -181.0
+offset_top = -11.0
+offset_right = -53.0
+offset_bottom = 9.0
+text = "Keep 1 of the
+enemy ship parts"
+vertical_alignment = 1
 
 [node name="sprite" type="Sprite2D" parent="ui/continue_button"]
 texture = ExtResource("5_4re6c")
@@ -691,7 +750,7 @@ position = Vector2(-60, 0)
 script = ExtResource("57_y720n")
 emit_cooldown = 10
 textures = {
-"destroyed": ExtResource("57_1tna0"),
+"destroyed": ExtResource("80_mkuug"),
 "intact": ExtResource("69_exr8d")
 }
 
@@ -727,7 +786,7 @@ initial_shot_cooldown = 6
 shot_cooldown = 6
 laser_path = "res://prefabs/ship_additional_assets/enemy_laser.tscn"
 textures = {
-"destroyed": ExtResource("57_1tna0"),
+"destroyed": ExtResource("87_6hewk"),
 "intact": ExtResource("64_g4aku")
 }
 
@@ -755,7 +814,7 @@ position = Vector2(20, 0)
 script = ExtResource("67_cck2p")
 rocket_path = "res://prefabs/ship_additional_assets/enemy_rocket_slow.tscn"
 textures = {
-"destroyed": ExtResource("57_1tna0"),
+"destroyed": ExtResource("87_6hewk"),
 "intact": ExtResource("68_c7iap")
 }
 
@@ -778,7 +837,7 @@ initial_shot_cooldown = 4
 shot_cooldown = 4
 mine_path = "res://prefabs/ship_additional_assets/enemy_mine.tscn"
 textures = {
-"destroyed": ExtResource("57_1tna0"),
+"destroyed": ExtResource("97_jxjev"),
 "intact": ExtResource("59_b07u4")
 }
 

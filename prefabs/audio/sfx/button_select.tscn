@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dxreduvq2b5lp"]
+
+[ext_resource type="AudioStream" uid="uid://bshkwpu2cd28v" path="res://audio/sfx/button_select.wav" id="1_hvbo4"]
+
+[node name="button_select" type="AudioStreamPlayer2D" groups=["sfx"]]
+stream = ExtResource("1_hvbo4")
+autoplay = true

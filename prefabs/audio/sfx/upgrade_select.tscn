@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://0dx5bfg2rudb"]
+
+[ext_resource type="AudioStream" uid="uid://cmlot5kk47lmm" path="res://audio/sfx/upgrade_select.wav" id="1_maiwu"]
+
+[node name="upgrade_select" type="AudioStreamPlayer2D" groups=["sfx"]]
+stream = ExtResource("1_maiwu")
+autoplay = true

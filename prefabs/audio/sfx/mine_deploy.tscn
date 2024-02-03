@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dcf4m2g6iwnxe"]
+
+[ext_resource type="AudioStream" uid="uid://niv3o541ukd0" path="res://audio/sfx/mine_deploy.wav" id="1_x5hl0"]
+
+[node name="mine_deploy" type="AudioStreamPlayer2D" groups=["sfx"]]
+stream = ExtResource("1_x5hl0")
+volume_db = -5.0
+autoplay = true

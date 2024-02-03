@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dgt4spcbq8s88"]
+
+[ext_resource type="AudioStream" uid="uid://ds71f3w8wfyd5" path="res://audio/sfx/shield_power_up.wav" id="1_fnwpd"]
+
+[node name="shield_power_up" type="AudioStreamPlayer2D" groups=["sfx"]]
+stream = ExtResource("1_fnwpd")
+volume_db = -5.0
+autoplay = true

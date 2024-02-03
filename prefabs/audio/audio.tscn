@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://d0aelhiut2xh4"]
+[gd_scene load_steps=2 format=3 uid="uid://cecnafs4uyunx"]
 
 [ext_resource type="Script" path="res://scripts/audio.gd" id="1_ros2r"]
 
@@ -16,3 +16,16 @@ platform_intro_path = "res://prefabs/audio/music/platform_intro.tscn"
 platform_theme_path = "res://prefabs/audio/music/platform_theme.tscn"
 ranger_intro_path = "res://prefabs/audio/music/rangers_intro.tscn"
 ranger_theme_path = "res://prefabs/audio/music/rangers_theme.tscn"
+button_select = "res://prefabs/audio/sfx/button_select.tscn"
+cant_do_that = "res://prefabs/audio/sfx/cant_do_that.tscn"
+character_death = "res://prefabs/audio/sfx/character_death.tscn"
+explosion_1 = "res://prefabs/audio/sfx/explosion_1.tscn"
+explosion_2 = "res://prefabs/audio/sfx/explosion_2.tscn"
+low_health = "res://prefabs/audio/sfx/low_health.tscn"
+mine_deploy = "res://prefabs/audio/sfx/mine_deploy.tscn"
+player_warp = "res://prefabs/audio/sfx/player_warp.tscn"
+retro_speech = "res://prefabs/audio/sfx/retro_speech.tscn"
+shield_power_down = "res://prefabs/audio/sfx/shield_power_down.tscn"
+shield_power_up = "res://prefabs/audio/sfx/shield_power_up.tscn"
+upgrade_select = "res://prefabs/audio/sfx/upgrade_select.tscn"
+victory = "res://prefabs/audio/sfx/victory.tscn"

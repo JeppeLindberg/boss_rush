@@ -9,6 +9,7 @@ var _ui_enemy_health_bar: Node2D
 var _main_scene: Node2D
 var _game_space: Node2D
 var _special_effects: Node2D
+var _audio: Node2D
 
 var health: int
 var shield: int
@@ -26,6 +27,7 @@ func make_ready():
 	_main_scene = get_node('/root/main_scene');
 	_game_space = get_node('/root/main_scene/game_space');
 	_special_effects = get_node('/root/main_scene/special_effects');
+	_audio = get_node('/root/main_scene/camera/audio')
 
 	shield = 0;
 
@@ -77,6 +79,7 @@ func _rangers_activate_shield():
 			shield_node.position = Vector2.ZERO;
 
 func activate_shield():
+	_audio.play_shield_power_up_sfx();
 	if _game_space.current_level == 5:
 		_rangers_activate_shield();
 		return;
@@ -100,6 +103,7 @@ func _rangers_deactivate_shield():
 	
 func deactivate_shield():
 	if shield == 0:
+		_audio.play_shield_power_down_sfx();
 		if _game_space.current_level == 5:
 			_rangers_deactivate_shield();
 			return;

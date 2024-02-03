@@ -9,6 +9,7 @@ var _sprite_fadeaway: Node2D
 var _warnings: Node2D
 var _colorize_screen: Node2D
 var _ui: Node2D
+var _backgrounds
 
 var current_level = 0;
 var current_trigger = -1;
@@ -28,6 +29,7 @@ func _ready():
 	_sprite_fadeaway = get_node('/root/main_scene/sprite_fadeaway');
 	_warnings = get_node('/root/main_scene/ui/warnings')
 	_ui = get_node('/root/main_scene/ui')
+	_backgrounds = get_node('/root/main_scene/backgrounds')
 	_upgrades = get_node('./upgrades');
 	_enemy = get_node('./enemy');
 	_colorize_screen = get_node('/root/main_scene/colorize_screen')
@@ -123,6 +125,7 @@ func _reveal_victory_menu():
 func go_to_next_battle():
 	current_phase = 'dialog';
 	current_level += 1
+	_backgrounds.set_current_level(current_level)
 	_load_enemy(current_level);
 	_dialog.start_dialog(current_level)
 

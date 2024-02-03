@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://deijuifnnooxo"]
+
+[ext_resource type="AudioStream" uid="uid://dy1f158mywkgn" path="res://audio/sfx/player_warp.wav" id="1_lxsf6"]
+
+[node name="player_warp" type="AudioStreamPlayer2D" groups=["sfx"]]
+stream = ExtResource("1_lxsf6")
+volume_db = -5.0
+autoplay = true

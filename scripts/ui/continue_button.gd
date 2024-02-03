@@ -8,12 +8,14 @@ var player_upgrade_part_path: String
 var _main_scene: Node2D
 var _upgrades: Node2D
 var _collider: Node2D
+var _audio: Node2D
 
 
 func _ready():
 	_main_scene = get_node('/root/main_scene')
 	_upgrades = get_node('/root/main_scene/game_space/upgrades')
 	_collider = get_node('./collider')
+	_audio = get_node('/root/main_scene/camera/audio')
 	_collider.disabled = true;
 	self.visible = false
 
@@ -24,6 +26,8 @@ func _unhandled_input(event):
 	if event is InputEventMouseButton:
 		if (event.button_index == MOUSE_BUTTON_LEFT) and (event.pressed):
 			_clicked_this = _main_scene.is_pos_overlapping_collider(_collider, event.position)
+			if _clicked_this:
+				_audio.play_button_select_sfx()
 
 		elif (event.button_index == MOUSE_BUTTON_LEFT) and (not event.pressed):
 			if _clicked_this and _main_scene.is_pos_overlapping_collider(_collider, event.position):

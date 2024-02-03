@@ -5,6 +5,8 @@ extends Node2D
 @export var rising_curve: Curve;
 @export var ui_bounce_curve: Curve;
 @export var logathrithmic_curve: Curve;
+@export var warp_curve: Curve;
+@export var warp_curve_2: Curve;
 
 var _result
 
